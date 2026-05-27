@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import axios from "axios";
+import Register from './Components/Register';
 import './App.css'
 
 function App() {
@@ -7,7 +8,7 @@ function App() {
 
   return (
     <>
-      <h1>This is the frontend</h1>
+      <Register/>
     </>
   )
 }
