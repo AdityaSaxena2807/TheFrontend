@@ -1,14 +1,16 @@
 import { useState } from 'react'
 import axios from "axios";
-import Register from './Components/Register';
+import Register from './Components/Register.jsx';
+import Login from './Components/Login.jsx';
+import { Toaster } from 'react-hot-toast';
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <Register/>
+      <Toaster position="top-center" />
+      {/* <Register/> */}
+      <Login/>
     </>
   )
 }

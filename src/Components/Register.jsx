@@ -1,12 +1,14 @@
 import React from "react";
-import { useState } from "react";
 import axios from "axios";
+import { useState } from "react";
+import { ToastError, ToastSuccess } from "../Utils/ToastMessage.js";
 function Register() {
   const [userData, setUserData] = useState({
     fullName: "",
     email: "",
     username: "",
     password: "",
+    confirmPassword: "",
   });
 
   const [files, setFiles] = useState({
@@ -15,53 +17,65 @@ function Register() {
   });
 
   const handleChange = (e) => {
-    console.log("e.target", e.target);
     const { name, value } = e.target;
     setUserData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleFileChange = (e) => {
     const { name, files } = e.target;
-    // Store the first selected file
+    //Store the first selected file
     setFiles((prev) => ({ ...prev, [name]: files[0] }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // 1. Create a FormData object
+
+    if (
+      !userData.fullName.trim() ||
+      !userData.email.trim() ||
+      !userData.username.trim() ||
+      !userData.password.trim()
+    ) {
+      ToastError("All feilds are required");
+      return;
+    }
+    if (userData.password !== userData.confirmPassword) {
+      ToastError("Passwords do not match!!");
+      return;
+    }
+    if (!files.avatar || !files.coverImage) {
+      ToastError("Avatar and CoverImage are required");
+      return;
+    }
+
+    //Create a FormData object
     const data = new FormData();
-    // 2. Append text fields
+    //Append text fields
     data.append("username", userData.username);
     data.append("fullName", userData.fullName);
     data.append("email", userData.email);
     data.append("password", userData.password);
-    // 3. Append file fields
-    // Ensure these keys ('avatar', 'coverImage') match your backend's req.files expectations
-    if (files.avatar) {
-      data.append("avatar", files.avatar);
-    }
-    if (files.coverImage) {
-      data.append("coverImage", files.coverImage);
-    }
+    //Append file fields
+    //Ensure these keys ('avatar', 'coverImage') match your backend's req.files expectations
+    data.append("avatar", files.avatar);
+    data.append("coverImage", files.coverImage);
     try {
-      // 4. Send request
-      // Do NOT manually set 'Content-Type': 'multipart/form-data'
-      // The browser sets it automatically with the correct boundary when using FormData
+      //Send request
+      //not manually setting 'Content-Type': 'multipart/form-data'
+      //The browser sets it automatically with the correct boundary when using FormData
       const response = await axios.post("/api/v1/users/register", data);
 
       if (response.status < 400) {
-        alert("User registered successfully!");
-        console.log(response);
+        ToastSuccess("User registered successfully!");
       } else {
-        alert(`Error: ${response.message || "Registration failed"}`);
+        ToastError(`Error: ${response.message || "Registration failed"}`);
       }
     } catch (error) {
       console.error("Error message: ", error?.message);
       console.error("Error status: ", error?.response?.status);
       console.error("Error data: ", error?.response?.data);
-      alert("An error occurred during registration");
+      ToastError(`${error?.message}`);
     }
-    //TODO: improve authentication and response view of this page
   };
   return (
     <>
@@ -105,6 +119,16 @@ function Register() {
             value={userData.password}
             onChange={handleChange}
             placeholder="Enter password"
+          />
+        </div>
+        <div>
+          <label>Confirm Password:</label>
+          <input
+            type="text"
+            name="confirmPassword"
+            value={userData.confirmPassword}
+            onChange={handleChange}
+            placeholder="Re-Enter password"
           />
         </div>
         <div>
