@@ -1,0 +1,141 @@
+1. Global App Layout (applies to all logged-in pages)
+
++---+---------------------------------------------------+
+| = | Logo  Top Navbar (search, upload, profile menu)   |
++---+----------------+----------------------------------+
+| Sidebar            | Main Content Area                |
+|                    |                                  |
+| Home / Explore     | (changes per route)              |
+| Subscriptions      |                                  |
+| Library            |                                  |
+| Tweets             |                                  |
+|                    |                                  |
++--------------------+----------------------------------+
+________________________________________
+2. Home Page (YouTube feed)
+Purpose:
+Show videos feed
++---+---------------------------------------------------------+
+| = | Logo  Navbar (search bar centered, upload, profile menu)|
++---+---------------+-----------------------------------------+
+| Sidebar           |  Video Grid                             |
+|                   |                                         |
+| Home              |  [Video Card] [Video Card]              |
+| Subscriptions     |  [Video Card] [Video Card]              |
+| Library           |  [Video Card] [Video Card]              |
+| Tweets            |                                         |
++-------------------+-----------------------------------------+
+Video Card layout:
++-------------------------+
+| Thumbnail               |
++-------------------------+
+| Title                   |
+| Channel name            |
+| Views • Time            |
++-------------------------+
+________________________________________
+3. Video Watch Page (MOST IMPORTANT PAGE)
+This is your core page.
++---+---------------------------------------------------------+
+| = | Logo  Navbar (search bar centered, upload, profile menu)|
++---+---------------+-----------------------------------------+
+| Sidebar           |  VIDEO PLAYER                           |
+|                   |-----------------------------------------|
+|                   | Title                                   |
+|                   | Channel info                            |
+|                   | Views • Likes • Subscribe               |
+|                   | Description                             |
+|                   |-----------------------------------------|
+|                   | Comments Section                        |
+|                   | [Input comment box]                     |
+|                   | Comment list (Update, delete and like)  |
++-------------------+------------------+----------------------+
+                    | Related Videos   |
+                    | [Video Card]     |
+                    | [Video Card]     |
+                    | [Video Card]     |
+                    +------------------+
+________________________________________
+4. Channel Page
++---+---------------------------------------------------------+
+| = | Logo  Navbar (search bar centered, upload, profile menu)|
++-------------------+-----------------------------------------+
+| Sidebar           |  Channel Header                         |
+|                   |  [Cover Image]                          |
+|                   |  [Avatar] Channel Name                  |
+|                   |  Subscribe Button                       |
+|                   |  Subscribers count                      |
+|                   |-----------------------------------------|
+|                   | Videos Grid                             |
+|                   | [Video] [Video] [Video]                 |
++-------------------+-----------------------------------------+
+________________________________________
+5. Library Page (Watch history, liked, playlists)
+Use tabs inside page.
++---+---------------------------------------------------------+
+| = | Logo  Navbar (search bar centered, upload, profile menu)|
++---+---------------+-----------------------------------------+
+| Sidebar           |  LIBRARY TABS                           |
+|                   |  [History] [Liked] [Playlists]          |
+| Home              |-----------------------------------------|
+| Subscriptions     |  Content list                           |
+| Library           |  [Video Card]                           |
+| Tweets            |  [Video Card]                           |
++-------------------+-----------------------------------------+
+________________________________________
+6. Tweets Page (your Twitter feature)
++---+---------------------------------------------------------+
+| = | Logo  Navbar (search bar centered, upload, profile menu)|
++---+---------------+-----------------------------------------+
+| Sidebar           |  Tweet Input Box                        |
+|                   |  [What’s happening? Post]               |
+| Home              |-----------------------------------------|
+| Subscriptions     |  Tweet Feed                             |
+| Library           |  [Tweet Card]                           |
+| Tweets            |  [Tweet Card]                           |
++-------------------+-----------------------------------------+
+Tweet Card:
++-----------------------------+
+| Avatar + Username           |
+| Content text                |
+| Like • Comment • Time       |
++-----------------------------+
+________________________________________
+7. Upload Video Page
+
++---+---------------------------------------------------------+
+| = | Logo  Navbar (search bar centered, upload, profile menu)|
++-------------------+-----------------------------------------+
+| Sidebar           |  Upload Form                            |
+|                   |-----------------------------------------|
+|                   | Title input                             |
+|                   | Description                             |
+|                   | Video file upload                       |
+|                   | Thumbnail upload                        |
+|                   | Publish button                          |
++-------------------+-----------------------------------------+
+________________________________________
+8. Dashboard (creator analytics)
++---+---------------------------------------------------------+
+| = | Logo  Navbar (search bar centered, upload, profile menu)|
++-------------------+-----------------------------------------+
+| Sidebar           |  Stats Cards                            |
+|                   |  Views | Subs | Videos                  |
+|                   |-----------------------------------------|
+|                   | Chart / performance                     |
+|                   |-----------------------------------------|
+|                   | Uploaded videos list                    |
++-------------------+-----------------------------------------+
+________________________________________
+9. Settings Page (user management)
++------------------------------------------------------+
+| Navbar                                               |
++-------------------+----------------------------------+
+| Sidebar           | Profile Settings                 |
+|                   | Avatar upload                    |
+|                   | Cover image upload               |
+|                   | Change password                  |
+|                   | Update details                   |
++-------------------+----------------------------------+
+________________________________________
+
