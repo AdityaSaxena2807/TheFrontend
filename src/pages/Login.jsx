@@ -1,6 +1,8 @@
 import React from "react";
-import axios from "axios";
 import { useState } from "react";
+import { loginUser } from "../api/userApi.js";
+import { useNavigate } from "react-router-dom";
+import { useAuthStore } from "../store/authStore.js";
 import { ToastError, ToastSuccess } from "../Utils/ToastMessage.js";
 function Login() {
   const [userData, setUserData] = useState({
@@ -8,6 +10,10 @@ function Login() {
     username: "",
     password: "",
   });
+
+  const navigate = useNavigate();
+  const setAuth = useAuthStore((state) => state.setAuth);
+  //here setAuth is a function from the auth store that updates the authentication state with the user information and access token after a successful login.
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData((prev) => ({ ...prev, [name]: value }));
@@ -23,18 +29,20 @@ function Login() {
       ToastError("Password is required");
       return;
     }
+    const payload = {
+      password: userData.password,
+      ...(userData.email.trim() && { email: userData.email.trim() }),
+      ...(userData.username.trim() && { username: userData.username.trim() }),
+    };
     try {
-      const response = await axios.post("/api/v1/users/login", userData);
-      if (response.status < 400) {
-        ToastSuccess("Logged in successfully!!");
-      } else {
-        ToastError(`Error: ${response.message || "Login failed"}`);
-      }
+      const data = await loginUser(payload);
+      // After a successful login, the setAuth function is called with the user information and access token to update the authentication
+      // state in the application. This allows other parts of the app to recognize that the user is logged in and have access to their information.
+      setAuth(data.data.user, data.data.accessToken);
+      ToastSuccess("Logged in successfully!");
+      navigate("/");
     } catch (error) {
-      console.error("Error message: ", error?.message);
-      console.error("Error status: ", error?.response?.status);
-      console.error("Error data: ", error?.response?.data);
-      ToastError(`${error?.message}`);
+      ToastError(error?.response?.data?.message || "Login failed");
     }
   };
   return (
@@ -64,7 +72,7 @@ function Login() {
         <div>
           <label>Password:</label>
           <input
-            type="text"
+            type="password"
             name="password"
             value={userData.password}
             onChange={handleChange}

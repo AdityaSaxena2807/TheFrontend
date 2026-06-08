@@ -1,7 +1,7 @@
 import React from "react";
-import axios from "axios";
 import { useState } from "react";
 import { ToastError, ToastSuccess } from "../Utils/ToastMessage.js";
+import axiosInstance from "../services/axiosInstance.js";
 function Register() {
   const [userData, setUserData] = useState({
     fullName: "",
@@ -63,7 +63,7 @@ function Register() {
       //Send request
       //not manually setting 'Content-Type': 'multipart/form-data'
       //The browser sets it automatically with the correct boundary when using FormData
-      const response = await axios.post("/api/v1/users/register", data);
+      const response = await axiosInstance.post("/api/v1/users/register", data);
 
       if (response.status < 400) {
         ToastSuccess("User registered successfully!");
