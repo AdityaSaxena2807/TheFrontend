@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { loginUser } from "../api/userApi.js";
+import { loginUser } from "../services/userApi.js";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/authStore.js";
 import { ToastError, ToastSuccess } from "../Utils/ToastMessage.js";

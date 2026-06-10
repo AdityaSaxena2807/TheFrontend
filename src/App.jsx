@@ -4,15 +4,16 @@ import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
 import UserDetails from "./Components/UserDetails.jsx";
 import { Toaster } from "react-hot-toast";
+import Navbar from "./components/common/Navbar.jsx";
 import "./App.css";
-
+import { Router } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
+import router from "./router/index.jsx";
 function App() {
   return (
     <>
+      <RouterProvider router={router} />
       <Toaster position="top-center" />
-      {/* <Register/> */}
-      <Login />
-      <UserDetails />
     </>
   );
 }
