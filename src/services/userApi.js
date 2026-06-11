@@ -17,7 +17,7 @@ export const registerUser = async (formData) => {
 
 export const loginUser = async (userData) => {
   try {
-    const response = await axiosInstance.post("/api/v1/users/login", userData);
+    const response = await axiosInstance.post("/api/v1/users/login", userData);    
     return response.data;
   } catch (error) {
     console.error("Error message: ", error?.message);

@@ -1,14 +1,12 @@
-import { useState } from "react";
 import axios from "axios";
-import Register from "./pages/Register.jsx";
+import { useState } from "react";
 import Login from "./pages/Login.jsx";
-import UserDetails from "./Components/UserDetails.jsx";
+import router from "./router/index.jsx";
+import Register from "./pages/Register.jsx";
 import { Toaster } from "react-hot-toast";
-import Navbar from "./components/common/Navbar.jsx";
-import "./App.css";
 import { Router } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
-import router from "./router/index.jsx";
+
 function App() {
   return (
     <>

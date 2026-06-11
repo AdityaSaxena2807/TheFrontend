@@ -7,18 +7,20 @@ const AppLayout = () => {
   const sidebarOpen = useUiStore((s) => s.sidebarOpen);
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen bg-black text-white">
       <Navbar />
 
       <div className="flex pt-16">
-        {/* pt-16 pushes content below fixed navbar */}
+        {/* Sidebar */}
+        <Sidebar className="bg-[#121212] text-white shadow-lg shadow-black/50" />
 
-        <Sidebar />
-
+        {/* Main content */}
         <main
-          className={`flex-1 transition-all duration-200 ${sidebarOpen ? "ml-64" : "ml-16"}`}
+          className={`flex-1 transition-all duration-200 ${
+            sidebarOpen ? "ml-64" : "ml-16"
+          }`}
         >
-          <div className="p-6">
+          <div className="p-6 bg-[#181818] rounded-lg shadow-inner shadow-black/40 min-h-[calc(100vh-4rem)]">
             <Outlet />
           </div>
         </main>
