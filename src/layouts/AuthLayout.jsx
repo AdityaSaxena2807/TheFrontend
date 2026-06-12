@@ -15,4 +15,3 @@ const AuthLayout = () => {
   );
 };
 export default AuthLayout;
-//TODO on refresh its going to login page because of the state is getting reseted, need to fix that by using local storage or something like that

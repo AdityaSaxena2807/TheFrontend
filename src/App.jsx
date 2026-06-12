@@ -1,13 +1,25 @@
-import axios from "axios";
-import { useState } from "react";
-import Login from "./pages/Login.jsx";
+import { useEffect } from "react";
 import router from "./router/index.jsx";
-import Register from "./pages/Register.jsx";
 import { Toaster } from "react-hot-toast";
-import { Router } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
-
+import { useAuthStore } from "./store/authStore.js";
+import { LoadingOutlined } from "@ant-design/icons";
 function App() {
+  const initializeAuth = useAuthStore((state) => state.initializeAuth);
+  const isAuthLoading = useAuthStore((state) => state.isAuthLoading);
+
+  useEffect(() => {
+    initializeAuth();
+  }, [initializeAuth]);
+
+  if (isAuthLoading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-black text-white">
+        <LoadingOutlined />
+      </div>
+    );
+  }
+
   return (
     <>
       <RouterProvider router={router} />

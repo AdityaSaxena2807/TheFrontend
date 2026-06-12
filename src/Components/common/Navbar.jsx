@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../../store/authStore.js";
 import { useUiStore } from "../../store/uiStore.js";
-import SearchBar from "./SearchBar.jsx";
 import { MenuOutlined } from "@ant-design/icons";
+import Logo from "./Logo.jsx";
+import SearchBar from "./SearchBar.jsx";
 
 function Navbar() {
   const isLoggedIn = useAuthStore((s) => s.isLoggedIn);
@@ -17,6 +18,9 @@ function Navbar() {
       >
         <MenuOutlined />
       </button>
+      <div className="flex-1 mx-4">
+        <Logo />
+      </div>
 
       {/* Search */}
       <div className="flex-1 mx-4">
