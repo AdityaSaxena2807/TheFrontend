@@ -7,7 +7,8 @@ const authClient = axios.create({
 });
 
 let authInitialization;
-
+// The useAuthStore is a Zustand store that manages the authentication state of the application. It provides functions to set, clear, and initialize 
+// authentication, as well as update user information. The store maintains the user object, access token, login status, and loading state for authentication.
 const useAuthStore = create((set) => ({
   user: null,
   accessToken: null,

@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { getAllVideos } from "../services/videoApi";
-import { ToastError } from "../Utils/ToastMessage.js";
 import { useNavigate } from "react-router-dom";
-import VideoCard from "../components/common/VideoCard.jsx";
+import { getAllVideos } from "../services/videoApi";
 import { LoadingOutlined } from "@ant-design/icons";
+import { ToastError } from "../Utils/ToastMessage.js";
+import VideoCard from "../components/common/VideoCard.jsx";
 
 function Home() {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchVideos = async () => {

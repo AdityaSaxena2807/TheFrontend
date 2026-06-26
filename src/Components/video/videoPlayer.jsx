@@ -24,6 +24,7 @@
 // };
 
 // export default VideoPlayer;
+
 // videoPlayer.jsx
 'use client';
 
