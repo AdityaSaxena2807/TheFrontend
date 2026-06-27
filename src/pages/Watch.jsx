@@ -85,4 +85,5 @@ function Watch() {
 }
 
 export default Watch;
-//TODO complete this page with all apis and components. For now, it's just a skeleton with a video player and some placeholders for the rest of the content.
+//TODO complete this page with all apis and components. For now, it's just a skeleton with a video player and some placeholders for the rest of the content 
+//`fix the video player issue. 

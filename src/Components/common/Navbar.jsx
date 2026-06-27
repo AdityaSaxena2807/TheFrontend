@@ -4,11 +4,11 @@ import { useUiStore } from "../../store/uiStore.js";
 import { MenuOutlined } from "@ant-design/icons";
 import Logo from "./Logo.jsx";
 import SearchBar from "./SearchBar.jsx";
-
+import { logoutUser } from "../../services/userApi.js";
 function Navbar() {
   const isLoggedIn = useAuthStore((s) => s.isLoggedIn);
   const user = useAuthStore((s) => s.user);
-
+  const clearAuth = useAuthStore((state) => state.clearAuth);
   return (
     <nav className="fixed top-0 z-50 flex w-full items-center justify-between bg-black px-6 py-3 shadow-lg shadow-black/50">
       {/* Sidebar toggle */}
@@ -37,6 +37,15 @@ function Navbar() {
             >
               Upload
             </Link>
+            <button
+              className="px-4 py-2 rounded hover:bg-[#706e6e] text-white font-semibold transition"
+              onClick={async () => {
+                await logoutUser();
+                clearAuth();
+              }}
+            >
+              LogOut
+            </button>
             <button className="w-10 h-10 rounded-full overflow-hidden border-2 border-[#FF0000] hover:border-[#C50900] transition">
               <img
                 src={user?.avatar}
