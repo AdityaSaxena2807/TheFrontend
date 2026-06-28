@@ -6,7 +6,8 @@ function VideoCard({
   duration,
   views,
   uploadedAt,
-  ownerDetails,
+  ownerName,
+  ownerAvatar
 }) {
   const formatViews = (num) => {
     if (!num) return "0 views";
@@ -63,11 +64,20 @@ function VideoCard({
         </span>
       </div>
       <div className="p-3">
-        <h3 className="font-semibold text-white text-sm line-clamp-2 hover:text-red-500">
-          {title}
-        </h3>
-        <p className="text-gray-400 text-xs mt-1">{ownerDetails}</p>
-        <p className="text-gray-500 text-xs mt-1 flex justify-between">
+        <div className="flex items-start gap-2">
+          <img
+            src={ownerAvatar}
+            alt={ownerName}
+            className="w-9 h-9 rounded-full object-cover flex-shrink-0"
+          />
+          <div>
+            <h3 className="font-semibold text-white text-sm line-clamp-2 hover:text-red-500">
+              {title}
+            </h3>
+            <p className="text-gray-400 text-xs mt-1">{ownerName}</p>
+          </div>
+        </div>
+        <p className="text-gray-500 text-xs mt-2 flex justify-between">
           <span>{formatViews(views)}</span>
           <span>{daysAgo(uploadedAt)}</span>
         </p>

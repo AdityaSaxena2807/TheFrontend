@@ -58,7 +58,8 @@ function Home() {
                 duration={video.duration}
                 views={video.views}
                 uploadedAt={video.createdAt}
-                ownerDetails={video.ownerDetails.username}
+                ownerName={video.ownerDetails.username}
+                ownerAvatar={video.ownerDetails.avatar}
               />
             </div>
           ))}

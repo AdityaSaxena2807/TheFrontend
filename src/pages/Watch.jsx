@@ -1,89 +1,98 @@
-// Watch.jsx
 import React, { useEffect, useState } from "react";
 import { ToastError } from "../Utils/ToastMessage.js";
 import { getVideoById } from "../services/videoApi.js";
+import { getVideoComments, addComment } from "../services/commentApi.js";
 import { useParams } from "react-router-dom";
-import VideoPlayer from "../components/video/videoPlayer.jsx";
+import VideoPlayer from "../Components/video/videoPlayer.jsx";
+import VideoInfo from "../Components/video/VideoInfo.jsx";
+import VideoListItem from "../Components/video/videoListItem.jsx";
+import CommentList from "../Components/comment/commentList.jsx";
 import { LoadingOutlined } from "@ant-design/icons";
 
 function Watch() {
-  const { videoId } = useParams();
-  const [video, setVideo] = useState(null);
+	const { videoId } = useParams();
+	const [video, setVideo] = useState(null);
+	const [comments, setComments] = useState([]);
+	const [commentsLoading, setCommentsLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchVideo = async () => {
-      try {
-        const response = await getVideoById(videoId);
-        setVideo(response.data);
-      } catch (err) {
-        ToastError("Failed to load video");
-      }
-    };
-    fetchVideo();
-  }, [videoId]);
+	useEffect(() => {
+		const fetchVideo = async () => {
+			try {
+				const response = await getVideoById(videoId);
+				setVideo(response.data);
+			} catch (err) {
+				ToastError("Failed to load video");
+			}
+		};
+		fetchVideo();
+	}, [videoId]);
 
-  if (!video)
-    return (
-      <div className="flex items-center justify-center h-screen bg-[#0f0f0f]">
-        <LoadingOutlined className="text-white text-4xl" />
-      </div>
-    );
+	useEffect(() => {
+		const fetchComments = async () => {
+			try {
+				setCommentsLoading(true);
+				const response = await getVideoComments(videoId);
+				setComments(response.data.docs);
+			} catch (err) {
+				ToastError("Failed to load comments");
+			} finally {
+				setCommentsLoading(false);
+			}
+		};
+		fetchComments();
+	}, [videoId]);
 
-  return (
-    <div className="bg-[#0f0f0f] min-h-screen text-white">
-      <div className="max-w-[1800px] mx-auto px-4 py-6 flex gap-6">
-        {/* Left — Main content */}
-        <div className="flex-1 min-w-0">
-          {/* Video Player */}
-          <div className="w-full rounded-xl overflow-hidden bg-black">
-            <VideoPlayer
-              videoUrl={video.videoFile}
-              thumbnail={video.thumbnail}
-            />
-          </div>
+	const handleAddComment = async (content) => {
+		try {
+			const response = await addComment(videoId, content);
+			setComments((prev) => [response.data, ...prev]);
+		} catch (err) {
+			ToastError("Failed to post comment");
+		}
+	};
 
-          {/* Video Title */}
-          <h1 className="mt-4 text-xl font-semibold text-white leading-snug">
-            {video.title}
-          </h1>
+	if (!video)
+		return (
+			<div className="flex items-center justify-center h-screen bg-[#0f0f0f]">
+				<LoadingOutlined className="text-white text-4xl" />
+			</div>
+		);
 
-          {/* Views + Date */}
-          <p className="text-sm text-gray-400 mt-1">
-            {video.views} views &bull;{" "}
-            {new Date(video.createdAt).toDateString()}
-          </p>
+	return (
+		<div className="bg-[#0f0f0f] min-h-screen text-white">
+			<div className="max-w-[1800px] mx-auto px-4 py-6 flex gap-6">
+				<div className="flex-1 min-w-0">
+					<VideoPlayer videoUrl={video.videoFile} thumbnail={video.thumbnail} />
 
-          {/* Divider */}
-          <div className="border-t border-gray-700 my-4" />
+					<VideoInfo video={video} />
 
-          {/* Channel Info placeholder */}
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gray-600" />
-            <div>
-              <p className="font-medium text-white">{video.owner?.username}</p>
-              <p className="text-xs text-gray-400">channel info here</p>
-            </div>
-          </div>
+					<CommentList
+						comments={comments}
+						loading={commentsLoading}
+						onAddComment={handleAddComment}
+					/>
+				</div>
 
-          {/* Description */}
-          <div className="mt-4 bg-[#1a1a1a] rounded-xl p-4 text-sm text-gray-300 whitespace-pre-wrap">
-            {video.description}
-          </div>
-        </div>
-
-        {/* Right — Recommended videos (placeholder for now) */}
-        <div className="w-[360px] hidden lg:flex flex-col gap-3">
-          <p className="text-gray-400 text-sm">Up next</p>
-          {/* You'll map <VideoListItem /> here later */}
-          <div className="w-full h-24 bg-[#1a1a1a] rounded-xl animate-pulse" />
-          <div className="w-full h-24 bg-[#1a1a1a] rounded-xl animate-pulse" />
-          <div className="w-full h-24 bg-[#1a1a1a] rounded-xl animate-pulse" />
-        </div>
-      </div>
-    </div>
-  );
+				<div className="w-[360px] hidden lg:flex flex-col gap-3">
+					<p className="text-gray-400 text-sm">Up next</p>
+					{/* TODO: wire up real "recommended videos" API — placeholder pulses for now */}
+					<div className="w-full h-24 bg-[#1a1a1a] rounded-xl animate-pulse" />
+					<div className="w-full h-24 bg-[#1a1a1a] rounded-xl animate-pulse" />
+					<div className="w-full h-24 bg-[#1a1a1a] rounded-xl animate-pulse" />
+				</div>
+			</div>
+		</div>
+	);
 }
 
 export default Watch;
-//TODO complete this page with all apis and components. For now, it's just a skeleton with a video player and some placeholders for the rest of the content 
-//`fix the video player issue. 
+// Yes — a few things are missing, and interestingly you've already built components for some of them that just aren't wired into Watch.jsx yet:
+// Missing piece	Status
+// Like/Dislike on the video	You have likeApi.js but no like button in Watch — only comments have likes right now
+// Subscribe button	You already built channel/subscribeButton.jsx — it's just not placed next to the owner info in VideoInfo.jsx
+// Save to playlist	You already built video/saveToPlaylistDropdown.jsx — unused so far
+// Clickable channel	Clicking the owner avatar/username currently does nothing — should navigate to /channel/:username (your Channel.jsx page)
+// Description show more/less	Nice-to-have — long descriptions just render in full right now, no truncation/expand
+// Real "Up next" videos	Still placeholder pulses — needs a "related videos" API call (do you have one in videoApi.js, or is this not built on the backend yet?)
+// Reply edit/delete on comments, nested replies, and comment sorting are reasonable v2 features but not essential for a working Watch page — I'd skip those for now unless you want them.
+
