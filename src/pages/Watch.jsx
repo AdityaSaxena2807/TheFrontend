@@ -7,6 +7,7 @@ import VideoInfo from "../Components/video/VideoInfo.jsx";
 import VideoPlayer from "../Components/video/videoPlayer.jsx";
 import VideoListItem from "../Components/video/videoListItem.jsx";
 import CommentList from "../Components/comment/commentList.jsx";
+<<<<<<< HEAD
 import { getVideoComments, addComment } from "../services/commentApi.js";
 
 function Watch() {
@@ -26,6 +27,31 @@ function Watch() {
     };
     fetchVideo();
   }, [videoId]);
+=======
+import { LoadingOutlined } from "@ant-design/icons";
+import { toggleVideoLike } from "../services/likeApi.js";
+
+function Watch() {
+	const { videoId } = useParams();
+	const [video, setVideo] = useState(null);
+	const [comments, setComments] = useState([]);
+	const [commentsLoading, setCommentsLoading] = useState(true);
+	const [isLiked, setIsLiked] = useState(false); // start with false
+	const [likesCount, setLikesCount] = useState(0); // start with 0
+	useEffect(() => {
+		const fetchVideo = async () => {
+			try {
+				const response = await getVideoById(videoId);
+				setVideo(response.data);
+				setIsLiked(response.data.isLiked);
+				setLikesCount(response.data.likesCount);
+			} catch (err) {
+				ToastError("Failed to load video");
+			}
+		};
+		fetchVideo();
+	}, [videoId]);
+>>>>>>> f8e1fd0c9a3292a4fb73770b7f67e57493e3c71d
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -51,12 +77,31 @@ function Watch() {
     }
   };
 
+<<<<<<< HEAD
   if (!video)
     return (
       <div className="flex items-center justify-center h-screen bg-[#0f0f0f]">
         <LoadingOutlined className="text-white text-4xl" />
       </div>
     );
+=======
+	const handleVideoLike = async () => {
+		try {
+			const response = await toggleVideoLike(videoId);
+			setIsLiked(response.data.isLiked);
+			setLikesCount(response.data.likesCount);
+		} catch (err) {
+			ToastError("Failed to like video");
+		}
+	};
+
+	if (!video)
+		return (
+			<div className="flex items-center justify-center h-screen bg-[#0f0f0f]">
+				<LoadingOutlined className="text-white text-4xl" />
+			</div>
+		);
+>>>>>>> f8e1fd0c9a3292a4fb73770b7f67e57493e3c71d
 
   return (
     <div className="bg-[#0f0f0f] min-h-screen text-white">
@@ -64,7 +109,16 @@ function Watch() {
         <div className="flex-1 min-w-0">
           <VideoPlayer videoUrl={video.videoFile} thumbnail={video.thumbnail} />
 
+<<<<<<< HEAD
           <VideoInfo video={video} />
+=======
+					<VideoInfo
+						video={video}
+						isLiked={isLiked}
+						likesCount={likesCount}
+						onLike={handleVideoLike}
+					/>
+>>>>>>> f8e1fd0c9a3292a4fb73770b7f67e57493e3c71d
 
           <CommentList
             comments={comments}
@@ -86,9 +140,7 @@ function Watch() {
 }
 
 export default Watch;
-// Yes — a few things are missing, and interestingly you've already built components for some of them that just aren't wired into Watch.jsx yet:
 // Missing piece	Status
-// Like/Dislike on the video	You have likeApi.js but no like button in Watch — only comments have likes right now
 // Subscribe button	You already built channel/subscribeButton.jsx — it's just not placed next to the owner info in VideoInfo.jsx
 // Save to playlist	You already built video/saveToPlaylistDropdown.jsx — unused so far
 // Clickable channel	Clicking the owner avatar/username currently does nothing — should navigate to /channel/:username (your Channel.jsx page)
