@@ -4,8 +4,8 @@ import { useAuthStore } from "../../store/authStore.js";
 import LoginPromptModal from "../common/LoginPromptModal.jsx";
 
 function CommentInput({ onSubmit }) {
-  const { user } = useAuthStore();
   const navigate = useNavigate();
+  const { user } = useAuthStore();
   const [text, setText] = useState("");
   const [showLoginModal, setShowLoginModal] = useState(false);
 

@@ -5,6 +5,7 @@ import { MenuOutlined } from "@ant-design/icons";
 import Logo from "./Logo.jsx";
 import SearchBar from "./SearchBar.jsx";
 import { logoutUser } from "../../services/userApi.js";
+import { ToastSuccess, ToastError } from "../../Utils/ToastMessage.js";
 function Navbar() {
   const isLoggedIn = useAuthStore((s) => s.isLoggedIn);
   const user = useAuthStore((s) => s.user);
@@ -40,8 +41,13 @@ function Navbar() {
             <button
               className="px-4 py-2 rounded hover:bg-[#706e6e] text-white font-semibold transition"
               onClick={async () => {
-                await logoutUser();
-                clearAuth();
+                try {
+                  await logoutUser();
+                  clearAuth();
+                  ToastSuccess("Logged out successfully");
+                } catch (error) {
+                  ToastError(error?.response?.data?.message || "Logout failed");
+                }
               }}
             >
               LogOut

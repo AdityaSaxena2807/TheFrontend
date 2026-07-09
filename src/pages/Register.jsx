@@ -34,7 +34,7 @@ function Register() {
       return ToastError("Avatar and cover image are required");
 
     const data = new FormData();
-    Object.entries(userData).forEach(([k, v]) => data.append(k, v));
+    Object.entries(userData).forEach(([key, value]) => data.append(key, value));
     data.append("avatar", files.avatar);
     data.append("coverImage", files.coverImage);
 

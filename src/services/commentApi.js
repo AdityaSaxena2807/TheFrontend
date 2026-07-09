@@ -16,10 +16,9 @@ export const getVideoComments = async (videoId, params = {}) => {
 
 export const addComment = async (videoId, userData) => {
   try {
-    const response = await axiosInstance.post(
-      `/api/v1/comments/${videoId}`,
-      userData,
-    );
+    const response = await axiosInstance.post(`/api/v1/comments/${videoId}`, {
+      content: userData,
+    });
     return response.data;
   } catch (error) {
     console.error("Error message: ", error?.message);
@@ -47,7 +46,9 @@ export const updateComment = async (commentId, userData) => {
   try {
     const response = await axiosInstance.patch(
       `/api/v1/comments/c/${commentId}`,
-      userData,
+      {
+        content: userData,
+      },
     );
     return response.data;
   } catch (error) {
