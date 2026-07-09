@@ -68,7 +68,7 @@ function VideoCard({
           <img
             src={ownerAvatar}
             alt={ownerName}
-            className="w-9 h-9 rounded-full object-cover flex-shrink-0"
+            className="w-9 h-9 rounded-full object-cover shrink-0"
           />
           <div>
             <h3 className="font-semibold text-white text-sm line-clamp-2 hover:text-red-500">

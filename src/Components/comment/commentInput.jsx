@@ -26,7 +26,7 @@ function CommentInput({ onSubmit }) {
   return (
     <>
       <div className="flex gap-3 mb-6">
-        <div className="w-8 h-8 rounded-full bg-gray-600 flex-shrink-0" />
+        <div className="w-8 h-8 rounded-full bg-gray-600 shrink-0" />
         <div className="flex-1">
           <textarea
             value={text}

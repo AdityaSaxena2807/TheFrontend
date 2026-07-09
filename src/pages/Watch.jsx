@@ -7,7 +7,6 @@ import VideoInfo from "../Components/video/VideoInfo.jsx";
 import VideoPlayer from "../Components/video/videoPlayer.jsx";
 import VideoListItem from "../Components/video/videoListItem.jsx";
 import CommentList from "../Components/comment/commentList.jsx";
-import { LoadingOutlined } from "@ant-design/icons";
 import { toggleVideoLike } from "../services/likeApi.js";
 import { getVideoComments, addComment } from "../services/commentApi.js";
 
@@ -75,7 +74,7 @@ function Watch() {
 
   return (
     <div className="bg-[#0f0f0f] min-h-screen text-white">
-      <div className="max-w-[1800px] mx-auto px-4 py-6 flex gap-6">
+      <div className="max-w-450 mx-auto px-4 py-6 flex gap-6">
         <div className="flex-1 min-w-0">
           <VideoPlayer videoUrl={video.videoFile} thumbnail={video.thumbnail} />
 
@@ -93,7 +92,7 @@ function Watch() {
           />
         </div>
 
-        <div className="w-[360px] hidden lg:flex flex-col gap-3">
+        <div className="w-90 hidden lg:flex flex-col gap-3">
           <p className="text-gray-400 text-sm">Up next</p>
           {/* TODO: wire up real "recommended videos" API — placeholder pulses for now */}
           <div className="w-full h-24 bg-[#1a1a1a] rounded-xl animate-pulse" />

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import router from "./router/index.jsx";
+import router from "./router/routes.jsx";
 import { Toaster } from "react-hot-toast";
 import { RouterProvider } from "react-router-dom";
 import { useAuthStore } from "./store/authStore.js";
