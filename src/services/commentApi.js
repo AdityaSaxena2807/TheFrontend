@@ -42,12 +42,12 @@ export const deleteComment = async (commentId) => {
   }
 };
 
-export const updateComment = async (commentId, userData) => {
+export const updateComment = async (commentId, newcontent) => {
   try {
     const response = await axiosInstance.patch(
       `/api/v1/comments/c/${commentId}`,
       {
-        content: userData,
+        content: newcontent,
       },
     );
     return response.data;

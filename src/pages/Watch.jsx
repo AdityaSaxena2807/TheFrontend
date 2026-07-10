@@ -4,11 +4,11 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { ToastError } from "../Utils/ToastMessage.js";
 import { getVideoById } from "../services/videoApi.js";
 import VideoInfo from "../Components/video/VideoInfo.jsx";
-import VideoPlayer from "../Components/video/videoPlayer.jsx";
-import VideoListItem from "../Components/video/videoListItem.jsx";
-import CommentList from "../Components/comment/commentList.jsx";
+import VideoPlayer from "../components/video/VideoPlayer.jsx";
+import VideoListItem from "../components/video/VideoListItem.jsx";
+import CommentList from "../components/comment/CommentList.jsx";
 import { toggleVideoLike } from "../services/likeApi.js";
-import { getVideoComments, addComment } from "../services/commentApi.js";
+import { getVideoComments, addComment, updateComment, deleteComment } from "../services/commentApi.js";
 
 function Watch() {
   const { videoId } = useParams();
@@ -64,7 +64,27 @@ function Watch() {
       ToastError("Failed to like video");
     }
   };
+  const handleUpdateComment = async (commentId, newContent) => {
+    try {
+      const response = await updateComment(commentId, newContent);
+      setComments((prev) =>
+        prev.map((c) =>
+          c._id === commentId ? { ...c, content: response.data.content } : c,
+        ),
+      );
+    } catch (err) {
+      ToastError("Failed to update comment");
+    }
+  };
 
+  const handleDeleteComment = async (commentId) => {
+    try {
+      await deleteComment(commentId);
+      setComments((prev) => prev.filter((c) => c._id !== commentId));
+    } catch (err) {
+      ToastError("Failed to delete comment");
+    }
+  };
   if (!video)
     return (
       <div className="flex items-center justify-center h-screen bg-[#0f0f0f]">
@@ -89,6 +109,8 @@ function Watch() {
             comments={comments}
             loading={commentsLoading}
             onAddComment={handleAddComment}
+            onUpdateComment={handleUpdateComment}
+            onDeleteComment={handleDeleteComment}
           />
         </div>
 

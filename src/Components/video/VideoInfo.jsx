@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LikeFilled, LikeOutlined, SaveOutlined } from "@ant-design/icons";
 import { useAuthStore } from "../../store/authStore.js";
-import SubscribeButton from "../channel/subscribeButton.jsx";
-import SaveToPlaylistDropdown from "./saveToPlaylistDropdown.jsx";
+import SubscribeButton from "../channel/SubscribeButton.jsx";
+import SaveToPlaylistDropdown from "./SaveToPlaylistDropdown.jsx";
 import LoginPromptModal from "../common/LoginPromptModal.jsx";
 
 function VideoInfo({ video, isLiked, likesCount, onLike }) {
