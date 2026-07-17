@@ -10,12 +10,12 @@ import CommentOptions from "./CommentOptions.jsx";
 function CommentItem({ comment, onUpdate, onDelete }) {
   const { user } = useAuthStore();
   const navigate = useNavigate();
-  const [isLiked, setIsLiked] = useState(comment.isLiked);
-  const [likesCount, setLikesCount] = useState(comment.likesCount);
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const isOwner = user?._id === comment.ownerDetails?._id;
   const [isEditing, setIsEditing] = useState(false);
+  const [isLiked, setIsLiked] = useState(comment.isLiked);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [likesCount, setLikesCount] = useState(comment.likesCount);
   const [editedContent, setEditedContent] = useState(comment.content);
+  const isOwner = user?._id === comment.ownerDetails?._id;
 
   const handleEditSubmit = async () => {
     if (!editedContent.trim()) return;
@@ -26,6 +26,7 @@ function CommentItem({ comment, onUpdate, onDelete }) {
   const handleDelete = async () => {
     await onDelete(comment._id);
   };
+
   const handleCommentLike = async (commentId) => {
     if (!user) {
       setShowLoginModal(true);

@@ -20,9 +20,7 @@ const AppLayout = () => {
             sidebarOpen ? "ml-64" : "ml-16"
           }`}
         >
-          <div className="p-6 bg-[#181818] rounded-lg shadow-inner shadow-black/40 min-h-[calc(100vh-4rem)]">
-            <Outlet />
-          </div>
+          <Outlet />
         </main>
       </div>
     </div>

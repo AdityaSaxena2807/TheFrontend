@@ -13,7 +13,7 @@ function Sidebar() {
     ${sidebarOpen ? "w-64" : "w-16"}
   `}
     >
-      <nav className="flex flex-col mt-4 space-y-2 px-2">
+      <nav className="flex flex-col mt-10 space-y-2 px-2">
         <NavLink
           to="/"
           className={({ isActive }) =>

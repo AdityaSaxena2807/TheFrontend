@@ -8,7 +8,12 @@ import VideoPlayer from "../components/video/VideoPlayer.jsx";
 import VideoListItem from "../components/video/VideoListItem.jsx";
 import CommentList from "../components/comment/CommentList.jsx";
 import { toggleVideoLike } from "../services/likeApi.js";
-import { getVideoComments, addComment, updateComment, deleteComment } from "../services/commentApi.js";
+import {
+  getVideoComments,
+  addComment,
+  updateComment,
+  deleteComment,
+} from "../services/commentApi.js";
 
 function Watch() {
   const { videoId } = useParams();
@@ -113,10 +118,8 @@ function Watch() {
             onDeleteComment={handleDeleteComment}
           />
         </div>
-
         <div className="w-90 hidden lg:flex flex-col gap-3">
           <p className="text-gray-400 text-sm">Up next</p>
-          {/* TODO: wire up real "recommended videos" API — placeholder pulses for now */}
           <div className="w-full h-24 bg-[#1a1a1a] rounded-xl animate-pulse" />
           <div className="w-full h-24 bg-[#1a1a1a] rounded-xl animate-pulse" />
           <div className="w-full h-24 bg-[#1a1a1a] rounded-xl animate-pulse" />
@@ -127,6 +130,7 @@ function Watch() {
 }
 
 export default Watch;
+//TODO: wire up real "recommended videos" API — placeholder pulses for now
 // Missing piece	Status
 // Subscribe button	You already built channel/subscribeButton.jsx — it's just not placed next to the owner info in VideoInfo.jsx
 // Save to playlist	You already built video/saveToPlaylistDropdown.jsx — unused so far
