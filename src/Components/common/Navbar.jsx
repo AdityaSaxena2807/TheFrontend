@@ -52,7 +52,7 @@ function Navbar() {
             >
               LogOut
             </button>
-            <button className="w-10 h-10 rounded-full overflow-hidden border-2 border-[#FF0000] hover:border-[#C50900] transition">
+            <button className="w-10 h-10 rounded-full overflow-hidden border-2 border-[#050505] hover:border-[#666363] transition">
               <img
                 src={user?.avatar}
                 alt={user?.username}

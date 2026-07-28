@@ -5,12 +5,14 @@ import {
 } from "react-router-dom";
 import AppLayout from "../layouts/AppLayout";
 import AuthLayout from "../layouts/AuthLayout";
+import ProtectedLayout from "../layouts/ProtectedLayout";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Home from "../pages/Home";
 import Watch from "../pages/Watch";
 import Channel from "../pages/Channel";
 import Library from "../pages/Library";
+import PlaylistDetail from "../pages/PlaylistDetail";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,9 +25,10 @@ const router = createBrowserRouter(
         <Route path="/" element={<Home />} />
         <Route path="/watch/:videoId" element={<Watch />} />
         <Route path="/channel/:username" element={<Channel />} />
-        <Route path="/library" element={<Library />} />
-        {/* <Route path="/search" element={<Search />} />
-        <Route path="/playlist/:id" element={<PlaylistDetail />} /> */}
+        <Route element={<ProtectedLayout />}>
+          <Route path="/library" element={<Library />} />
+          <Route path="/playlist/:playlistId" element={<PlaylistDetail />} />
+        </Route>
       </Route>
     </Route>,
   ),

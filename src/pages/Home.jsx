@@ -48,7 +48,7 @@ function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {videos.map((video) => (
             <div
-              key={video.id}
+              key={video._id}
               onClick={() => navigate(`/watch/${video?._id}`)}
               className="cursor-pointer"
             >
