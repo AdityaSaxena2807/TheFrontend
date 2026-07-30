@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { LoadingOutlined } from "@ant-design/icons";
 import { ToastError } from "../../Utils/ToastMessage.js";
 import { getUserPlaylists } from "../../services/playlistApi.js";
@@ -12,22 +12,22 @@ function Playlists() {
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
 
-  useEffect(() => {
+  const fetchPlaylists = useCallback(async () => {
     if (!user?._id) return;
-
-    const fetchPlaylists = async () => {
-      try {
-        setLoading(true);
-        const response = await getUserPlaylists(user._id);
-        setPlaylists(response.data);
-      } catch (err) {
-        ToastError("Failed to load playlists");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchPlaylists();
+    try {
+      setLoading(true);
+      const response = await getUserPlaylists(user._id);
+      setPlaylists(response.data || []);
+    } catch (err) {
+      ToastError("Failed to load playlists");
+    } finally {
+      setLoading(false);
+    }
   }, [user?._id]);
+
+  useEffect(() => {
+    fetchPlaylists();
+  }, [fetchPlaylists]);
 
   if (loading) {
     return (
@@ -58,12 +58,11 @@ function Playlists() {
           ))}
         </div>
       )}
+
       <PlaylistForm
         isOpen={showForm}
         onClose={() => setShowForm(false)}
-        onSuccess={(newPlaylist) =>
-          setPlaylists((prev) => [newPlaylist, ...prev])
-        }
+        onSuccess={fetchPlaylists}
       />
     </div>
   );

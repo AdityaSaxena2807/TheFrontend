@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
   LoadingOutlined,
   EditOutlined,
   DeleteOutlined,
-  CloseOutlined,
+  MoreOutlined,
 } from "@ant-design/icons";
 import {
   getPlaylistById,
@@ -13,7 +13,48 @@ import {
 } from "../services/playlistApi.js";
 import { ToastError, ToastSuccess } from "../Utils/ToastMessage.js";
 import PlaylistForm from "../components/playlist/PlaylistForm.jsx";
+import ConfirmDialog from "../components/common/ConfirmDialog.jsx";
 import VideoListItem from "../components/video/VideoListItem.jsx";
+
+function VideoRowMenu({ onRemove }) {
+  const [open, setOpen] = useState(false);
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  return (
+    <div className="absolute right-0 shrink-0" ref={menuRef}>
+      <button
+        onClick={() => setOpen((prev) => !prev)}
+        className="w-8 h-8 flex items-center justify-center rounded-full text-gray-400 hover:bg-[#3f3f3f] hover:text-white transition-all duration-150"
+      >
+        <MoreOutlined className="text-lg" />
+      </button>
+
+      {open && (
+        <div className="absolute right-0 mt-2 w-48 bg-[#282828] border border-[#3f3f3f] rounded-xl shadow-2xl overflow-hidden z-30">
+          <button
+            onClick={() => {
+              setOpen(false);
+              onRemove();
+            }}
+            className="flex items-center gap-3 w-full px-4 py-3 text-sm text-red-400 hover:bg-[#3f3f3f] transition-colors"
+          >
+            Remove from playlist
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
 
 function PlaylistDetail() {
   const { playlistId } = useParams();
@@ -21,6 +62,8 @@ function PlaylistDetail() {
   const [playlist, setPlaylist] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showEditForm, setShowEditForm] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [videoToRemove, setVideoToRemove] = useState(null);
 
   useEffect(() => {
     const fetchPlaylist = async () => {
@@ -37,7 +80,9 @@ function PlaylistDetail() {
     fetchPlaylist();
   }, [playlistId]);
 
-  const handleRemoveVideo = async (videoId) => {
+  const handleRemoveVideo = async () => {
+    const videoId = videoToRemove;
+    setVideoToRemove(null);
     try {
       await removeVideoFromPlaylist(videoId, playlistId);
       setPlaylist((prev) => ({
@@ -51,7 +96,7 @@ function PlaylistDetail() {
   };
 
   const handleDeletePlaylist = async () => {
-    if (!window.confirm("Delete this playlist? This can't be undone.")) return;
+    setConfirmDelete(false);
     try {
       await deletePlaylist(playlistId);
       ToastSuccess("Playlist deleted");
@@ -114,7 +159,7 @@ function PlaylistDetail() {
             <EditOutlined /> Edit
           </button>
           <button
-            onClick={handleDeletePlaylist}
+            onClick={() => setConfirmDelete(true)}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm bg-[#272727] hover:bg-red-900/40 text-red-400 transition-colors"
           >
             <DeleteOutlined /> Delete
@@ -132,18 +177,14 @@ function PlaylistDetail() {
         ) : (
           <div className="flex flex-col gap-1">
             {playlist.videos.map((video) => (
-              <div key={video._id} className="flex items-center gap-2 group">
-                <div className="flex-1 min-w-0">
-                  <VideoListItem video={video} variant="row" />
-                </div>
-                <button
-                  onClick={() => handleRemoveVideo(video._id)}
-                  className="shrink-0 w-8 h-8 flex items-center justify-center rounded-full text-gray-400 hover:bg-[#3f3f3f] hover:text-red-400 transition-colors opacity-0 group-hover:opacity-100"
-                  title="Remove from playlist"
-                >
-                  <CloseOutlined />
-                </button>
-              </div>
+              <VideoListItem
+                key={video._id}
+                video={video}
+                variant="row"
+                actions={
+                  <VideoRowMenu onRemove={() => setVideoToRemove(video._id)} />
+                }
+              />
             ))}
           </div>
         )}
@@ -160,6 +201,26 @@ function PlaylistDetail() {
             description: updated.description,
           }))
         }
+      />
+
+      <ConfirmDialog
+        isOpen={confirmDelete}
+        title="Delete this playlist?"
+        message="This can't be undone."
+        confirmLabel="Delete"
+        danger
+        onConfirm={handleDeletePlaylist}
+        onCancel={() => setConfirmDelete(false)}
+      />
+
+      <ConfirmDialog
+        isOpen={Boolean(videoToRemove)}
+        title="Remove this video?"
+        message="It will be removed from this playlist."
+        confirmLabel="Remove"
+        danger
+        onConfirm={handleRemoveVideo}
+        onCancel={() => setVideoToRemove(null)}
       />
     </div>
   );

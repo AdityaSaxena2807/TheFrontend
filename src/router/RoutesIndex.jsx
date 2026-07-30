@@ -13,6 +13,7 @@ import Watch from "../pages/Watch";
 import Channel from "../pages/Channel";
 import Library from "../pages/Library";
 import PlaylistDetail from "../pages/PlaylistDetail";
+import Upload from "../pages/Upload";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
         <Route path="/channel/:username" element={<Channel />} />
         <Route element={<ProtectedLayout />}>
           <Route path="/library" element={<Library />} />
+          <Route path="/upload" element={<Upload />} />
           <Route path="/playlist/:playlistId" element={<PlaylistDetail />} />
         </Route>
       </Route>

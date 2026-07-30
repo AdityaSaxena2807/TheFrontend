@@ -22,7 +22,7 @@ function PlaylistForm({ isOpen, onClose, onSuccess, playlist }) {
         : await createPlaylist(payload);
 
       ToastSuccess(isEditMode ? "Playlist updated" : "Playlist created");
-      onSuccess(response.data);
+      onSuccess();
       onClose();
     } catch (err) {
       ToastError(
@@ -42,7 +42,7 @@ function PlaylistForm({ isOpen, onClose, onSuccess, playlist }) {
       onClick={onClose}
     >
       <div
-        className="bg-[#1a1a1a] rounded-xl p-6 w-[360px]"
+        className="bg-[#1a1a1a] rounded-xl p-6 w-90"
         onClick={(e) => e.stopPropagation()}
       >
         <p className="text-white text-base font-medium mb-4">

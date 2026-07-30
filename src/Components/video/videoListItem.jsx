@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { timeAgo } from "../../Utils/formatTime.js";
 import { formatDuration } from "../../Utils/formatDuration.js";
 
-function VideoListItem({ video, variant = "grid" }) {
+function VideoListItem({ video, variant = "grid", actions }) {
   const navigate = useNavigate();
 
   const formatViews = (num = 0) => {
@@ -72,6 +72,11 @@ function VideoListItem({ video, variant = "grid" }) {
             {formatViews(video.views)} · {timeAgo(video.createdAt)}
           </p>
         </div>
+        {actions && (
+          <div onClick={(e) => e.stopPropagation()} className="shrink-0">
+            {actions}
+          </div>
+        )}
       </div>
     );
   }
