@@ -22,8 +22,11 @@ function PlaylistForm({ isOpen, onClose, onSuccess, playlist }) {
         : await createPlaylist(payload);
 
       ToastSuccess(isEditMode ? "Playlist updated" : "Playlist created");
-      onSuccess();
+      onSuccess(response.data);
       onClose();
+      console.log("Response:", response);
+      console.log("response.data:", response.data);
+      console.log("response.data.data:", response.data.data);
     } catch (err) {
       ToastError(
         err?.response?.data?.message ||
@@ -70,7 +73,7 @@ function PlaylistForm({ isOpen, onClose, onSuccess, playlist }) {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={3}
-              placeholder="Optional description"
+              placeholder="Description"
               className="w-full rounded-lg border border-gray-700 bg-[#121212] px-3 py-2 text-sm text-white placeholder-gray-500 outline-none focus:border-red-600 resize-none"
             />
           </div>

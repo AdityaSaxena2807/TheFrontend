@@ -54,7 +54,10 @@ function Watch() {
   const handleAddComment = async (content) => {
     try {
       const response = await addComment(videoId, content);
-      setComments((prev) => [response.data, ...prev]);
+      setComments((prev) => [
+        { ...response.data, likesCount: 0, isLiked: false },
+        ...prev,
+      ]);
     } catch (err) {
       ToastError("Failed to post comment");
     }
