@@ -8,7 +8,7 @@ const Player = createPlayer({ features: videoFeatures });
 
 export function VideoPlayer({ videoUrl, thumbnail }) {
   return (
-    <div className="w-full aspect-video bg-black rounded-xl overflow-hidden shadow-lg">
+    <div className="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-lg">
       <Player.Provider>
         <VideoSkin poster={thumbnail} className="w-full h-full">
           <Video
