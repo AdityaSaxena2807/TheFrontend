@@ -12,6 +12,18 @@ export const createTweet = async (userData) => {
   }
 };
 
+export const getAllTweets = async () => {
+  try {
+    const response = await axiosInstance.get("/api/v1/tweets/");
+    return response.data;
+  } catch (error) {
+    console.error("Error message: ", error?.message);
+    console.error("Error status: ", error?.response?.status);
+    console.error("Error data: ", error?.response?.data);
+    throw error;
+  }
+};
+
 export const getUserTweets = async (userId) => {
   try {
     const response = await axiosInstance.get(`/api/v1/tweets/user/${userId}`);
