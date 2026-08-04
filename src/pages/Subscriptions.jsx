@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
-import { getSubscribedChannels } from "../services/subscritionApi";
+import { getSubscribedChannels } from "../services/subscriptionApi";
 import { getAllVideos } from "../services/videoApi";
 import VideoCard from "../components/common/VideoCard";
 
@@ -22,7 +22,7 @@ function Subscriptions() {
 
         if (channelList.length > 0) {
           const channelIds = channelList.map((c) => c._id).join(",");
-          const videoRes = await getAllVideos({channelIds});
+          const videoRes = await getAllVideos({ channelIds });
           setVideos(videoRes.data?.docs || []);
         } else {
           setVideos([]);

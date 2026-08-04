@@ -83,10 +83,10 @@ axiosInstance.interceptors.response.use(
         // ! you can go now", then retry the original request that failed.
       } catch (refreshError) {
         //! refresh failed — log the user out
-        // processQueue(refreshError, null);
-        // useAuthStore.getState().clearAuth();
-        // window.location.href = "/login";
-        // return Promise.reject(refreshError);
+        processQueue(refreshError, null);
+        useAuthStore.getState().clearAuth();
+        window.location.href = "/login";
+        return Promise.reject(refreshError);
         //!If the refresh itself fails (refresh token expired or invalid), there's no recovery
         //! log the user out completely and send them to the login page.
       } finally {

@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 import { LoadingOutlined } from "@ant-design/icons";
 import { ToastError } from "../Utils/ToastMessage.js";
 import { getVideoById } from "../services/videoApi.js";
-import VideoInfo from "../Components/video/VideoInfo.jsx";
-import VideoPlayer from "../Components/video/VideoPlayer.jsx";
-import VideoListItem from "../Components/video/VideoListItem.jsx";
-import CommentList from "../Components/comment/CommentList.jsx";
+import VideoInfo from "../components/video/VideoInfo.jsx";
+import VideoPlayer from "../components/video/VideoPlayer.jsx";
+import VideoListItem from "../components/video/VideoListItem.jsx";
+import CommentList from "../components/comment/CommentList.jsx";
 import { toggleVideoLike } from "../services/likeApi.js";
 import {
   getVideoComments,

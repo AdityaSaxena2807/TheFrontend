@@ -1,17 +1,19 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { LoadingOutlined } from "@ant-design/icons";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import SubscribeButton from "../components/channel/SubscribeButton.jsx";
+import SortDropdown from "../components/common/SortDropdown.jsx";
+import VideoListItem from "../components/video/VideoListItem.jsx";
 import { getUserChannelProfile } from "../services/userApi.js";
 import { getAllVideos } from "../services/videoApi.js";
 import { ToastError } from "../Utils/ToastMessage.js";
-import SubscribeButton from "../components/channel/SubscribeButton.jsx";
-import VideoListItem from "../components/video/VideoListItem.jsx";
-
 function Channel() {
   const { username } = useParams();
   const [channel, setChannel] = useState(null);
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [sortField, setSortField] = useState("createdAt");
+  const [sortType, setSortType] = useState("desc");
 
   useEffect(() => {
     const fetchChannel = async () => {
@@ -32,14 +34,18 @@ function Channel() {
     if (!channel?._id) return;
     const fetchVideos = async () => {
       try {
-        const response = await getAllVideos({ userId: channel._id });
+        const response = await getAllVideos({
+          userId: channel._id,
+          sortBy: sortField,
+          sortType,
+        });
         setVideos(response.data.docs);
       } catch (err) {
         ToastError("Failed to load videos");
       }
     };
     fetchVideos();
-  }, [channel?._id]);
+  }, [channel?._id, sortField, sortType]);
 
   if (loading || !channel)
     return (
@@ -88,7 +94,21 @@ function Channel() {
         </div>
 
         <div className="border-t border-gray-700 mt-6 mb-4" />
-        <h2 className="text-base font-semibold mb-4">Videos</h2>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-base font-semibold">Videos</h2>
+          <SortDropdown
+            sortField={sortField}
+            sortType={sortType}
+            onChange={(field, type) => {
+              setSortField(field);
+              setSortType(type);
+            }}
+            options={[
+              { field: "createdAt", label: "Date" },
+              { field: "views", label: "Views" },
+            ]}
+          />
+        </div>
 
         {videos.length === 0 ? (
           <p className="text-gray-500 text-sm">No videos uploaded yet.</p>

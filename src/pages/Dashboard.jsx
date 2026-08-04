@@ -10,7 +10,7 @@ import {
 import { getChannelStats, getChannelVideos } from "../services/dashboardApi.js";
 import { toggleVideoPublishStatus, deleteVideo } from "../services/videoApi.js";
 import { ToastError, ToastSuccess } from "../Utils/ToastMessage.js";
-import Modal from "../Components/common/Modal.jsx";
+import Modal from "../components/common/Modal.jsx";
 import { timeAgo } from "../Utils/formatTime.js";
 
 function Dashboard() {

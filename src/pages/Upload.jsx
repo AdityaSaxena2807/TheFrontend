@@ -15,21 +15,38 @@ function Upload() {
   const [uploading, setUploading] = useState(false);
   const [progress, setProgress] = useState(0);
   const thumbnailInputRef = useRef(null);
-
+  const MAX_VIDEO_SIZE = 100 * 1024 * 1024; // 100 MB
   const handleDrop = (e) => {
     e.preventDefault();
     setDragActive(false);
     const file = e.dataTransfer.files?.[0];
-    if (file) setVideoFile(file);
+    if (file) validateVideo(file);
   };
+  const validateVideo = (file) => {
+    if (!file) return false;
 
+    if (!file.type.startsWith("video/")) {
+      ToastError("Please select a valid video file.");
+      return false;
+    }
+
+    if (file.size > MAX_VIDEO_SIZE) {
+      ToastError("Video size must be 100 MB or less.");
+      return false;
+    }
+
+    setVideoFile(file);
+    return true;
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!videoFile) return ToastError("Please select a video file");
     if (!thumbnailFile) return ToastError("Please select a thumbnail image");
     if (!title.trim()) return ToastError("Title is required");
     if (!description.trim()) return ToastError("Description is required");
-
+    if (videoFile.size > MAX_VIDEO_SIZE) {
+      return ToastError("Video size must be 100 MB or less.");
+    }
     const formData = new FormData();
     formData.append("videoFile", videoFile);
     formData.append("thumbnail", thumbnailFile);
@@ -40,7 +57,7 @@ function Upload() {
     try {
       setUploading(true);
       const response = await publishAVideo(formData, (percent) =>
-        setProgress(percent)
+        setProgress(percent),
       );
       ToastSuccess("Video published successfully");
       navigate(`/watch/${response.data._id}`);
@@ -83,7 +100,10 @@ function Upload() {
                   type="file"
                   accept="video/*"
                   className="hidden"
-                  onChange={(e) => setVideoFile(e.target.files?.[0] || null)}
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) validateVideo(file);
+                  }}
                 />
               </label>
             </>
