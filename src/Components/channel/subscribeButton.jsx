@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toggleSubscription } from "../../services/subscriptionApi.js";
 import { useAuthStore } from "../../store/authStore.js";
@@ -9,7 +9,9 @@ function SubscribeButton({ channelId, isSubscribed }) {
   const navigate = useNavigate();
   const [subscribed, setSubscribed] = useState(isSubscribed);
   const [showLoginModal, setShowLoginModal] = useState(false);
-
+  useEffect(() => {
+    setSubscribed(isSubscribed);
+  }, [isSubscribed]);
   const handleSubscribe = async () => {
     if (!user) {
       setShowLoginModal(true);

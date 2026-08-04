@@ -18,7 +18,9 @@ function TweetInput({ existingTweet = null, onSuccess, onCancelEdit }) {
     setLoading(true);
     try {
       if (isEditMode) {
-        const res = await updateTweet(existingTweet._id, { newContent: content });
+        const res = await updateTweet(existingTweet._id, {
+          newContent: content,
+        });
         onSuccess?.(res.data);
         onCancelEdit?.();
       } else {
@@ -40,9 +42,9 @@ function TweetInput({ existingTweet = null, onSuccess, onCancelEdit }) {
     >
       <div className="flex items-center gap-3 mb-4">
         <div className="w-9 h-9 rounded-full bg-orange-600 flex items-center justify-center text-white font-semibold shrink-0 overflow-hidden">
-          {user?.avatar? (
+          {user?.avatar ? (
             <img
-              src={user.avatar}
+              src={user.avatar?.url || user.avatar}
               alt={user?.username}
               className="w-full h-full object-cover"
             />

@@ -50,7 +50,7 @@ function SearchListItem({ video, actions }) {
     >
       <div className="relative w-[360px] h-[202px] shrink-0 overflow-hidden rounded-xl bg-[#202020]">
         <img
-          src={video.thumbnail}
+          src={video.thumbnail?.url || video.thumbnail}
           alt={video.title}
           loading="lazy"
           className="w-full h-full object-cover"

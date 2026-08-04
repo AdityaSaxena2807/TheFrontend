@@ -94,7 +94,7 @@ function Subscriptions() {
             {videos.map((video) => (
               <Link key={video._id} to={`/watch/${video._id}`}>
                 <VideoCard
-                  thumbnail={video.thumbnail}
+                  thumbnail={video.thumbnail?.url || video.thumbnail}
                   title={video.title}
                   duration={video.duration}
                   views={video.views}

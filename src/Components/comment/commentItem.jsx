@@ -6,6 +6,7 @@ import { toggleCommentLike } from "../../services/likeApi.js";
 import LoginPromptModal from "../common/LoginPromptModal.jsx";
 import { timeAgo } from "../../Utils/formatTime.js";
 import CommentOptions from "./CommentOptions.jsx";
+import { ToastError } from "../../Utils/ToastMessage.js";
 
 function CommentItem({ comment, onUpdate, onDelete }) {
   const { user } = useAuthStore();

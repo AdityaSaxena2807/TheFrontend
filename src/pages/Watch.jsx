@@ -104,7 +104,10 @@ function Watch() {
     <div className="bg-[#0f0f0f] min-h-screen text-white">
       <div className="max-w-450 mx-auto px-4 py-6 flex gap-6">
         <div className="flex-1 min-w-0">
-          <VideoPlayer videoUrl={video.videoFile} thumbnail={video.thumbnail} />
+          <VideoPlayer
+            videoUrl={video.videoFile?.url || video.videoFile}
+            thumbnail={video.thumbnail?.url || video.thumbnail}
+          />
 
           <VideoInfo
             video={video}

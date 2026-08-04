@@ -24,9 +24,6 @@ function PlaylistForm({ isOpen, onClose, onSuccess, playlist }) {
       ToastSuccess(isEditMode ? "Playlist updated" : "Playlist created");
       onSuccess(response.data);
       onClose();
-      console.log("Response:", response);
-      console.log("response.data:", response.data);
-      console.log("response.data.data:", response.data.data);
     } catch (err) {
       ToastError(
         err?.response?.data?.message ||

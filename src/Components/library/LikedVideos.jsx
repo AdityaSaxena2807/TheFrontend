@@ -16,8 +16,8 @@ function LikedVideos() {
         const videos = response.data.map((item) => ({
           _id: item.likedVideo._id,
           title: item.likedVideo.title,
-          thumbnail: item.likedVideo.thumbnail,
-          videoFile: item.likedVideo.videoFile,
+          thumbnail: item.likedVideo.thumbnail?.url || item.likedVideo.thumbnail,
+          videoFile: item.likedVideo.videoFile?.url || item.likedVideo.videoFile,
           duration: item.likedVideo.duration,
           views: item.likedVideo.views,
           createdAt: item.likedVideo.createdAt,

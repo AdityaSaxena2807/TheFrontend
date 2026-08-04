@@ -53,7 +53,7 @@ function Home() {
               className="cursor-pointer"
             >
               <VideoCard
-                thumbnail={video.thumbnail}
+                thumbnail={video.thumbnail?.url || video.thumbnail}
                 title={video.title}
                 duration={video.duration}
                 views={video.views}

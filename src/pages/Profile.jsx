@@ -132,8 +132,9 @@ function Profile() {
     !!pendingAvatarFile ||
     !!pendingCoverFile;
 
-  const displayCover = pendingCoverPreview || user.coverImage;
-  const displayAvatar = pendingAvatarPreview || user.avatar;
+  const displayCover =
+    pendingCoverPreview || user.coverImage?.url || user.coverImage;
+  const displayAvatar = pendingAvatarPreview || user.avatar?.url || user.avatar;
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-6 sm:px-8">
@@ -142,9 +143,9 @@ function Profile() {
           <h1 className="text-2xl font-semibold text-white mb-6">Profile</h1>
 
           <div className="relative w-full h-40 sm:h-56 bg-[#1a1a1a] rounded-lg overflow-hidden">
-            {user.coverImage && (
+            {(user.coverImage?.url || user.coverImage) && (
               <img
-                src={user.coverImage}
+                src={user.coverImage?.url || user.coverImage}
                 alt="Cover"
                 className="w-full h-full object-cover"
               />
@@ -153,7 +154,7 @@ function Profile() {
 
           <div className="relative -mt-10 ml-4 w-20 h-20">
             <img
-              src={user.avatar}
+              src={user.avatar?.url || user.avatar}
               alt={user.username}
               className="w-20 h-20 rounded-full object-cover border-4 border-black bg-[#1a1a1a]"
             />
