@@ -46,7 +46,7 @@ function CommentItem({ comment, onUpdate, onDelete }) {
       <div className="flex gap-3 py-3 group">
         {/* Avatar */}
         <img
-          src={comment.ownerDetails?.avatar}
+          src={typeof comment.ownerDetails?.avatar === "string" ? comment.ownerDetails?.avatar : comment.ownerDetails?.avatar?.url}
           alt={comment.ownerDetails?.username}
           className="w-9 h-9 rounded-full object-cover shrink-0 bg-gray-700"
         />
@@ -97,7 +97,7 @@ function CommentItem({ comment, onUpdate, onDelete }) {
             </div>
 
             {isOwner && (
-              <div className="opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="opacity-100 group-hover:opacity-100 transition-opacity">
                 <CommentOptions
                   onEdit={() => setIsEditing(true)}
                   onDelete={handleDelete}

@@ -11,6 +11,7 @@ function VideoInfo({ video, isLiked, likesCount, onLike }) {
   const navigate = useNavigate();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showPlaylist, setShowPlaylist] = useState(false);
+  const [showFullDescription, setShowFullDescription] = useState(false);
 
   const handleLike = () => {
     if (!user) {
@@ -46,7 +47,11 @@ function VideoInfo({ video, isLiked, likesCount, onLike }) {
           onClick={() => navigate(`/channel/${video.owner?.username}`)}
         >
           <img
-            src={video.owner?.avatar}
+            src={
+              typeof video.owner?.avatar === "string"
+                ? video.owner?.avatar
+                : video.owner?.avatar?.url
+            }
             alt={video.owner?.username}
             className="w-10 h-10 rounded-full object-cover"
           />
@@ -66,10 +71,12 @@ function VideoInfo({ video, isLiked, likesCount, onLike }) {
 
         {/* Right: Subscribe + Like + Save */}
         <div className="flex items-center gap-2 flex-wrap">
-          <SubscribeButton
-            channelId={video.owner?._id}
-            isSubscribed={video.owner?.isSubscribed}
-          />
+          {user?._id !== video.owner?._id && (
+            <SubscribeButton
+              channelId={video.owner?._id}
+              isSubscribed={video.owner?.isSubscribed}
+            />
+          )}
 
           <button
             onClick={handleLike}
@@ -102,9 +109,26 @@ function VideoInfo({ video, isLiked, likesCount, onLike }) {
           </div>
         </div>
       </div>
-	  
-      <div className="mt-4 bg-[#1a1a1a] rounded-xl p-4 text-sm text-gray-300 whitespace-pre-wrap">
-        {video.description}
+
+      <div className="mt-4 bg-[#1a1a1a] rounded-xl p-4 text-sm text-gray-300">
+        <p
+          className={`whitespace-pre-wrap wrap-break-word ${
+            showFullDescription ? "" : "line-clamp-3"
+          }`}
+        >
+          {video.description}
+        </p>
+
+        {video.description &&
+          (video.description?.split("\n").length > 3 ||
+            video.description?.length > 150) > 150 && (
+            <button
+              onClick={() => setShowFullDescription((prev) => !prev)}
+              className="mt-2 text-white text-sm font-medium hover:text-gray-300 transition-colors"
+            >
+              {showFullDescription ? "Show less" : "Show more"}
+            </button>
+          )}
       </div>
       <LoginPromptModal
         isOpen={showLoginModal}

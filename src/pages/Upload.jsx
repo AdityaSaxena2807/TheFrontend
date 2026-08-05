@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { InboxOutlined, LoadingOutlined } from "@ant-design/icons";
 import { publishAVideo } from "../services/videoApi.js";
@@ -16,6 +16,7 @@ function Upload() {
   const [progress, setProgress] = useState(0);
   const thumbnailInputRef = useRef(null);
   const MAX_VIDEO_SIZE = 100 * 1024 * 1024; // 100 MB
+  const [thumbnailPreview, setThumbnailPreview] = useState(null);
   const handleDrop = (e) => {
     e.preventDefault();
     setDragActive(false);
@@ -68,7 +69,13 @@ function Upload() {
       setProgress(0);
     }
   };
-
+  useEffect(() => {
+    return () => {
+      if (thumbnailPreview) {
+        URL.revokeObjectURL(thumbnailPreview);
+      }
+    };
+  }, [thumbnailPreview]);
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 text-white">
       <h1 className="text-xl font-semibold mb-6">Upload a Video</h1>
@@ -141,20 +148,48 @@ function Upload() {
           <label className="mb-1.5 block text-sm text-gray-300">
             Thumbnail
           </label>
-          <button
-            type="button"
-            onClick={() => thumbnailInputRef.current?.click()}
-            className="px-4 py-2 rounded-full text-sm bg-[#272727] hover:bg-[#3f3f3f] transition-colors"
-          >
-            {thumbnailFile ? thumbnailFile.name : "Upload image"}
-          </button>
-          <input
-            ref={thumbnailInputRef}
-            type="file"
-            accept="image/*"
-            className="hidden"
-            onChange={(e) => setThumbnailFile(e.target.files?.[0] || null)}
-          />
+
+          <div className="space-y-3">
+            {thumbnailPreview && (
+              <img
+                src={thumbnailPreview}
+                alt="Thumbnail Preview"
+                className="w-full max-w-sm h-44 rounded-lg object-cover border border-gray-700"
+              />
+            )}
+
+            <button
+              type="button"
+              onClick={() => thumbnailInputRef.current?.click()}
+              className="px-4 py-2 rounded-full text-sm bg-[#272727] hover:bg-[#3f3f3f] transition-colors"
+            >
+              {thumbnailFile ? "Change thumbnail" : "Upload image"}
+            </button>
+
+            <input
+              ref={thumbnailInputRef}
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+
+                if (!file) return;
+
+                if (!file.type.startsWith("image/")) {
+                  return ToastError("Please select a valid image.");
+                }
+
+                setThumbnailFile(file);
+
+                if (thumbnailPreview) {
+                  URL.revokeObjectURL(thumbnailPreview);
+                }
+
+                setThumbnailPreview(URL.createObjectURL(file));
+              }}
+            />
+          </div>
         </div>
 
         {/* Visibility */}

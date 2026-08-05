@@ -6,6 +6,7 @@ import { deleteTweet } from "../../services/tweetApi";
 import { timeAgo } from "../../Utils/formatTime";
 import CommentOptions from "../comment/CommentOptions";
 import TweetInput from "./TweetInput";
+import { Link } from "react-router-dom";
 
 function TweetCard({ tweet, onDeleted, onUpdated }) {
   const { user } = useAuthStore();
@@ -49,17 +50,25 @@ function TweetCard({ tweet, onDeleted, onUpdated }) {
 
   return (
     <div className="flex gap-3 bg-[#1c1c1c] rounded-xl p-4 hover:bg-[#212121] transition-colors">
-      <img
-        src={tweet.ownerDetails?.avatar}
-        alt={tweet.ownerDetails?.username}
-        className="w-10 h-10 rounded-full object-cover shrink-0"
-      />
+      <Link to={`/channel/${tweet.ownerDetails?.username}`}>
+        <img
+          src={
+            typeof tweet.ownerDetails?.avatar === "string"
+              ? tweet.ownerDetails?.avatar
+              : tweet.ownerDetails?.avatar?.url
+          }
+          alt={tweet.ownerDetails?.username}
+          className="w-10 h-10 rounded-full object-cover shrink-0"
+        />
+      </Link>
       <div className="flex-1 min-w-0">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 text-sm">
-            <span className="font-semibold text-white">
-              {tweet.ownerDetails?.username}
-            </span>
+            <Link to={`/channel/${tweet.ownerDetails?.username}`}>
+              <span className="font-semibold text-white hover:text-gray-300 transition-colors">
+                {tweet.ownerDetails?.username}
+              </span>
+            </Link>
             <span className="text-gray-500">·</span>
             <span className="text-gray-500">{timeAgo(tweet.createdAt)}</span>
           </div>

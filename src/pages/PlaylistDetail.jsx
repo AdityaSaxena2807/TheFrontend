@@ -122,7 +122,9 @@ function PlaylistDetail() {
     );
   }
 
-  const coverThumbnail = playlist.videos?.[0]?.thumbnail;
+  const coverThumbnail = typeof playlist.videos?.[0]?.thumbnail === "string"
+    ? playlist.videos?.[0]?.thumbnail
+    : playlist.videos?.[0]?.thumbnail?.url;
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6 text-white flex gap-6 flex-col md:flex-row">

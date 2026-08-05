@@ -70,7 +70,11 @@ function Subscriptions() {
               className="flex flex-col items-center gap-1 shrink-0 w-16"
             >
               <img
-                src={channel.avatar || channel.avatar}
+                src={
+                  typeof channel.avatar === "string"
+                    ? channel.avatar
+                    : channel.avatar?.url
+                }
                 alt={channel.username}
                 className="w-12 h-12 rounded-full object-cover"
               />
@@ -94,15 +98,20 @@ function Subscriptions() {
             {videos.map((video) => (
               <Link key={video._id} to={`/watch/${video._id}`}>
                 <VideoCard
-                  thumbnail={video.thumbnail?.url || video.thumbnail}
+                  thumbnail={
+                    typeof video.thumbnail === "string"
+                      ? video.thumbnail
+                      : video.thumbnail?.url
+                  }
                   title={video.title}
                   duration={video.duration}
                   views={video.views}
                   uploadedAt={video.createdAt}
                   ownerName={video.ownerDetails?.username}
                   ownerAvatar={
-                    video.ownerDetails?.avatar?.url ||
-                    video.ownerDetails?.avatar
+                    typeof video.ownerDetails?.avatar === "string"
+                      ? video.ownerDetails?.avatar
+                      : video.ownerDetails?.avatar?.url
                   }
                 />
               </Link>

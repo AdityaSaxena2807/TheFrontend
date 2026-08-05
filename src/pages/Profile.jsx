@@ -143,9 +143,9 @@ function Profile() {
           <h1 className="text-2xl font-semibold text-white mb-6">Profile</h1>
 
           <div className="relative w-full h-40 sm:h-56 bg-[#1a1a1a] rounded-lg overflow-hidden">
-            {(user.coverImage?.url || user.coverImage) && (
+            {(typeof user.coverImage === "string" ? user.coverImage : user.coverImage?.url) && (
               <img
-                src={user.coverImage?.url || user.coverImage}
+                src={typeof user.coverImage === "string" ? user.coverImage : user.coverImage?.url}
                 alt="Cover"
                 className="w-full h-full object-cover"
               />
@@ -154,7 +154,7 @@ function Profile() {
 
           <div className="relative -mt-10 ml-4 w-20 h-20">
             <img
-              src={user.avatar?.url || user.avatar}
+              src={typeof user.avatar === "string" ? user.avatar : user.avatar?.url}
               alt={user.username}
               className="w-20 h-20 rounded-full object-cover border-4 border-black bg-[#1a1a1a]"
             />

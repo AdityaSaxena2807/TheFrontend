@@ -62,7 +62,7 @@ function Navbar() {
               >
                 <span className="w-9 h-9 rounded-full overflow-hidden border-2 border-[#050505]">
                   <img
-                    src={user?.avatar}
+                    src={typeof user?.avatar === "string" ? user?.avatar : user?.avatar?.url}
                     alt={user?.username}
                     className="w-full h-full object-cover"
                   />

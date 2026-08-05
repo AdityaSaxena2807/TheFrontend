@@ -12,6 +12,20 @@ export const getAllVideos = async (params = {}) => {
   }
 };
 
+export const getSuggestedVideos = async (videoId) => {
+  try {
+    const response = await axiosInstance.get(
+      `/api/v1/videos/suggested/${videoId}`,
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error message: ", error?.message);
+    console.error("Error status: ", error?.response?.status);
+    console.error("Error data: ", error?.response?.data);
+    throw error;
+  }
+};
+
 export const publishAVideo = async (formData) => {
   try {
     const response = await axiosInstance.post("/api/v1/videos/", formData);

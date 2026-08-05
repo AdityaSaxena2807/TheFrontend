@@ -6,8 +6,7 @@ import { ToastError, ToastSuccess } from "../Utils/ToastMessage.js";
 
 function Login() {
   const [userData, setUserData] = useState({
-    email: "",
-    username: "",
+    identifier: "",
     password: "",
   });
   const navigate = useNavigate();
@@ -20,14 +19,16 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!userData.email.trim() && !userData.username.trim())
+    if (!userData.identifier.trim())
       return ToastError("Username or email is required");
     if (!userData.password) return ToastError("Password is required");
 
+    const identifier = userData.identifier.trim();
     const payload = {
       password: userData.password,
-      ...(userData.email.trim() && { email: userData.email.trim() }),
-      ...(userData.username.trim() && { username: userData.username.trim() }),
+      ...(identifier.includes("@")
+        ? { email: identifier }
+        : { username: identifier }),
     };
 
     try {
@@ -67,33 +68,16 @@ function Login() {
         <div className="rounded-3xl border border-gray-800 bg-[#121212] p-8 shadow-lg shadow-black/70">
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className={labelClass}>Username</label>
+              <label className={labelClass}>Username or Email</label>
               <input
                 type="text"
-                name="username"
-                value={userData.username}
+                name="identifier"
+                value={userData.identifier}
                 onChange={handleChange}
-                placeholder="janedoe"
+                placeholder="janedoe or jane@example.com"
                 className={inputClass}
               />
             </div>
-
-            <div>
-              <label className={labelClass}>Email</label>
-              <input
-                type="email"
-                name="email"
-                value={userData.email}
-                onChange={handleChange}
-                placeholder="jane@example.com"
-                className={inputClass}
-              />
-            </div>
-
-            <p className="text-center text-xs text-gray-500">
-              Username or email — either works
-            </p>
-
             <div>
               <label className={labelClass}>Password</label>
               <input

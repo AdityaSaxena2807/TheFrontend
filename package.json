@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -15,6 +15,7 @@
     "@videojs/react": "^10.0.0-beta.24",
     "antd": "^6.4.3",
     "axios": "^1.16.1",
+    "emoji-picker-react": "^4.19.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-hot-toast": "^2.6.0",

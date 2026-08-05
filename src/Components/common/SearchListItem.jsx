@@ -50,7 +50,7 @@ function SearchListItem({ video, actions }) {
     >
       <div className="relative w-[360px] h-[202px] shrink-0 overflow-hidden rounded-xl bg-[#202020]">
         <img
-          src={video.thumbnail?.url || video.thumbnail}
+          src={typeof video.thumbnail === "string" ? video.thumbnail : video.thumbnail?.url}
           alt={video.title}
           loading="lazy"
           className="w-full h-full object-cover"
@@ -75,9 +75,9 @@ function SearchListItem({ video, actions }) {
 
         {video.owner && (
           <div className="flex items-center gap-2 mt-3">
-            {video.owner.avatar && (
+            {(typeof video.owner.avatar === "string" ? video.owner.avatar : video.owner.avatar?.url) && (
               <img
-                src={video.owner.avatar}
+                src={typeof video.owner.avatar === "string" ? video.owner.avatar : video.owner.avatar?.url}
                 alt={video.owner.username}
                 className="w-6 h-6 rounded-full object-cover"
               />

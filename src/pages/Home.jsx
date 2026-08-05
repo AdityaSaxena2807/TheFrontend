@@ -53,13 +53,13 @@ function Home() {
               className="cursor-pointer"
             >
               <VideoCard
-                thumbnail={video.thumbnail?.url || video.thumbnail}
+                thumbnail={typeof video.thumbnail === "string" ? video.thumbnail : video.thumbnail?.url}
                 title={video.title}
                 duration={video.duration}
                 views={video.views}
                 uploadedAt={video.createdAt}
                 ownerName={video.ownerDetails.username}
-                ownerAvatar={video.ownerDetails.avatar}
+                ownerAvatar={typeof video.ownerDetails.avatar === "string" ? video.ownerDetails.avatar : video.ownerDetails.avatar?.url}
               />
             </div>
           ))}

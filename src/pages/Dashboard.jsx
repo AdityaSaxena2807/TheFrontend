@@ -120,7 +120,7 @@ function Dashboard() {
                 className="shrink-0 w-40 aspect-video rounded-lg overflow-hidden bg-black"
               >
                 <img
-                  src={video.thumbnail?.url || video.thumbnail}
+                  src={typeof video.thumbnail === "string" ? video.thumbnail : video.thumbnail?.url}
                   alt={video.title}
                   className="w-full h-full object-cover"
                 />
@@ -134,7 +134,7 @@ function Dashboard() {
                   {video.title}
                 </Link>
                 <p className="text-gray-400 text-sm mt-1">
-                  {video.likesCount} likes · {timeAgo(video.createdAt)}
+                  {typeof video.likesCount === "number" ? video.likesCount : 0} likes · {timeAgo(video.createdAt)}
                 </p>
                 <p className="text-gray-600 text-xs">
                   {new Date(video.createdAt).toLocaleDateString("en-US", {

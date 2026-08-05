@@ -23,7 +23,7 @@ function EditVideo() {
         const video = response.data;
         setTitle(video.title);
         setDescription(video.description);
-        setThumbnailPreview(video.thumbnail?.url || video.thumbnail);
+        setThumbnailPreview(typeof video.thumbnail === "string" ? video.thumbnail : video.thumbnail?.url);
       } catch (err) {
         ToastError("Failed to load video");
       } finally {

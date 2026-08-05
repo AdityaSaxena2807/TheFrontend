@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { ToastError, ToastSuccess } from "../Utils/ToastMessage.js";
 import axiosInstance from "../services/axiosInstance.js";
@@ -13,7 +13,10 @@ function Register() {
     confirmPassword: "",
   });
   const [files, setFiles] = useState({ avatar: null, coverImage: null });
-
+  const [previews, setPreviews] = useState({
+    avatar: null,
+    coverImage: null,
+  });
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData((prev) => ({ ...prev, [name]: value }));
@@ -21,12 +24,40 @@ function Register() {
 
   const handleFileChange = (e) => {
     const { name, files: fileList } = e.target;
-    setFiles((prev) => ({ ...prev, [name]: fileList[0] }));
-  };
 
+    if (!fileList[0]) return;
+
+    const file = fileList[0];
+
+    setFiles((prev) => ({
+      ...prev,
+      [name]: file,
+    }));
+
+    setPreviews((prev) => {
+      if (prev[name]) URL.revokeObjectURL(prev[name]);
+
+      return {
+        ...prev,
+        [name]: URL.createObjectURL(file),
+      };
+    });
+  };
+  useEffect(() => {
+    return () => {
+      Object.values(previews).forEach((url) => {
+        if (url) URL.revokeObjectURL(url);
+      });
+    };
+  }, [previews]);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!userData.fullName || !userData.email || !userData.username || !userData.password)
+    if (
+      !userData.fullName ||
+      !userData.email ||
+      !userData.username ||
+      !userData.password
+    )
       return ToastError("All fields are required");
     if (userData.password !== userData.confirmPassword)
       return ToastError("Passwords do not match!");
@@ -43,7 +74,11 @@ function Register() {
       ToastSuccess("Account created! Please log in.");
       navigate("/login");
     } catch (error) {
-      ToastError(error?.response?.data?.message || error?.message || "Registration failed");
+      ToastError(
+        error?.response?.data?.message ||
+          error?.message ||
+          "Registration failed",
+      );
     }
   };
 
@@ -132,12 +167,34 @@ function Register() {
             </div>
 
             <div className="grid grid-cols-2 gap-4">
+              {/* Avatar */}
               <div>
                 <label className={labelClass}>Avatar</label>
-                <label className="flex cursor-pointer flex-col items-center justify-center rounded-lg border border-dashed border-gray-700 bg-[#121212] px-3 py-4 text-center transition hover:border-[#FF0000]">
-                  <span className="text-xs text-white">
-                    {files.avatar?.name || "Click to upload"}
-                  </span>
+
+                <label className="flex h-32 cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed border-gray-700 bg-[#121212] transition hover:border-[#FF0000]">
+                  {previews.avatar ? (
+                    <>
+                      <img
+                        src={previews.avatar}
+                        alt="Avatar Preview"
+                        className="h-16 w-16 rounded-full object-cover border border-gray-600"
+                      />
+                      <span className="mt-2 max-w-[90%] truncate text-xs text-gray-300">
+                        {files.avatar?.name}
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-dashed border-gray-600 text-gray-500 text-xs">
+                        +
+                      </div>
+
+                      <span className="mt-2 text-xs text-white">
+                        Click to upload
+                      </span>
+                    </>
+                  )}
+
                   <input
                     type="file"
                     name="avatar"
@@ -148,12 +205,34 @@ function Register() {
                 </label>
               </div>
 
+              {/* Cover Image */}
               <div>
                 <label className={labelClass}>Cover image</label>
-                <label className="flex cursor-pointer flex-col items-center justify-center rounded-lg border border-dashed border-gray-700 bg-[#121212] px-3 py-4 text-center transition hover:border-[#FF0000]">
-                  <span className="text-xs text-white">
-                    {files.coverImage?.name || "Click to upload"}
-                  </span>
+
+                <label className="flex h-32 cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed border-gray-700 bg-[#121212] transition hover:border-[#FF0000] overflow-hidden">
+                  {previews.coverImage ? (
+                    <>
+                      <img
+                        src={previews.coverImage}
+                        alt="Cover Preview"
+                        className="h-16 w-full object-cover"
+                      />
+                      <span className="mt-2 max-w-[90%] truncate text-xs text-gray-300">
+                        {files.coverImage?.name}
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <div className="h-16 w-[90%] rounded-md border-2 border-dashed border-gray-600 flex items-center justify-center text-gray-500 text-xs">
+                        Cover Preview
+                      </div>
+
+                      <span className="mt-2 text-xs text-white">
+                        Click to upload
+                      </span>
+                    </>
+                  )}
+
                   <input
                     type="file"
                     name="coverImage"

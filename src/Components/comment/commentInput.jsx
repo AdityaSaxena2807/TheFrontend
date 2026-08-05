@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store/authStore.js";
 import LoginPromptModal from "../common/LoginPromptModal.jsx";
+import EmojiPickerButton from "../common/EmojiPickerButton";
 
 function CommentInput({ onSubmit }) {
   const navigate = useNavigate();
   const { user } = useAuthStore();
   const [text, setText] = useState("");
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const textareaRef = useRef(null);
 
   const handleInputClick = () => {
     if (!user) setShowLoginModal(true);
@@ -29,6 +31,7 @@ function CommentInput({ onSubmit }) {
         <div className="w-8 h-8 rounded-full bg-gray-600 shrink-0" />
         <div className="flex-1">
           <textarea
+            ref={textareaRef}
             value={text}
             onChange={(e) => setText(e.target.value)}
             onClick={handleInputClick}
@@ -37,7 +40,36 @@ function CommentInput({ onSubmit }) {
             className="w-full bg-transparent border-b border-gray-700 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white resize-none py-1 cursor-pointer"
             rows={1}
           />
-          <div className="flex justify-end mt-1">
+          <div className="flex justify-between items-center mt-2">
+            <EmojiPickerButton
+              placement="bottom-start"
+              width={400}
+              height={250}
+              onEmojiClick={(emoji) => {
+                const textarea = textareaRef.current;
+
+                if (!textarea) {
+                  setText((prev) => prev + emoji);
+                  return;
+                }
+
+                const start = textarea.selectionStart;
+                const end = textarea.selectionEnd;
+
+                const newText = text.slice(0, start) + emoji + text.slice(end);
+
+                setText(newText);
+
+                requestAnimationFrame(() => {
+                  textarea.focus();
+
+                  const cursor = start + emoji.length;
+
+                  textarea.setSelectionRange(cursor, cursor);
+                });
+              }}
+            />
+
             <button
               onClick={handleSubmit}
               disabled={!!user && !text.trim()}

@@ -54,7 +54,7 @@ function VideoListItem({ video, variant = "grid", actions }) {
       >
         <div className="relative w-32 h-20 shrink-0 overflow-hidden rounded-lg bg-[#202020]">
           <img
-            src={video.thumbnail?.url || video.thumbnail}
+            src={typeof video.thumbnail === "string" ? video.thumbnail : video.thumbnail?.url}
             alt={video.title}
             loading="lazy"
             className="w-full h-full object-cover"
@@ -102,7 +102,7 @@ function VideoListItem({ video, variant = "grid", actions }) {
     >
       <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-[#202020]">
         <img
-          src={video.thumbnail?.url || video.thumbnail}
+          src={typeof video.thumbnail === "string" ? video.thumbnail : video.thumbnail?.url}
           alt={video.title}
           loading="lazy"
           className="h-full w-full object-cover"

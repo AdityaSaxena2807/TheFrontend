@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import EmojiPickerButton from "../common/EmojiPickerButton";
 import { useAuthStore } from "../../store/authStore";
 import { createTweet, updateTweet } from "../../services/tweetApi";
 
@@ -10,6 +11,7 @@ function TweetInput({ existingTweet = null, onSuccess, onCancelEdit }) {
   const [loading, setLoading] = useState(false);
   const isEditMode = !!existingTweet;
   const remaining = MAX_LENGTH - content.length;
+  const textareaRef = useRef(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,7 +36,8 @@ function TweetInput({ existingTweet = null, onSuccess, onCancelEdit }) {
       setLoading(false);
     }
   };
-
+  const avatarUrl =
+    typeof user?.avatar === "string" ? user.avatar : user?.avatar?.url;
   return (
     <form
       onSubmit={handleSubmit}
@@ -42,9 +45,9 @@ function TweetInput({ existingTweet = null, onSuccess, onCancelEdit }) {
     >
       <div className="flex items-center gap-3 mb-4">
         <div className="w-9 h-9 rounded-full bg-orange-600 flex items-center justify-center text-white font-semibold shrink-0 overflow-hidden">
-          {user?.avatar ? (
+          {avatarUrl ? (
             <img
-              src={user.avatar?.url || user.avatar}
+              src={avatarUrl}
               alt={user?.username}
               className="w-full h-full object-cover"
             />
@@ -58,6 +61,7 @@ function TweetInput({ existingTweet = null, onSuccess, onCancelEdit }) {
       </div>
 
       <textarea
+        ref={textareaRef}
         value={content}
         onChange={(e) => setContent(e.target.value.slice(0, MAX_LENGTH + 20))}
         placeholder="What's happening?"
@@ -66,11 +70,46 @@ function TweetInput({ existingTweet = null, onSuccess, onCancelEdit }) {
       />
 
       <div className="flex items-center justify-between mt-4 pt-3 border-t border-[#2a2a2a]">
-        <span
-          className={`text-xs ${remaining < 0 ? "text-red-500" : "text-gray-500"}`}
-        >
-          {remaining}
-        </span>
+        <div className="flex items-center gap-3">
+          <EmojiPickerButton
+            placement="bottom-start"
+            width={400}
+            height={250}
+            onEmojiClick={(emoji) => {
+              const textarea = textareaRef.current;
+
+              if (!textarea) {
+                setContent((prev) => prev + emoji);
+                return;
+              }
+
+              const start = textarea.selectionStart;
+              const end = textarea.selectionEnd;
+
+              const newContent =
+                content.slice(0, start) + emoji + content.slice(end);
+
+              setContent(newContent);
+
+              requestAnimationFrame(() => {
+                textarea.focus();
+
+                const cursor = start + emoji.length;
+
+                textarea.setSelectionRange(cursor, cursor);
+              });
+            }}
+          />
+
+          <span
+            className={`text-xs ${
+              remaining < 0 ? "text-red-500" : "text-gray-500"
+            }`}
+          >
+            {remaining}
+          </span>
+        </div>
+
         <div className="flex gap-2">
           {isEditMode && (
             <button
@@ -81,6 +120,7 @@ function TweetInput({ existingTweet = null, onSuccess, onCancelEdit }) {
               Cancel
             </button>
           )}
+
           <button
             type="submit"
             disabled={loading || !content.trim() || remaining < 0}
