@@ -41,7 +41,7 @@ function Navbar() {
       </div>
 
       {/* Search */}
-      <div className="flex-1 mx-4">
+      <div className="flex-1 mx-4 hidden md:block">
         <SearchBar />
       </div>
 
@@ -62,7 +62,11 @@ function Navbar() {
               >
                 <span className="w-9 h-9 rounded-full overflow-hidden border-2 border-[#050505]">
                   <img
-                    src={typeof user?.avatar === "string" ? user?.avatar : user?.avatar?.url}
+                    src={
+                      typeof user?.avatar === "string"
+                        ? user?.avatar
+                        : user?.avatar?.url
+                    }
                     alt={user?.username}
                     className="w-full h-full object-cover"
                   />

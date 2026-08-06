@@ -1,20 +1,28 @@
-import React, { useRef, useState } from "react";
-import EmojiPickerButton from "../common/EmojiPickerButton";
-import { useAuthStore } from "../../store/authStore";
+import { useRef, useState } from "react";
 import { createTweet, updateTweet } from "../../services/tweetApi";
+import { useAuthStore } from "../../store/authStore";
+import EmojiPickerButton from "../common/EmojiPickerButton";
+import { useNavigate } from "react-router-dom";
+import LoginPromptModal from "../common/LoginPromptModal";
 
 const MAX_LENGTH = 280;
 
 function TweetInput({ existingTweet = null, onSuccess, onCancelEdit }) {
   const { user } = useAuthStore();
+  const navigate = useNavigate();
   const [content, setContent] = useState(existingTweet?.content || "");
   const [loading, setLoading] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const isEditMode = !!existingTweet;
   const remaining = MAX_LENGTH - content.length;
   const textareaRef = useRef(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!user) {
+      setShowLoginModal(true);
+      return;
+    }
     if (!content.trim() || remaining < 0) return;
 
     setLoading(true);
@@ -64,9 +72,20 @@ function TweetInput({ existingTweet = null, onSuccess, onCancelEdit }) {
         ref={textareaRef}
         value={content}
         onChange={(e) => setContent(e.target.value.slice(0, MAX_LENGTH + 20))}
+        onFocus={(e) => {
+          if (!user) {
+            e.target.blur();
+            setShowLoginModal(true);
+          }
+        }}
         placeholder="What's happening?"
         rows={2}
         className="w-full resize-none bg-transparent outline-none text-gray-200 placeholder-gray-500 text-base"
+      />
+      <LoginPromptModal
+        isOpen={showLoginModal}
+        onClose={() => setShowLoginModal(false)}
+        onLogin={() => navigate("/login")}
       />
 
       <div className="flex items-center justify-between mt-4 pt-3 border-t border-[#2a2a2a]">

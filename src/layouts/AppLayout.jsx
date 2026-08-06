@@ -16,8 +16,8 @@ const AppLayout = () => {
 
         {/* Main content */}
         <main
-          className={`flex-1 transition-all duration-200 ${
-            sidebarOpen ? "ml-64" : "ml-16"
+          className={`flex-1 transition-all duration-200 ml-0 ${
+            sidebarOpen ? "md:ml-64" : "md:ml-16"
           }`}
         >
           <Outlet />

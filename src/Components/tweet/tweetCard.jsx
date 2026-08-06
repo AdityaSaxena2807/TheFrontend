@@ -6,17 +6,24 @@ import { deleteTweet } from "../../services/tweetApi";
 import { timeAgo } from "../../Utils/formatTime";
 import CommentOptions from "../comment/CommentOptions";
 import TweetInput from "./TweetInput";
-import { Link } from "react-router-dom";
+import LoginPromptModal from "../common/LoginPromptModal";
+import { Link, useNavigate } from "react-router-dom";
 
 function TweetCard({ tweet, onDeleted, onUpdated }) {
   const { user } = useAuthStore();
+  const navigate = useNavigate();
   const [isLiked, setIsLiked] = useState(tweet.isLiked);
   const [likesCount, setLikesCount] = useState(tweet.likesCount);
   const [isEditing, setIsEditing] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   const isOwner = user?._id === tweet.ownerDetails?._id;
 
   const handleLike = async () => {
+    if (!user) {
+      setShowLoginModal(true);
+      return;
+    }
     try {
       const res = await toggleTweetLike(tweet._id);
       setIsLiked(res.data.isLiked);
@@ -100,6 +107,11 @@ function TweetCard({ tweet, onDeleted, onUpdated }) {
           </span>
         </button>
       </div>
+      <LoginPromptModal
+        isOpen={showLoginModal}
+        onClose={() => setShowLoginModal(false)}
+        onLogin={() => navigate("/login")}
+      />
     </div>
   );
 }

@@ -121,7 +121,7 @@ function VideoInfo({ video, isLiked, likesCount, onLike }) {
 
         {video.description &&
           (video.description?.split("\n").length > 3 ||
-            video.description?.length > 150) > 150 && (
+            video.description?.length > 150) && (
             <button
               onClick={() => setShowFullDescription((prev) => !prev)}
               className="mt-2 text-white text-sm font-medium hover:text-gray-300 transition-colors"

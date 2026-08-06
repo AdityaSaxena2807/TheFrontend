@@ -28,7 +28,7 @@ const ForgotPassword = () => {
 			setStep(2);
 		} catch (err) {
 			setError(err?.response?.data?.message || "Verification failed");
-			ToastError("Verification failed");
+			ToastError("Username or email is incorrect. Please try again.");
 		} finally {
 			setLoading(false);
 		}
@@ -38,6 +38,7 @@ const ForgotPassword = () => {
 		e.preventDefault();
 		if (!securityAnswer.trim()) {
 			setError("Please answer the security question");
+      ToastError("Please answer the security question");
 			return;
 		}
 		setError("");
@@ -51,6 +52,7 @@ const ForgotPassword = () => {
 
 		if (newPassword !== confirmPassword) {
 			setError("Passwords do not match");
+      ToastError("Passwords do not match");
 			return;
 		}
 

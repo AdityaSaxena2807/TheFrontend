@@ -3,6 +3,8 @@ import { useAuthStore } from "../store/authStore";
 import { getAllTweets } from "../services/tweetApi";
 import TweetInput from "../components/tweet/TweetInput";
 import TweetCard from "../components/tweet/TweetCard";
+import { EditOutlined } from "@ant-design/icons";
+import { Spin } from "antd";
 
 function Tweets() {
   const { user } = useAuthStore();
@@ -42,33 +44,23 @@ function Tweets() {
   };
 
   if (loading)
-    return <div className="p-6 text-sm text-gray-400">Loading tweets...</div>;
+    return (
+      <div className="flex justify-center items-center h-40">
+        <Spin size="large" />
+      </div>
+    );
 
   return (
     <div className="w-full flex justify-center px-4 sm:px-6 py-6">
       <div className="w-full max-w-2xl">
-        {user && (
-          <div className="mb-6">
-            <TweetInput onSuccess={handleNewTweet} />
-          </div>
-        )}
+        <div className="mb-6">
+          <TweetInput onSuccess={handleNewTweet} />
+        </div>
+
         {tweets.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16 text-center">
             <div className="w-16 h-16 rounded-full bg-[#2a2a2a] flex items-center justify-center mb-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-7 h-7 text-gray-300"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                />
-              </svg>
+              <EditOutlined className="text-gray-300 text-2xl" />
             </div>
             <p className="text-white font-medium">No tweets yet</p>
             <p className="text-gray-500 text-sm mt-1">

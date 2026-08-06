@@ -13,7 +13,10 @@ export function VideoPlayer({ videoUrl, thumbnail }) {
         <VideoSkin poster={thumbnail} className="w-full h-full">
           <Video
             src={videoUrl}
+            autoPlay
+            muted
             playsInline
+            preload="metadata"
             className="w-full h-full object-cover"
           />
         </VideoSkin>
