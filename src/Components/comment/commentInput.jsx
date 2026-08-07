@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store/authStore.js";
 import LoginPromptModal from "../common/LoginPromptModal.jsx";
+import Button from "../common/Button.jsx";
 import EmojiPickerButton from "../common/EmojiPickerButton";
 
 function CommentInput({ onSubmit }) {
@@ -28,7 +29,23 @@ function CommentInput({ onSubmit }) {
   return (
     <>
       <div className="flex gap-3 mb-6">
-        <div className="w-8 h-8 rounded-full bg-gray-600 shrink-0" />
+        <div className="w-8 h-8 rounded-full bg-gray-600 shrink-0">
+          {user?.avatar ? (
+            <img
+              src={
+                typeof user.avatar === "string"
+                  ? user.avatar
+                  : user.avatar?.url
+              }
+              alt={user.username}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center">
+              <span className="text-lg">👤</span>
+            </div>
+          )}
+        </div>
         <div className="flex-1">
           <textarea
             ref={textareaRef}
@@ -70,13 +87,14 @@ function CommentInput({ onSubmit }) {
               }}
             />
 
-            <button
+            <Button
               onClick={handleSubmit}
               disabled={!!user && !text.trim()}
-              className="text-sm bg-white text-black px-3 py-1 rounded-full disabled:opacity-30"
+              variant="primary"
+              className="text-sm rounded-full"
             >
               Comment
-            </button>
+            </Button>
           </div>
         </div>
       </div>

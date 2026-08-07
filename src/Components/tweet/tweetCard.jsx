@@ -7,6 +7,7 @@ import { timeAgo } from "../../Utils/formatTime";
 import CommentOptions from "../comment/CommentOptions";
 import TweetInput from "./TweetInput";
 import LoginPromptModal from "../common/LoginPromptModal";
+import Button from "../common/Button.jsx";
 import { Link, useNavigate } from "react-router-dom";
 
 function TweetCard({ tweet, onDeleted, onUpdated }) {
@@ -90,9 +91,15 @@ function TweetCard({ tweet, onDeleted, onUpdated }) {
         <p className="text-base text-gray-100 mt-1.5 whitespace-pre-wrap wrap-break-word leading-snug">
           {tweet.content}
         </p>
-        <button
+        <Button
+          type="button"
           onClick={() => handleLike()}
-          className="flex items-center gap-2 rounded-full px-2 py-1 hover:bg-[#2f2f2f] transition-colors"
+          variant="secondary"
+          className={`flex items-center gap-2 rounded-full px-2 py-1 transition-all duration-200 ${
+            isLiked
+              ? "bg-white text-black"
+              : "bg-[#272727] text-white hover:bg-[#3f3f3f]"
+          }`}
         >
           {isLiked ? (
             <HeartFilled className="text-base" style={{ color: "#ef4444" }} />
@@ -105,7 +112,7 @@ function TweetCard({ tweet, onDeleted, onUpdated }) {
           >
             {likesCount}
           </span>
-        </button>
+        </Button>
       </div>
       <LoginPromptModal
         isOpen={showLoginModal}

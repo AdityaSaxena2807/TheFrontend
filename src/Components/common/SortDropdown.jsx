@@ -1,5 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
-import { DownOutlined, CaretUpOutlined, CaretDownOutlined } from "@ant-design/icons";
+import {
+  DownOutlined,
+  CaretUpOutlined,
+  CaretDownOutlined,
+} from "@ant-design/icons";
+import Button from "./Button.jsx";
 
 function SortDropdown({ sortField, sortType, onChange, options }) {
   const [open, setOpen] = useState(false);
@@ -31,35 +36,39 @@ function SortDropdown({ sortField, sortType, onChange, options }) {
 
   return (
     <div className="relative" ref={ref}>
-      <button
+      <Button
+        type="button"
         onClick={() => setOpen((prev) => !prev)}
+        variant="ghost"
         className="flex items-center gap-2 text-sm text-gray-300 border border-[#303030] rounded-full px-3 py-1.5 hover:bg-[#272727] transition"
       >
         Sort by: <span className="text-white">{activeLabel}</span>
         <DownOutlined className="text-[10px]" />
-      </button>
+      </Button>
 
       {open && (
         <div className="absolute right-0 mt-2 w-48 bg-[#212121] border border-[#303030] rounded-lg shadow-xl z-30 overflow-hidden">
           {options.map((opt) => {
             const isActive = opt.field === sortField;
             return (
-              <button
+              <Button
                 key={opt.field}
+                type="button"
                 onClick={() => handleSelect(opt.field)}
+                variant="ghost"
                 className={`w-full flex items-center justify-between px-4 py-2 text-sm hover:bg-[#333] transition ${
                   isActive ? "text-white bg-[#2a2a2a]" : "text-gray-300"
                 }`}
               >
                 <span>{opt.label}</span>
-                {isActive && opt.field !== "relevance" && (
-                  sortType === "asc" ? (
+                {isActive &&
+                  opt.field !== "relevance" &&
+                  (sortType === "asc" ? (
                     <CaretUpOutlined className="text-[10px]" />
                   ) : (
                     <CaretDownOutlined className="text-[10px]" />
-                  )
-                )}
-              </button>
+                  ))}
+              </Button>
             );
           })}
         </div>

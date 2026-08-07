@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toggleSubscription } from "../../services/subscriptionApi.js";
 import { useAuthStore } from "../../store/authStore.js";
+import Button from "../common/Button.jsx";
 import LoginPromptModal from "../common/LoginPromptModal.jsx";
 
 function SubscribeButton({ channelId, isSubscribed }) {
@@ -27,17 +28,13 @@ function SubscribeButton({ channelId, isSubscribed }) {
 
   return (
     <>
-      <button
+      <Button
         onClick={handleSubscribe}
-        className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200
-					${
-            subscribed
-              ? "bg-[#272727] text-white hover:bg-[#3f3f3f]"
-              : "bg-white text-black hover:bg-gray-200"
-          }`}
+        variant="ghost"
+        className="rounded-full text-sm"
       >
         {subscribed ? "Subscribed" : "Subscribe"}
-      </button>
+      </Button>
 
       <LoginPromptModal
         isOpen={showLoginModal}

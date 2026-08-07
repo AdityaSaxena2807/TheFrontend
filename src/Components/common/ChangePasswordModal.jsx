@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "./Button.jsx";
 import { changePassword } from "../../services/userApi.js";
 import { ToastError, ToastSuccess } from "../../Utils/ToastMessage.js";
 
@@ -87,24 +88,26 @@ function ChangePasswordModal({ open, onClose }) {
           </div>
 
           <div className="flex gap-3 justify-end pt-1">
-            <button
+            <Button
               type="button"
               onClick={() => {
                 reset();
                 onClose();
               }}
               disabled={saving}
-              className="px-4 py-2 rounded-full text-sm text-gray-300 border border-gray-600 hover:bg-gray-800 disabled:opacity-50"
+              variant="secondary"
+              className="rounded-full text-sm"
             >
               Cancel
-            </button>
-            <button
+            </Button>
+            <Button
               type="submit"
               disabled={saving}
-              className="px-4 py-2 rounded-full text-sm bg-red-600 hover:bg-red-700 text-white disabled:opacity-50"
+              variant="primary"
+              className="rounded-full text-sm"
             >
               {saving ? "Saving..." : "Change password"}
-            </button>
+            </Button>
           </div>
         </form>
       </div>

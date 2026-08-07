@@ -3,6 +3,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { ToastError } from "../../Utils/ToastMessage.js";
 import { getUserPlaylists } from "../../services/playlistApi.js";
 import { useAuthStore } from "../../store/authStore.js";
+import Button from "../common/Button.jsx";
 import PlaylistCard from "../playlist/PlaylistCard.jsx";
 import PlaylistForm from "../playlist/PlaylistForm.jsx";
 
@@ -39,12 +40,13 @@ function Playlists() {
 
   return (
     <div>
-      <button
+      <Button
         onClick={() => setShowForm(true)}
-        className="mb-4 px-4 py-2 bg-red-800 hover:bg-red-900 text-white text-sm rounded-lg transition-colors"
+        variant="primary"
+        className="mb-4"
       >
         + New Playlist
-      </button>
+      </Button>
 
       {playlists.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20 text-gray-400">

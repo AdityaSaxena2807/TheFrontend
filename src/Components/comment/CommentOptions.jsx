@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { MoreOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import Button from "../common/Button.jsx";
 
 function CommentOptions({ onEdit, onDelete }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -22,37 +23,40 @@ function CommentOptions({ onEdit, onDelete }) {
   return (
     <div className="relative" ref={menuRef}>
       {/* Three Dot Button */}
-      <button
+      <Button
         onClick={() => setMenuOpen((prev) => !prev)}
-        className="w-8 h-8 flex items-center justify-center rounded-full text-gray-400 hover:bg-[#3f3f3f] hover:text-white transition-all duration-150"
+        variant="icon"
+        className="w-8 h-8 flex items-center justify-center text-gray-400"
       >
         <MoreOutlined className="text-lg" />
-      </button>
+      </Button>
 
       {/* Dropdown */}
       {menuOpen && (
         <div className="absolute right-0 mt-2 w-44 bg-[#282828] border border-[#3f3f3f] rounded-xl shadow-2xl overflow-hidden z-50">
-          <button
+          <Button
             onClick={() => {
               setMenuOpen(false);
               onEdit();
             }}
+            variant="secondary"
             className="flex items-center gap-3 w-full px-4 py-3 text-sm text-white hover:bg-[#3f3f3f] transition-colors"
           >
             <EditOutlined className="text-base text-gray-300" />
             <span>Edit</span>
-          </button>
+          </Button>
 
-          <button
+          <Button
             onClick={() => {
               setMenuOpen(false);
               onDelete();
             }}
-            className="flex items-center gap-3 w-full px-4 py-3 text-sm text-red-400 hover:bg-[#3f3f3f] transition-colors"
+            variant="danger"
+            className="flex items-center gap-3 w-full px-4 py-3 text-sm hover:bg-[#3f3f3f] transition-colors"
           >
             <DeleteOutlined className="text-base" />
             <span>Delete</span>
-          </button>
+          </Button>
         </div>
       )}
     </div>

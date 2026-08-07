@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import Button from "../components/common/Button.jsx";
 import { useNavigate } from "react-router-dom";
 import { InboxOutlined, LoadingOutlined } from "@ant-design/icons";
 import { publishAVideo } from "../services/videoApi.js";
@@ -158,13 +159,14 @@ function Upload() {
               />
             )}
 
-            <button
+            <Button
               type="button"
               onClick={() => thumbnailInputRef.current?.click()}
-              className="px-4 py-2 rounded-full text-sm bg-[#272727] hover:bg-[#3f3f3f] transition-colors"
+              variant="secondary"
+              className="rounded-full text-sm"
             >
               {thumbnailFile ? "Change thumbnail" : "Upload image"}
-            </button>
+            </Button>
 
             <input
               ref={thumbnailInputRef}
@@ -231,18 +233,20 @@ function Upload() {
 
         {/* Actions */}
         <div className="flex gap-3 justify-end pt-2">
-          <button
+          <Button
             type="button"
             onClick={() => navigate(-1)}
             disabled={uploading}
-            className="px-4 py-2 rounded-full text-sm text-gray-300 border border-gray-600 hover:bg-gray-800 disabled:opacity-50"
+            variant="secondary"
+            className="rounded-full text-sm"
           >
             Cancel
-          </button>
-          <button
+          </Button>
+          <Button
             type="submit"
             disabled={uploading}
-            className="px-4 py-2 rounded-full text-sm bg-red-600 hover:bg-red-700 text-white disabled:opacity-50 flex items-center gap-2"
+            variant="primary"
+            className="rounded-full text-sm flex items-center gap-2"
           >
             {uploading ? (
               <>
@@ -251,7 +255,7 @@ function Upload() {
             ) : (
               "Publish ▶"
             )}
-          </button>
+          </Button>
         </div>
       </form>
     </div>

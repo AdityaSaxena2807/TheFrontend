@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LikeFilled, LikeOutlined, SaveOutlined } from "@ant-design/icons";
 import { useAuthStore } from "../../store/authStore.js";
+import Button from "../common/Button.jsx";
 import SubscribeButton from "../channel/SubscribeButton.jsx";
 import SaveToPlaylistDropdown from "./SaveToPlaylistDropdown.jsx";
 import LoginPromptModal from "../common/LoginPromptModal.jsx";
@@ -78,9 +79,11 @@ function VideoInfo({ video, isLiked, likesCount, onLike }) {
             />
           )}
 
-          <button
+          <Button
+            type="button"
             onClick={handleLike}
-            className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${isLiked ? "bg-white text-black" : "bg-[#272727] text-white hover:bg-[#3f3f3f]"}`}
+            variant="secondary"
+            className={`flex items-center gap-1.5 rounded-full text-sm font-medium transition-all duration-200 ${isLiked ? "bg-white text-black" : "bg-[#272727] text-white hover:bg-[#3f3f3f]"}`}
           >
             {isLiked ? (
               <LikeFilled className="text-base" />
@@ -88,16 +91,18 @@ function VideoInfo({ video, isLiked, likesCount, onLike }) {
               <LikeOutlined className="text-base" />
             )}
             <span>{likesCount}</span>
-          </button>
+          </Button>
 
           <div className="relative">
-            <button
+            <Button
+              type="button"
               onClick={handleSaveToPlaylist}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium bg-[#272727] text-white hover:bg-[#3f3f3f] transition-all duration-200"
+              variant="secondary"
+              className="flex items-center gap-1.5 rounded-full text-sm"
             >
               <SaveOutlined className="text-base" />
               <span>Save</span>
-            </button>
+            </Button>
             {showPlaylist && (
               <div className="absolute right-0 mt-2 z-30">
                 <SaveToPlaylistDropdown
@@ -122,12 +127,14 @@ function VideoInfo({ video, isLiked, likesCount, onLike }) {
         {video.description &&
           (video.description?.split("\n").length > 3 ||
             video.description?.length > 150) && (
-            <button
+            <Button
+              type="button"
               onClick={() => setShowFullDescription((prev) => !prev)}
+              variant="ghost"
               className="mt-2 text-white text-sm font-medium hover:text-gray-300 transition-colors"
             >
               {showFullDescription ? "Show less" : "Show more"}
-            </button>
+            </Button>
           )}
       </div>
       <LoginPromptModal

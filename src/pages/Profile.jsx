@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Button from "../components/common/Button.jsx";
 import {
   currentUser,
   updateAccount,
@@ -116,12 +117,13 @@ function Profile() {
     return (
       <div className="flex flex-col items-center justify-center h-64 gap-3 text-white">
         <p>Could not load user details.</p>
-        <button
+        <Button
           onClick={fetchDetails}
-          className="px-6 py-2 bg-red-600 hover:bg-red-700 text-white rounded-full"
+          variant="primary"
+          className="px-6 py-2 rounded-full"
         >
           Retry
-        </button>
+        </Button>
       </div>
     );
   }
@@ -143,9 +145,15 @@ function Profile() {
           <h1 className="text-2xl font-semibold text-white mb-6">Profile</h1>
 
           <div className="relative w-full h-40 sm:h-56 bg-[#1a1a1a] rounded-lg overflow-hidden">
-            {(typeof user.coverImage === "string" ? user.coverImage : user.coverImage?.url) && (
+            {(typeof user.coverImage === "string"
+              ? user.coverImage
+              : user.coverImage?.url) && (
               <img
-                src={typeof user.coverImage === "string" ? user.coverImage : user.coverImage?.url}
+                src={
+                  typeof user.coverImage === "string"
+                    ? user.coverImage
+                    : user.coverImage?.url
+                }
                 alt="Cover"
                 className="w-full h-full object-cover"
               />
@@ -154,7 +162,9 @@ function Profile() {
 
           <div className="relative -mt-10 ml-4 w-20 h-20">
             <img
-              src={typeof user.avatar === "string" ? user.avatar : user.avatar?.url}
+              src={
+                typeof user.avatar === "string" ? user.avatar : user.avatar?.url
+              }
               alt={user.username}
               className="w-20 h-20 rounded-full object-cover border-4 border-black bg-[#1a1a1a]"
             />
@@ -181,12 +191,13 @@ function Profile() {
             </div>
           </div>
 
-          <button
+          <Button
             onClick={() => setMode("edit")}
-            className="mt-8 px-6 py-2 rounded-full bg-red-800 hover:bg-red-700 text-white"
+            variant="primary"
+            className="mt-8 px-6 py-2 rounded-full"
           >
             Edit profile
-          </button>
+          </Button>
 
           <div className="mt-10 pt-6 border-t border-gray-800">
             <p className="text-xs uppercase tracking-wide text-gray-500 mb-1">
@@ -195,12 +206,13 @@ function Profile() {
             <p className="text-gray-400 text-sm mb-4">
               Update your password to keep your account secure.
             </p>
-            <button
+            <Button
               onClick={() => setChangePasswordOpen(true)}
-              className="px-5 py-2 rounded-full border border-gray-600 text-white text-sm hover:bg-[#1a1a1a] transition-colors"
+              variant="secondary"
+              className="px-5 py-2 rounded-full text-sm"
             >
               Change password
-            </button>
+            </Button>
           </div>
         </>
       ) : (
@@ -281,21 +293,23 @@ function Profile() {
             </div>
 
             <div className="flex gap-3 pt-2">
-              <button
+              <Button
                 type="button"
                 onClick={handleCancelEdit}
                 disabled={savingAccount}
-                className="px-6 py-2 rounded-full border border-gray-600 text-white hover:bg-[#1a1a1a] disabled:opacity-40 disabled:cursor-not-allowed"
+                variant="secondary"
+                className="px-6 py-2 rounded-full"
               >
                 Cancel
-              </button>
-              <button
+              </Button>
+              <Button
                 type="submit"
                 disabled={!isDirty || savingAccount}
-                className="px-6 py-2 rounded-full bg-red-800 hover:bg-red-700 text-white disabled:opacity-40 disabled:cursor-not-allowed"
+                variant="primary"
+                className="px-6 py-2 rounded-full"
               >
                 {savingAccount ? "Saving..." : "Save changes"}
-              </button>
+              </Button>
             </div>
           </form>
         </>

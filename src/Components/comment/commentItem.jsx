@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store/authStore.js";
 import { toggleCommentLike } from "../../services/likeApi.js";
 import LoginPromptModal from "../common/LoginPromptModal.jsx";
+import Button from "../common/Button.jsx";
 import { timeAgo } from "../../Utils/formatTime.js";
 import CommentOptions from "./CommentOptions.jsx";
 import { ToastError } from "../../Utils/ToastMessage.js";
@@ -46,7 +47,11 @@ function CommentItem({ comment, onUpdate, onDelete }) {
       <div className="flex gap-3 py-3 group">
         {/* Avatar */}
         <img
-          src={typeof comment.ownerDetails?.avatar === "string" ? comment.ownerDetails?.avatar : comment.ownerDetails?.avatar?.url}
+          src={
+            typeof comment.ownerDetails?.avatar === "string"
+              ? comment.ownerDetails?.avatar
+              : comment.ownerDetails?.avatar?.url
+          }
           alt={comment.ownerDetails?.username}
           className="w-9 h-9 rounded-full object-cover shrink-0 bg-gray-700"
         />
@@ -75,18 +80,22 @@ function CommentItem({ comment, onUpdate, onDelete }) {
                     autoFocus
                   />
                   <div className="flex gap-2">
-                    <button
+                    <Button
+                      type="button"
                       onClick={handleEditSubmit}
+                      variant="ghost"
                       className="text-xs text-blue-400"
                     >
                       Save
-                    </button>
-                    <button
+                    </Button>
+                    <Button
+                      type="button"
                       onClick={() => setIsEditing(false)}
+                      variant="ghost"
                       className="text-xs text-gray-400"
                     >
                       Cancel
-                    </button>
+                    </Button>
                   </div>
                 </div>
               ) : (
@@ -108,9 +117,13 @@ function CommentItem({ comment, onUpdate, onDelete }) {
 
           {/* Actions */}
           <div className="flex items-center gap-5 mt-2">
-            <button
+            <Button
+              type="button"
               onClick={() => handleCommentLike(comment._id)}
-              className="flex items-center gap-2 rounded-full px-2 py-1 hover:bg-[#2f2f2f] transition-colors"
+              variant="ghost"
+              className={`flex items-center gap-2 rounded-full px-2 py-1 text-white bg-[#121212] hover:bg-[#2f2f2f] transition-colors ${
+                isLiked ? "bg-[#2f2f2f]" : ""
+              }`}
             >
               {isLiked ? (
                 <HeartFilled
@@ -128,7 +141,7 @@ function CommentItem({ comment, onUpdate, onDelete }) {
               >
                 {likesCount}
               </span>
-            </button>
+            </Button>
           </div>
         </div>
       </div>

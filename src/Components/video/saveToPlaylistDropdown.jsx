@@ -4,6 +4,7 @@ import {
   addVideoToPlaylist,
 } from "../../services/playlistApi.js";
 import { useAuthStore } from "../../store/authStore.js";
+import Button from "../common/Button.jsx";
 
 import { LoadingOutlined } from "@ant-design/icons";
 import { ToastError } from "../../Utils/ToastMessage.js";
@@ -75,14 +76,15 @@ function SaveToPlaylistDropdown({ videoId, onClose }) {
         <p className="text-xs text-gray-500 px-4 py-2">No playlists found.</p>
       ) : (
         playlists.map((playlist) => (
-          <button
+          <Button
             key={playlist._id}
             onClick={() => handleAdd(playlist._id)}
             disabled={saving === playlist._id}
-            className="w-full text-left px-4 py-2 text-sm text-white hover:bg-[#3f3f3f] transition-colors duration-150 disabled:opacity-50"
+            variant="ghost"
+            className="w-full justify-start text-left px-4 py-2 text-sm text-white hover:bg-[#3f3f3f] transition-colors duration-150 disabled:opacity-50"
           >
             {saving === playlist._id ? "Saving..." : playlist.name}
-          </button>
+          </Button>
         ))
       )}
     </div>

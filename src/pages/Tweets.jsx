@@ -6,6 +6,7 @@ import TweetCard from "../components/tweet/TweetCard";
 import SortDropdown from "../components/common/SortDropdown.jsx";
 import { EditOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
+import Button from "../components/common/Button.jsx";
 
 function Tweets() {
   const { user } = useAuthStore();
@@ -106,23 +107,27 @@ function Tweets() {
             </div>
 
             <div className="flex justify-center items-center gap-4 mt-6">
-              <button
+              <Button
+                type="button"
                 disabled={page <= 1}
                 onClick={() => setPage((p) => p - 1)}
+                variant="secondary"
                 className="px-3 py-1.5 rounded-md bg-[#2a2a2a] text-white text-sm disabled:opacity-40"
               >
                 Previous
-              </button>
+              </Button>
               <span className="text-sm text-gray-400">
                 Page {page} of {totalPages}
               </span>
-              <button
+              <Button
+                type="button"
                 disabled={page >= totalPages}
                 onClick={() => setPage((p) => p + 1)}
+                variant="secondary"
                 className="px-3 py-1.5 rounded-md bg-[#2a2a2a] text-white text-sm disabled:opacity-40"
               >
                 Next
-              </button>
+              </Button>
             </div>
           </>
         )}

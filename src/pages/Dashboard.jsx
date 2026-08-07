@@ -12,6 +12,7 @@ import { toggleVideoPublishStatus, deleteVideo } from "../services/videoApi.js";
 import { ToastError, ToastSuccess } from "../Utils/ToastMessage.js";
 import Modal from "../components/common/Modal.jsx";
 import { timeAgo } from "../Utils/formatTime.js";
+import Button from "../components/common/Button.jsx";
 
 function Dashboard() {
   const [stats, setStats] = useState(null);
@@ -120,7 +121,11 @@ function Dashboard() {
                 className="shrink-0 w-40 aspect-video rounded-lg overflow-hidden bg-black"
               >
                 <img
-                  src={typeof video.thumbnail === "string" ? video.thumbnail : video.thumbnail?.url}
+                  src={
+                    typeof video.thumbnail === "string"
+                      ? video.thumbnail
+                      : video.thumbnail?.url
+                  }
                   alt={video.title}
                   className="w-full h-full object-cover"
                 />
@@ -134,7 +139,8 @@ function Dashboard() {
                   {video.title}
                 </Link>
                 <p className="text-gray-400 text-sm mt-1">
-                  {typeof video.likesCount === "number" ? video.likesCount : 0} likes · {timeAgo(video.createdAt)}
+                  {typeof video.likesCount === "number" ? video.likesCount : 0}{" "}
+                  likes · {timeAgo(video.createdAt)}
                 </p>
                 <p className="text-gray-600 text-xs">
                   {new Date(video.createdAt).toLocaleDateString("en-US", {
@@ -155,24 +161,26 @@ function Dashboard() {
               </div>
 
               <div className="flex items-center gap-2 shrink-0">
-                <button
+                <Button
                   onClick={() => handleTogglePublish(video._id)}
-                  className="px-3 py-1.5 rounded bg-[#282828] hover:bg-[#333] text-sm transition"
+                  variant="secondary"
+                  className="px-3 py-1.5 rounded text-sm"
                 >
                   {video.isPublished ? "Unpublish" : "Publish"}
-                </button>
+                </Button>
                 <Link
                   to={`/edit-video/${video._id}`}
                   className="px-3 py-1.5 rounded bg-[#282828] hover:bg-[#333] text-sm transition"
                 >
                   Edit
                 </Link>
-                <button
+                <Button
                   onClick={() => setDeleteTarget(video._id)}
-                  className="px-3 py-1.5 rounded bg-red-900/40 hover:bg-red-900/70 text-red-300 text-sm transition"
+                  variant="danger"
+                  className="px-3 py-1.5 rounded text-sm"
                 >
                   Delete
-                </button>
+                </Button>
               </div>
             </div>
           ))}

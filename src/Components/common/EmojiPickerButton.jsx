@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import EmojiPicker from "emoji-picker-react";
 import { SmileOutlined } from "@ant-design/icons";
+import Button from "./Button.jsx";
 
 function EmojiPickerButton({
   onEmojiClick,
@@ -32,14 +33,15 @@ function EmojiPickerButton({
 
   return (
     <div className="relative" ref={pickerRef}>
-      <button
+      <Button
         type="button"
         aria-label="Open emoji picker"
         onClick={() => setOpen((prev) => !prev)}
-        className="p-2 rounded-full hover:bg-[#2f2f2f] transition-colors"
+        variant="icon"
+        className="text-gray-300 hover:text-white"
       >
-        <SmileOutlined className="text-lg text-gray-300 hover:text-white transition-colors" />
-      </button>
+        <SmileOutlined className="text-lg" />
+      </Button>
 
       {open && (
         <div
@@ -52,6 +54,7 @@ function EmojiPickerButton({
             width={width}
             height={height}
             lazyLoadEmojis
+            emojiStyle="native"
             previewConfig={{
               showPreview: false,
             }}

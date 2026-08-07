@@ -5,6 +5,7 @@ import { ToastError } from "../Utils/ToastMessage.js";
 import SearchListItem from "../components/common/SearchListItem.jsx";
 import SortDropdown from "../components/common/SortDropdown.jsx";
 import { getAllVideos } from "../services/videoApi.js";
+import Button from "../components/common/Button.jsx";
 
 function Search() {
   const [videos, setVideos] = useState([]);
@@ -98,23 +99,25 @@ function Search() {
 
       {totalPages > 1 && (
         <div className="flex items-center justify-center gap-3 mt-8">
-          <button
+          <Button
             disabled={page <= 1}
             onClick={() => goToPage(page - 1)}
-            className="px-4 py-2 rounded bg-[#212121] hover:bg-[#333] disabled:opacity-40 disabled:cursor-not-allowed transition"
+            variant="secondary"
+            className="px-4 py-2 rounded"
           >
             Prev
-          </button>
+          </Button>
           <span className="text-gray-400 text-sm">
             Page {page} of {totalPages}
           </span>
-          <button
+          <Button
             disabled={page >= totalPages}
             onClick={() => goToPage(page + 1)}
-            className="px-4 py-2 rounded bg-[#212121] hover:bg-[#333] disabled:opacity-40 disabled:cursor-not-allowed transition"
+            variant="secondary"
+            className="px-4 py-2 rounded"
           >
             Next
-          </button>
+          </Button>
         </div>
       )}
     </div>

@@ -6,6 +6,7 @@ import {
   DeleteOutlined,
   MoreOutlined,
 } from "@ant-design/icons";
+import Button from "../components/common/Button.jsx";
 import {
   getPlaylistById,
   deletePlaylist,
@@ -32,24 +33,28 @@ function VideoRowMenu({ onRemove }) {
 
   return (
     <div className="absolute right-0 shrink-0" ref={menuRef}>
-      <button
+      <Button
+        type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className="w-8 h-8 flex items-center justify-center rounded-full text-gray-400 hover:bg-[#3f3f3f] hover:text-white transition-all duration-150"
+        variant="icon"
+        className="w-8 h-8 p-0 text-gray-400 hover:text-white"
       >
         <MoreOutlined className="text-lg" />
-      </button>
+      </Button>
 
       {open && (
         <div className="absolute right-0 mt-2 w-48 bg-[#282828] border border-[#3f3f3f] rounded-xl shadow-2xl overflow-hidden z-30">
-          <button
+          <Button
+            type="button"
             onClick={() => {
               setOpen(false);
               onRemove();
             }}
-            className="flex items-center gap-3 w-full px-4 py-3 text-sm text-red-400 hover:bg-[#3f3f3f] transition-colors"
+            variant="ghost"
+            className="flex items-center gap-3 w-full justify-start px-4 py-3 text-sm text-red-400 hover:bg-[#3f3f3f] transition-colors"
           >
             Remove from playlist
-          </button>
+          </Button>
         </div>
       )}
     </div>
@@ -122,9 +127,10 @@ function PlaylistDetail() {
     );
   }
 
-  const coverThumbnail = typeof playlist.videos?.[0]?.thumbnail === "string"
-    ? playlist.videos?.[0]?.thumbnail
-    : playlist.videos?.[0]?.thumbnail?.url;
+  const coverThumbnail =
+    typeof playlist.videos?.[0]?.thumbnail === "string"
+      ? playlist.videos?.[0]?.thumbnail
+      : playlist.videos?.[0]?.thumbnail?.url;
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6 text-white flex gap-6 flex-col md:flex-row">
@@ -154,18 +160,20 @@ function PlaylistDetail() {
         </p>
 
         <div className="flex gap-2 mt-4">
-          <button
+          <Button
             onClick={() => setShowEditForm(true)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm bg-[#272727] hover:bg-[#3f3f3f] transition-colors"
+            variant="secondary"
+            className="flex items-center gap-1.5 rounded-full text-sm"
           >
             <EditOutlined /> Edit
-          </button>
-          <button
+          </Button>
+          <Button
             onClick={() => setConfirmDelete(true)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm bg-[#272727] hover:bg-red-900/40 text-red-400 transition-colors"
+            variant="danger"
+            className="flex items-center gap-1.5 rounded-full text-sm"
           >
             <DeleteOutlined /> Delete
-          </button>
+          </Button>
         </div>
       </div>
 

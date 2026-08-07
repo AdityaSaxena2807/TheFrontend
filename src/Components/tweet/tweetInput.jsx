@@ -4,6 +4,7 @@ import { useAuthStore } from "../../store/authStore";
 import EmojiPickerButton from "../common/EmojiPickerButton";
 import { useNavigate } from "react-router-dom";
 import LoginPromptModal from "../common/LoginPromptModal";
+import Button from "../common/Button";
 
 const MAX_LENGTH = 280;
 
@@ -131,22 +132,24 @@ function TweetInput({ existingTweet = null, onSuccess, onCancelEdit }) {
 
         <div className="flex gap-2">
           {isEditMode && (
-            <button
+            <Button
               type="button"
               onClick={onCancelEdit}
+              variant="secondary"
               className="text-xs px-4 py-1.5 rounded-full text-gray-400 hover:bg-white/10"
             >
               Cancel
-            </button>
+            </Button>
           )}
 
-          <button
+          <Button
             type="submit"
             disabled={loading || !content.trim() || remaining < 0}
-            className="text-xs font-semibold px-5 py-1.5 rounded-full bg-gray-200 text-black disabled:opacity-30 disabled:bg-gray-500"
+            variant="primary"
+            className="text-xs font-semibold px-5 py-1.5 rounded-full"
           >
             {loading ? "..." : isEditMode ? "Save" : "Post"}
-          </button>
+          </Button>
         </div>
       </div>
     </form>

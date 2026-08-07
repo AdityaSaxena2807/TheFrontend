@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "../common/Button.jsx";
 import { createPlaylist, updatePlaylist } from "../../services/playlistApi.js";
 import { ToastError, ToastSuccess } from "../../Utils/ToastMessage.js";
 
@@ -76,20 +77,22 @@ function PlaylistForm({ isOpen, onClose, onSuccess, playlist }) {
           </div>
 
           <div className="flex gap-3 justify-end pt-1">
-            <button
+            <Button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-full text-sm text-gray-300 border border-gray-600 hover:bg-gray-800"
+              variant="secondary"
+              className="rounded-full text-sm"
             >
               Cancel
-            </button>
-            <button
+            </Button>
+            <Button
               type="submit"
               disabled={submitting}
-              className="px-4 py-2 rounded-full text-sm bg-red-600 hover:bg-red-700 text-white disabled:opacity-50"
+              variant="primary"
+              className="rounded-full text-sm"
             >
               {submitting ? "Saving..." : isEditMode ? "Save" : "Create"}
-            </button>
+            </Button>
           </div>
         </form>
       </div>

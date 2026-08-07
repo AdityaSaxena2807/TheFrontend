@@ -8,6 +8,7 @@ import { ToastError, ToastSuccess } from "../../Utils/ToastMessage.js";
 import Logo from "./Logo.jsx";
 import Modal from "./Modal.jsx";
 import SearchBar from "./SearchBar.jsx";
+import Button from "./Button.jsx";
 function Navbar() {
   const isLoggedIn = useAuthStore((s) => s.isLoggedIn);
   const user = useAuthStore((s) => s.user);
@@ -30,12 +31,14 @@ function Navbar() {
   return (
     <nav className="fixed top-0 z-50 flex w-full items-center justify-between bg-black px-6 py-3 shadow-lg shadow-black/50">
       {/* Sidebar toggle */}
-      <button
+      <Button
+        type="button"
         onClick={useUiStore.getState().toggleSidebar}
-        className="text-white text-2xl px-3 py-1 hover:bg-[#282828] rounded transition"
+        variant="icon"
+        className="text-white text-2xl"
       >
         <MenuOutlined />
-      </button>
+      </Button>
       <div className="flex-1 mx-4">
         <Logo />
       </div>
@@ -56,8 +59,10 @@ function Navbar() {
               Upload
             </Link>
             <div className="relative" ref={menuRef}>
-              <button
+              <Button
+                type="button"
                 onClick={() => setMenuOpen((prev) => !prev)}
+                variant="icon"
                 className="flex items-center gap-1.5 hover:bg-[#282828] rounded-full pl-1 pr-2 py-1 transition"
               >
                 <span className="w-9 h-9 rounded-full overflow-hidden border-2 border-[#050505]">
@@ -72,7 +77,7 @@ function Navbar() {
                   />
                 </span>
                 <DownOutlined className="text-white text-xs" />
-              </button>
+              </Button>
 
               {menuOpen && (
                 <div className="absolute right-0 mt-2 w-56 bg-[#282828] border border-[#3f3f3f] rounded-xl shadow-2xl overflow-hidden z-50">
@@ -85,35 +90,41 @@ function Navbar() {
                     </p>
                   </div>
 
-                  <button
+                  <Button
+                    type="button"
                     onClick={() => {
                       setMenuOpen(false);
                       navigate("/profile");
                     }}
+                    variant="ghost"
                     className="w-full text-left px-4 py-3 text-sm text-white hover:bg-[#3f3f3f] transition-colors"
                   >
                     My Profile
-                  </button>
+                  </Button>
 
-                  <button
+                  <Button
+                    type="button"
                     onClick={() => {
                       setMenuOpen(false);
                       navigate(`/channel/${user.username}`);
                     }}
+                    variant="ghost"
                     className="w-full text-left px-4 py-3 text-sm text-white hover:bg-[#3f3f3f] transition-colors"
                   >
                     My Channel
-                  </button>
+                  </Button>
 
-                  <button
+                  <Button
+                    type="button"
                     onClick={() => {
                       setMenuOpen(false);
                       setLogoutModalOpen(true);
                     }}
+                    variant="ghost"
                     className="w-full text-left px-4 py-3 text-sm text-red-400 hover:bg-[#3f3f3f] transition-colors border-t border-[#3f3f3f]"
                   >
                     Logout
-                  </button>
+                  </Button>
                 </div>
               )}
             </div>
