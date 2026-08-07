@@ -19,6 +19,8 @@ function Channel() {
   const [activeTab, setActiveTab] = useState("videos");
   const [tweets, setTweets] = useState([]);
   const [tweetsLoading, setTweetsLoading] = useState(false);
+  const [tweetSortField, setTweetSortField] = useState("createdAt");
+  const [tweetSortType, setTweetSortType] = useState("desc");
   useEffect(() => {
     const fetchChannel = async () => {
       try {
@@ -40,9 +42,10 @@ function Channel() {
     const fetchTweets = async () => {
       try {
         setTweetsLoading(true);
-
-        const response = await getUserTweets(channel._id);
-
+        const response = await getUserTweets(channel._id, {
+          sortBy: tweetSortField,
+          sortType: tweetSortType,
+        });
         setTweets(response.data);
       } catch (err) {
         ToastError("Failed to load tweets");
@@ -52,7 +55,7 @@ function Channel() {
     };
 
     fetchTweets();
-  }, [activeTab, channel?._id]);
+  }, [activeTab, channel?._id, tweetSortField, tweetSortType]);
 
   useEffect(() => {
     if (!channel?._id) return;
@@ -163,6 +166,18 @@ function Channel() {
                 { field: "createdAt", label: "Date" },
                 { field: "views", label: "Views" },
               ]}
+            />
+          )}
+
+          {activeTab === "tweets" && (
+            <SortDropdown
+              sortField={tweetSortField}
+              sortType={tweetSortType}
+              onChange={(field, type) => {
+                setTweetSortField(field);
+                setTweetSortType(type);
+              }}
+              options={[{ field: "createdAt", label: "Date" }]}
             />
           )}
         </div>

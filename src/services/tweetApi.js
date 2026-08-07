@@ -12,9 +12,16 @@ export const createTweet = async (userData) => {
   }
 };
 
-export const getAllTweets = async () => {
+export const getAllTweets = async ({
+  page = 1,
+  limit = 10,
+  sortBy = "createdAt",
+  sortType = "desc",
+} = {}) => {
   try {
-    const response = await axiosInstance.get("/api/v1/tweets/");
+    const response = await axiosInstance.get("/api/v1/tweets", {
+      params: { page, limit, sortBy, sortType },
+    });
     return response.data;
   } catch (error) {
     console.error("Error message: ", error?.message);
@@ -24,9 +31,14 @@ export const getAllTweets = async () => {
   }
 };
 
-export const getUserTweets = async (userId) => {
+export const getUserTweets = async (
+  userId,
+  { sortBy = "createdAt", sortType = "desc" } = {},
+) => {
   try {
-    const response = await axiosInstance.get(`/api/v1/tweets/user/${userId}`);
+    const response = await axiosInstance.get(`/api/v1/tweets/user/${userId}`, {
+      params: { sortBy, sortType },
+    });
     return response.data;
   } catch (error) {
     console.error("Error message: ", error?.message);

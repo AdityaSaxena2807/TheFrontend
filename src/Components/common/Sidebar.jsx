@@ -8,6 +8,7 @@ import {
 import { NavLink } from "react-router-dom";
 import { useAuthStore } from "../../store/authStore.js";
 import { useUiStore } from "../../store/uiStore.js";
+import Duck from "../../assets/icons/Duck.gif";
 function Sidebar() {
   const sidebarOpen = useUiStore((s) => s.sidebarOpen);
   const isLoggedIn = useAuthStore((s) => s.isLoggedIn);
@@ -114,6 +115,19 @@ function Sidebar() {
               ) : (
                 <BellOutlined className="text-lg" />
               )}
+            </NavLink>
+          )}
+          {isLoggedIn && (
+            <NavLink
+              to="/settings/logo"
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-4 py-2 rounded-lg ${
+                  isActive ? "bg-gray-200" : "hover:bg-gray-100"
+                }`
+              }
+            >
+              <img src={Duck} alt="" className="w-5 h-5 object-contain" />
+              <span>App Logo</span>
             </NavLink>
           )}
           {/* Add more links here */}

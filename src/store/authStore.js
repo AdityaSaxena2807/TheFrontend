@@ -7,7 +7,7 @@ const authClient = axios.create({
 });
 
 let authInitialization;
-// The useAuthStore is a Zustand store that manages the authentication state of the application. It provides functions to set, clear, and initialize 
+// The useAuthStore is a Zustand store that manages the authentication state of the application. It provides functions to set, clear, and initialize
 // authentication, as well as update user information. The store maintains the user object, access token, login status, and loading state for authentication.
 const useAuthStore = create((set) => ({
   user: null,
@@ -18,11 +18,21 @@ const useAuthStore = create((set) => ({
   // user and accessToken. When called, it updates the user information, access token, and sets isLoggedIn to true.
   // This allows the application to recognize that the user is authenticated and has access to their information.
   setAuth: (user, accessToken) =>
-    set((state) => ({
-      user: user ?? state.user,
-      accessToken: accessToken ?? state.accessToken,
-      isLoggedIn: true,
-    })),
+    set((state) => {
+      const resolvedUser = user ?? state.user;
+      if (resolvedUser?.preferences?.logo) {
+        import("../store/uiStore").then(({ useUiStore }) => {
+          useUiStore
+            .getState()
+            .setSelectedLogoFromServer(resolvedUser.preferences.logo);
+        });
+      }
+      return {
+        user: resolvedUser,
+        accessToken: accessToken ?? state.accessToken,
+        isLoggedIn: true,
+      };
+    }),
   // The clearAuth function resets the authentication state by setting the user and access token to null and isLoggedIn to false.
   clearAuth: () =>
     set({
@@ -49,8 +59,18 @@ const useAuthStore = create((set) => ({
           },
         );
 
+        const userData = userResponse.data.data.user ?? userResponse.data.data;
+
+        if (userData?.preferences?.logo) {
+          import("../store/uiStore").then(({ useUiStore }) => {
+            useUiStore
+              .getState()
+              .setSelectedLogoFromServer(userData.preferences.logo);
+          });
+        }
+
         set({
-          user: userResponse.data.data.user ?? userResponse.data.data,
+          user: userData,
           accessToken,
           isLoggedIn: true,
         });

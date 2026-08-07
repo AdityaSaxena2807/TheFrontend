@@ -21,6 +21,7 @@ import UserDetails from "../pages/Profile";
 import Tweets from "../pages/Tweets";
 import Subscriptions from "../pages/Subscriptions";
 import ForgotPassword from "../pages/ForgotPassword";
+import DuckPicker from "../pages/DuckPicker";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
@@ -43,6 +44,7 @@ const router = createBrowserRouter(
           <Route path="/edit-video/:videoId" element={<EditVideo />} />
           <Route path="/profile" element={<UserDetails />} />
           <Route path="/subscriptions" element={<Subscriptions />} />
+          <Route path="/settings/logo" element={<DuckPicker />} />
         </Route>
       </Route>
     </Route>,

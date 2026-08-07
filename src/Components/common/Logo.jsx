@@ -1,11 +1,20 @@
 import React from "react";
 import Duck from "../../assets/icons/Duck.gif";
-// adjust the path according to where you store the image in your project
+import LuffyDuck from "../../assets/icons/LuffyDuck.gif";
+import ZoroDuck from "../../assets/icons/ZoroDuck.gif";
+import {useUiStore} from "../../store/uiStore";
+
+const LOGO_MAP = { Duck, LuffyDuck, ZoroDuck };
 
 function Logo() {
+  const selectedLogo = useUiStore((s) => s.selectedLogo);
   return (
     <div className="logo">
-      <img src={Duck} alt="App Logo" className="w-16 h-16 object-contain" />
+      <img
+        src={LOGO_MAP[selectedLogo]}
+        alt="App Logo"
+        className="w-16 h-16 object-contain"
+      />
     </div>
   );
 }
