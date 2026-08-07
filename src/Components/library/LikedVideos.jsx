@@ -25,6 +25,8 @@ function LikedVideos() {
               ? item.likedVideo.videoFile
               : item.likedVideo.videoFile?.url,
           duration: item.likedVideo.duration,
+          owner: item.likedVideo.owner,
+          ownerDetails: item.likedVideo.ownerDetails,
           views: item.likedVideo.views,
           createdAt: item.likedVideo.createdAt,
         }));

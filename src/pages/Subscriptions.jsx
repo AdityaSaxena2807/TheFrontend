@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
 import { getSubscribedChannels } from "../services/subscriptionApi";
 import { getAllVideos } from "../services/videoApi";
-import VideoCard from "../components/common/VideoCard";
+import VideoListItem from "../components/video/VideoListItem";
 
 function Subscriptions() {
   const { user } = useAuthStore();
@@ -96,25 +96,7 @@ function Subscriptions() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {videos.map((video) => (
-              <Link key={video._id} to={`/watch/${video._id}`}>
-                <VideoCard
-                  thumbnail={
-                    typeof video.thumbnail === "string"
-                      ? video.thumbnail
-                      : video.thumbnail?.url
-                  }
-                  title={video.title}
-                  duration={video.duration}
-                  views={video.views}
-                  uploadedAt={video.createdAt}
-                  ownerName={video.ownerDetails?.username}
-                  ownerAvatar={
-                    typeof video.ownerDetails?.avatar === "string"
-                      ? video.ownerDetails?.avatar
-                      : video.ownerDetails?.avatar?.url
-                  }
-                />
-              </Link>
+              <VideoListItem key={video._id} video={video} variant="card" />
             ))}
           </div>
         )}

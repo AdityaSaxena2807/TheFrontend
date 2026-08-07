@@ -121,13 +121,18 @@ function Sidebar() {
             <NavLink
               to="/settings/logo"
               className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-2 rounded-lg ${
-                  isActive ? "bg-gray-200" : "hover:bg-gray-100"
-                }`
+                `flex items-center gap-3 px-4 py-2 rounded transition-colors
+      ${isActive ? "bg-[#3636368c] text-white" : "text-gray-300 hover:bg-[#706e6e]"}`
               }
             >
-              <img src={Duck} alt="" className="w-5 h-5 object-contain" />
-              <span>App Logo</span>
+              {sidebarOpen ? (
+                <>
+                  <img src={Duck} alt="" className="w-5 h-5 object-contain" />
+                  App Logo
+                </>
+              ) : (
+                <img src={Duck} alt="" className="w-5 h-5 object-contain" />
+              )}
             </NavLink>
           )}
           {/* Add more links here */}

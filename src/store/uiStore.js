@@ -14,14 +14,21 @@ const useUiStore = create((set) => ({
       sidebarOpen: value,
     }),
 
-  selectedLogo: "Duck", // hydrated from user object on login instead of localStorage now
+  selectedLogo: "Duck",
+
   setSelectedLogo: async (logoName) => {
-    set({ selectedLogo: logoName }); // optimistic update
+    set({ selectedLogo: logoName });
+
     try {
       await updatePreferences(logoName);
     } catch (err) {
       console.error("Failed to save logo preference", err);
     }
+  },
+
+  // Only updates Zustand, NO API call
+  setSelectedLogoFromServer: (logoName) => {
+    set({ selectedLogo: logoName });
   },
 }));
 
