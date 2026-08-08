@@ -1,4 +1,4 @@
-import { DownOutlined, MenuOutlined } from "@ant-design/icons";
+import { DownOutlined, MenuOutlined, SunOutlined, MoonOutlined } from "@ant-design/icons";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../../services/userApi.js";
@@ -13,6 +13,7 @@ function Navbar() {
 	const isLoggedIn = useAuthStore((s) => s.isLoggedIn);
 	const user = useAuthStore((s) => s.user);
 	const clearAuth = useAuthStore((state) => state.clearAuth);
+	const { theme, toggleTheme } = useUiStore();
 	const navigate = useNavigate();
 	const [logoutModalOpen, setLogoutModalOpen] = useState(false);
 	const [menuOpen, setMenuOpen] = useState(false);
@@ -116,6 +117,18 @@ function Navbar() {
 										className="w-full text-left px-4 py-3 text-sm text-text-primary"
 									>
 										My Channel
+									</Button>
+
+									<Button
+										type="button"
+										onClick={() => {
+											toggleTheme();
+										}}
+										variant="ghost"
+										className="w-full text-left px-4 py-3 text-sm text-text-primary flex items-center gap-2"
+									>
+										{theme === "dark" ? <SunOutlined /> : <MoonOutlined />}
+										Theme: {theme === "dark" ? "Light Mode" : "Dark Mode"}
 									</Button>
 
 									<Button

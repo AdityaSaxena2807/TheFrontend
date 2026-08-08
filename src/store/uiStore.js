@@ -30,6 +30,20 @@ const useUiStore = create((set) => ({
   setSelectedLogoFromServer: (logoName) => {
     set({ selectedLogo: logoName });
   },
+
+  theme: localStorage.getItem("ducky-theme") || "dark",
+
+  toggleTheme: () =>
+    set((state) => {
+      const nextTheme = state.theme === "dark" ? "light" : "dark";
+      localStorage.setItem("ducky-theme", nextTheme);
+      return { theme: nextTheme };
+    }),
+
+  setTheme: (value) => {
+    localStorage.setItem("ducky-theme", value);
+    set({ theme: value });
+  },
 }));
 
 export { useUiStore };

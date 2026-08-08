@@ -16,6 +16,8 @@ export default {
 				ember: "var(--color-accent-ember)",
 				crimson: "var(--color-accent-crimson)",
 				teal: "var(--color-teal)",
+				"on-accent": "var(--color-on-accent)",
+				"surface-active": "var(--color-surface-active)",
 			},
 			borderRadius: {
 				tiny: "var(--radius-tiny)",

@@ -35,7 +35,7 @@ function Sidebar() {
 						to="/"
 						className={({ isActive }) =>
 							`flex items-center gap-3 px-4 py-3 rounded-sm transition-colors duration-hover relative
-        ${isActive ? "bg-terracotta/15 text-text-primary before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-terracotta before:rounded-r-sm" : "text-text-secondary hover:bg-surface-elevated"}`
+        ${isActive ? "bg-surface-active text-text-primary before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-terracotta before:rounded-r-sm" : "text-text-secondary hover:bg-surface-elevated"}`
 						}
 					>
 						{sidebarOpen ? (
@@ -52,7 +52,7 @@ function Sidebar() {
 							to="/library"
 							className={({ isActive }) =>
 								`flex items-center gap-3 px-4 py-3 rounded-sm transition-colors duration-hover relative
-          ${isActive ? "bg-terracotta/15 text-text-primary before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-terracotta before:rounded-r-sm" : "text-text-secondary hover:bg-surface-elevated"}`
+          ${isActive ? "bg-surface-active text-text-primary before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-terracotta before:rounded-r-sm" : "text-text-secondary hover:bg-surface-elevated"}`
 							}
 						>
 							{sidebarOpen ? (
@@ -70,7 +70,7 @@ function Sidebar() {
 							to="/dashboard"
 							className={({ isActive }) =>
 								`flex items-center gap-3 px-4 py-3 rounded-sm transition-colors duration-hover relative
-      ${isActive ? "bg-terracotta/15 text-text-primary before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-terracotta before:rounded-r-sm" : "text-text-secondary hover:bg-surface-elevated"}`
+      ${isActive ? "bg-surface-active text-text-primary before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-terracotta before:rounded-r-sm" : "text-text-secondary hover:bg-surface-elevated"}`
 							}
 						>
 							{sidebarOpen ? (
@@ -87,7 +87,7 @@ function Sidebar() {
 						to="/tweets"
 						className={({ isActive }) =>
 							`flex items-center gap-3 px-4 py-3 rounded-sm transition-colors duration-hover relative
-      ${isActive ? "bg-terracotta/15 text-text-primary before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-terracotta before:rounded-r-sm" : "text-text-secondary hover:bg-surface-elevated"}`
+      ${isActive ? "bg-surface-active text-text-primary before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-terracotta before:rounded-r-sm" : "text-text-secondary hover:bg-surface-elevated"}`
 						}
 					>
 						{sidebarOpen ? (
@@ -104,7 +104,7 @@ function Sidebar() {
 							to="/subscriptions"
 							className={({ isActive }) =>
 								`flex items-center gap-3 px-4 py-3 rounded-sm transition-colors duration-hover relative
-      ${isActive ? "bg-terracotta/15 text-text-primary before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-terracotta before:rounded-r-sm" : "text-text-secondary hover:bg-surface-elevated"}`
+      ${isActive ? "bg-surface-active text-text-primary before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-terracotta before:rounded-r-sm" : "text-text-secondary hover:bg-surface-elevated"}`
 							}
 						>
 							{sidebarOpen ? (
@@ -122,7 +122,7 @@ function Sidebar() {
 							to="/settings/logo"
 							className={({ isActive }) =>
 								`flex items-center gap-3 px-4 py-3 rounded-sm transition-colors duration-hover relative
-      ${isActive ? "bg-terracotta/15 text-text-primary before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-terracotta before:rounded-r-sm" : "text-text-secondary hover:bg-surface-elevated"}`
+      ${isActive ? "bg-surface-active text-text-primary before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-terracotta before:rounded-r-sm" : "text-text-secondary hover:bg-surface-elevated"}`
 							}
 						>
 							{sidebarOpen ? (

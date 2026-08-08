@@ -250,7 +250,7 @@ function Profile() {
 							alt={user.username}
 							className="w-20 h-20 rounded-full object-cover border-4 border-bg bg-surface"
 						/>
-						<label className="absolute bottom-0 right-0 bg-terracotta hover:bg-ember text-bg text-xs px-2 py-1 rounded-full cursor-pointer transition-colors duration-hover font-semibold">
+						<label className="absolute bottom-0 right-0 bg-terracotta hover:bg-ember text-on-accent text-xs px-2 py-1 rounded-full cursor-pointer transition-colors duration-hover font-semibold">
 							Edit
 							<input
 								type="file"

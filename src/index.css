@@ -24,6 +24,12 @@
 	/* Supporting */
 	--color-teal: #1e6f6a;
 
+	/* Fixed color for text sitting on accent fills */
+	--color-on-accent: #f4f4f2;
+
+	/* Active background wash token */
+	--color-surface-active: rgba(193, 85, 47, 0.15);
+
 	/* Semantic */
 	--color-success: var(--color-teal);
 	--color-error: var(--color-accent-crimson);
@@ -60,3 +66,19 @@ body {
 	background: var(--color-bg);
 	color: var(--color-text-primary);
 }
+
+[data-theme="light"] {
+  --color-bg: #EFEBE7;
+  --color-surface: #FFFFFF;
+  --color-surface-elevated: #F5F1EC;
+  --color-text-primary: #111315;
+  --color-text-secondary: #57504A;
+  --color-text-disabled: #8A8177;
+  --color-border: #E6E1DC;
+  --color-on-accent: #f4f4f2;
+  --shadow-sm: 0 1px 2px rgba(20, 14, 10, 0.08);
+  --shadow-md: 0 4px 12px rgba(20, 14, 10, 0.10);
+  --shadow-lg: 0 12px 32px rgba(20, 14, 10, 0.12);
+  --color-surface-active: rgba(193, 85, 47, 0.25);
+}
+

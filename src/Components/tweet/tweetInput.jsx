@@ -53,7 +53,7 @@ function TweetInput({ existingTweet = null, onSuccess, onCancelEdit }) {
 			className="w-full bg-surface border border-border rounded-md p-4"
 		>
 			<div className="flex items-center gap-3 mb-4">
-				<div className="w-9 h-9 rounded-full bg-terracotta flex items-center justify-center text-bg font-body font-semibold shrink-0 overflow-hidden">
+				<div className="w-9 h-9 rounded-full bg-terracotta flex items-center justify-center text-on-accent font-body font-semibold shrink-0 overflow-hidden">
 					{avatarUrl ? (
 						<img
 							src={avatarUrl}
