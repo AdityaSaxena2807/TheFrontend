@@ -10,9 +10,9 @@ import {
 import { getChannelStats, getChannelVideos } from "../services/dashboardApi.js";
 import { toggleVideoPublishStatus, deleteVideo } from "../services/videoApi.js";
 import { ToastError, ToastSuccess } from "../Utils/ToastMessage.js";
-import Modal from "../components/common/Modal.jsx";
+import Modal from "../Components/common/Modal.jsx";
 import { timeAgo } from "../Utils/formatTime.js";
-import Button from "../components/common/Button.jsx";
+import Button from "../Components/common/Button.jsx";
 
 function Dashboard() {
 	const [stats, setStats] = useState(null);

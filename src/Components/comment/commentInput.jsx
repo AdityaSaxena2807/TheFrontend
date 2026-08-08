@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store/authStore.js";
 import LoginPromptModal from "../common/LoginPromptModal.jsx";
 import Button from "../common/Button.jsx";
-import EmojiPickerButton from "../common/EmojiPickerButton";
+import EmojiPickerButton from "../common/EmojiPickerButton.jsx";
 
 function CommentInput({ onSubmit }) {
 	const navigate = useNavigate();

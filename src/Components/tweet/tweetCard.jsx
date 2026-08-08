@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useAuthStore } from "../../store/authStore";
-import { toggleTweetLike } from "../../services/likeApi";
-import { deleteTweet } from "../../services/tweetApi";
-import { timeAgo } from "../../Utils/formatTime";
-import CommentOptions from "../comment/CommentOptions";
-import TweetInput from "./TweetInput";
-import LoginPromptModal from "../common/LoginPromptModal";
+import { useAuthStore } from "../../store/authStore.js";
+import { toggleTweetLike } from "../../services/likeApi.js";
+import { deleteTweet } from "../../services/tweetApi.js";
+import { timeAgo } from "../../Utils/formatTime.js";
+import CommentOptions from "../comment/CommentOptions.jsx";
+import TweetInput from "./TweetInput.jsx";
+import LoginPromptModal from "../common/LoginPromptModal.jsx";
 import LikeButton from "../common/LikeButton.jsx";
 import { Link, useNavigate } from "react-router-dom";
 

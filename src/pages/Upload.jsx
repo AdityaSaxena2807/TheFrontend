@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import Button from "../components/common/Button.jsx";
+import Button from "../Components/common/Button.jsx";
 import { useNavigate } from "react-router-dom";
 import { InboxOutlined, LoadingOutlined } from "@ant-design/icons";
 import { publishAVideo } from "../services/videoApi.js";

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Button from "../components/common/Button.jsx";
+import Button from "../Components/common/Button.jsx";
 import { useNavigate, Link } from "react-router-dom";
 import { ToastError, ToastSuccess } from "../Utils/ToastMessage.js";
 import axiosInstance from "../services/axiosInstance.js";

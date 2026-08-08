@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import WatchHistory from "../components/library/WatchHistory.jsx";
-import LikedVideos from "../components/library/LikedVideos.jsx";
-import Playlists from "../components/library/Playlists.jsx";
+import WatchHistory from "../Components/library/WatchHistory.jsx";
+import LikedVideos from "../Components/library/LikedVideos.jsx";
+import Playlists from "../Components/library/Playlists.jsx";
 import {
   HistoryOutlined,
   LikeFilled,

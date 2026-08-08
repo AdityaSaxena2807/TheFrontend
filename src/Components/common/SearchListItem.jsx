@@ -48,7 +48,7 @@ function SearchListItem({ video, actions }) {
         hover:bg-surface-elevated
       "
     >
-      <div className="relative w-[360px] h-[202px] shrink-0 overflow-hidden rounded-md bg-surface">
+      <div className="relative w-90 h-50.5 shrink-0 overflow-hidden rounded-md bg-surface">
         <img
           src={typeof video.thumbnail === "string" ? video.thumbnail : video.thumbnail?.url}
           alt={video.title}

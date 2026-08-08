@@ -1,4 +1,4 @@
-import { DownOutlined, MenuOutlined, SunOutlined, MoonOutlined } from "@ant-design/icons";
+import { DownOutlined, MenuOutlined, SunOutlined, MoonOutlined,PoweroffOutlined, UserOutlined, VideoCameraOutlined } from "@ant-design/icons";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../../services/userApi.js";
@@ -102,9 +102,9 @@ function Navbar() {
 											navigate("/profile");
 										}}
 										variant="ghost"
-										className="w-full text-left px-4 py-3 text-sm text-text-primary"
+										className="w-full text-left px-4 py-3 text-sm text-text-primary flex items-center gap-2"
 									>
-										My Profile
+										<UserOutlined />My Profile
 									</Button>
 
 									<Button
@@ -114,21 +114,22 @@ function Navbar() {
 											navigate(`/channel/${user.username}`);
 										}}
 										variant="ghost"
-										className="w-full text-left px-4 py-3 text-sm text-text-primary"
+										className="w-full text-left px-4 py-3 text-sm text-text-primary flex items-center gap-2"
 									>
-										My Channel
+										<VideoCameraOutlined />My Channel
 									</Button>
 
 									<Button
 										type="button"
 										onClick={() => {
+											setMenuOpen(false);
 											toggleTheme();
 										}}
 										variant="ghost"
 										className="w-full text-left px-4 py-3 text-sm text-text-primary flex items-center gap-2"
 									>
 										{theme === "dark" ? <SunOutlined /> : <MoonOutlined />}
-										Theme: {theme === "dark" ? "Light Mode" : "Dark Mode"}
+										{theme === "dark" ? "Light Mode" : "Dark Mode"}
 									</Button>
 
 									<Button
@@ -138,9 +139,9 @@ function Navbar() {
 											setLogoutModalOpen(true);
 										}}
 										variant="danger"
-										className="w-full text-left px-4 py-3 text-sm border-t border-border"
+										className="w-full text-left px-4 py-3 text-sm border-t border-border flex items-center gap-2"
 									>
-										Logout
+										<PoweroffOutlined />Logout
 									</Button>
 								</div>
 							)}
