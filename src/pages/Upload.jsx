@@ -78,8 +78,8 @@ function Upload() {
     };
   }, [thumbnailPreview]);
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8 text-white">
-      <h1 className="text-xl font-semibold mb-6">Upload a Video</h1>
+    <div className="max-w-3xl mx-auto px-4 py-8 text-text-primary">
+      <h1 className="text-xl font-heading font-semibold mb-6">Upload a Video</h1>
 
       <form onSubmit={handleSubmit} className="space-y-5">
         {/* Drag & drop video */}
@@ -90,19 +90,19 @@ function Upload() {
           }}
           onDragLeave={() => setDragActive(false)}
           onDrop={handleDrop}
-          className={`border-2 border-dashed rounded-xl p-8 flex flex-col items-center justify-center text-center transition-colors ${
-            dragActive ? "border-red-500 bg-red-500/5" : "border-gray-700"
+          className={`border-2 border-dashed rounded-md p-8 flex flex-col items-center justify-center text-center transition-colors duration-hover ${
+            dragActive ? "border-terracotta bg-terracotta/5" : "border-border"
           }`}
         >
-          <InboxOutlined className="text-4xl text-gray-500 mb-2" />
+          <InboxOutlined className="text-4xl text-text-disabled mb-2" />
           {videoFile ? (
-            <p className="text-sm text-gray-300">{videoFile.name}</p>
+            <p className="text-sm text-text-secondary">{videoFile.name}</p>
           ) : (
             <>
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-text-secondary">
                 Drag & drop video file here
               </p>
-              <label className="mt-2 text-sm text-red-500 cursor-pointer hover:underline">
+              <label className="mt-2 text-sm text-terracotta cursor-pointer hover:underline">
                 or Browse files
                 <input
                   type="file"
@@ -120,19 +120,19 @@ function Upload() {
 
         {/* Title */}
         <div>
-          <label className="mb-1.5 block text-sm text-gray-300">Title</label>
+          <label className="mb-1.5 block text-sm font-medium text-text-secondary font-body">Title</label>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Add a title that describes your video"
-            className="w-full rounded-lg border border-gray-700 bg-[#121212] px-3 py-2 text-sm text-white placeholder-gray-500 outline-none focus:border-red-600"
+            className="w-full rounded-sm border border-border bg-surface px-4 py-2.5 text-sm text-text-primary placeholder-text-disabled outline-none transition focus:border-terracotta focus:ring-1 focus:ring-terracotta"
           />
         </div>
 
         {/* Description */}
         <div>
-          <label className="mb-1.5 block text-sm text-gray-300">
+          <label className="mb-1.5 block text-sm font-medium text-text-secondary font-body">
             Description
           </label>
           <textarea
@@ -140,13 +140,13 @@ function Upload() {
             onChange={(e) => setDescription(e.target.value)}
             rows={4}
             placeholder="Tell viewers about your video"
-            className="w-full rounded-lg border border-gray-700 bg-[#121212] px-3 py-2 text-sm text-white placeholder-gray-500 outline-none focus:border-red-600 resize-none"
+            className="w-full rounded-sm border border-border bg-surface px-4 py-2.5 text-sm text-text-primary placeholder-text-disabled outline-none transition focus:border-terracotta focus:ring-1 focus:ring-terracotta resize-none"
           />
         </div>
 
         {/* Thumbnail */}
         <div>
-          <label className="mb-1.5 block text-sm text-gray-300">
+          <label className="mb-1.5 block text-sm font-medium text-text-secondary font-body">
             Thumbnail
           </label>
 
@@ -155,7 +155,7 @@ function Upload() {
               <img
                 src={thumbnailPreview}
                 alt="Thumbnail Preview"
-                className="w-full max-w-sm h-44 rounded-lg object-cover border border-gray-700"
+                className="w-full max-w-sm h-44 rounded-md object-cover border border-border"
               />
             )}
 
@@ -196,10 +196,10 @@ function Upload() {
 
         {/* Visibility */}
         <div>
-          <label className="mb-1.5 block text-sm text-gray-300">
+          <label className="mb-1.5 block text-sm font-medium text-text-secondary font-body">
             Visibility
           </label>
-          <div className="flex gap-4 text-sm">
+          <div className="flex gap-4 text-sm text-text-secondary">
             <label className="flex items-center gap-2 cursor-pointer">
               <input
                 type="radio"
@@ -223,9 +223,9 @@ function Upload() {
 
         {/* Progress bar */}
         {uploading && (
-          <div className="w-full bg-[#272727] rounded-full h-2 overflow-hidden">
+          <div className="w-full bg-surface border border-border rounded-full h-2 overflow-hidden">
             <div
-              className="bg-red-600 h-2 transition-all duration-200"
+              className="bg-terracotta h-2 transition-all duration-hover"
               style={{ width: `${progress}%` }}
             />
           </div>

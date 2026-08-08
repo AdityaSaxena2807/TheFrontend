@@ -37,13 +37,13 @@ function VideoRowMenu({ onRemove }) {
         type="button"
         onClick={() => setOpen((prev) => !prev)}
         variant="icon"
-        className="w-8 h-8 p-0 text-gray-400 hover:text-white"
+        className="w-8 h-8 p-0 text-text-secondary hover:text-text-primary"
       >
         <MoreOutlined className="text-lg" />
       </Button>
 
       {open && (
-        <div className="absolute right-0 mt-2 w-48 bg-[#282828] border border-[#3f3f3f] rounded-xl shadow-2xl overflow-hidden z-30">
+        <div className="absolute right-0 mt-2 w-48 bg-surface-elevated border border-border rounded-md shadow-lg overflow-hidden z-30">
           <Button
             type="button"
             onClick={() => {
@@ -51,7 +51,7 @@ function VideoRowMenu({ onRemove }) {
               onRemove();
             }}
             variant="ghost"
-            className="flex items-center gap-3 w-full justify-start px-4 py-3 text-sm text-red-400 hover:bg-[#3f3f3f] transition-colors"
+            className="flex items-center gap-3 w-full justify-start px-4 py-3 text-sm text-crimson hover:bg-surface transition-colors duration-hover"
           >
             Remove from playlist
           </Button>
@@ -114,14 +114,14 @@ function PlaylistDetail() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
-        <LoadingOutlined className="text-white text-3xl" />
+        <LoadingOutlined className="text-text-primary text-3xl" />
       </div>
     );
   }
 
   if (!playlist) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 text-gray-400">
+      <div className="flex flex-col items-center justify-center py-20 text-text-secondary">
         <p className="text-lg">Playlist not found</p>
       </div>
     );
@@ -133,10 +133,10 @@ function PlaylistDetail() {
       : playlist.videos?.[0]?.thumbnail?.url;
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-6 text-white flex gap-6 flex-col md:flex-row">
+    <div className="max-w-6xl mx-auto px-4 py-6 text-text-primary flex gap-6 flex-col md:flex-row">
       {/* Playlist sidebar */}
       <div className="md:w-72 shrink-0">
-        <div className="aspect-video w-full rounded-xl overflow-hidden bg-[#1a1a1a]">
+        <div className="aspect-video w-full rounded-md overflow-hidden bg-surface-elevated border border-border">
           {coverThumbnail ? (
             <img
               src={coverThumbnail}
@@ -144,17 +144,17 @@ function PlaylistDetail() {
               className="w-full h-full object-cover"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center text-gray-600 text-sm">
+            <div className="w-full h-full flex items-center justify-center text-text-disabled text-sm">
               No videos yet
             </div>
           )}
         </div>
 
-        <h1 className="mt-4 text-xl font-semibold">{playlist.name}</h1>
+        <h1 className="mt-4 text-xl font-heading font-semibold">{playlist.name}</h1>
         {playlist.description && (
-          <p className="mt-1 text-sm text-gray-400">{playlist.description}</p>
+          <p className="mt-1 text-sm text-text-secondary">{playlist.description}</p>
         )}
-        <p className="mt-2 text-sm text-gray-500">
+        <p className="mt-2 text-sm text-text-disabled">
           {playlist.videos?.length || 0}{" "}
           {playlist.videos?.length === 1 ? "video" : "videos"}
         </p>
@@ -180,7 +180,7 @@ function PlaylistDetail() {
       {/* Video list */}
       <div className="flex-1 min-w-0">
         {!playlist.videos || playlist.videos.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-20 text-gray-400">
+          <div className="flex flex-col items-center justify-center py-20 text-text-secondary">
             <p className="text-lg">No videos in this playlist</p>
             <p className="text-sm mt-1">Save videos to see them here</p>
           </div>

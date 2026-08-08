@@ -56,8 +56,8 @@ function Search() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-[60vh] bg-[#0f0f0f]">
-        <LoadingOutlined className="text-white text-4xl" />
+      <div className="flex items-center justify-center h-[60vh] bg-bg">
+        <LoadingOutlined className="text-text-primary text-4xl" />
       </div>
     );
   }
@@ -69,11 +69,11 @@ function Search() {
     });
   };
   return (
-    <div className="bg-[#0f0f0f] min-h-screen text-white px-6 py-6">
+    <div className="bg-bg min-h-screen text-text-primary px-6 py-6">
       <div className="flex items-center justify-between mb-4">
-        <p className="text-gray-400 text-base md:text-lg">
+        <p className="text-text-secondary text-base md:text-lg">
           Search results for{" "}
-          <span className="text-white font-medium">"{query}"</span>
+          <span className="text-text-primary font-medium">"{query}"</span>
         </p>
         <SortDropdown
           sortField={sortField}
@@ -88,7 +88,7 @@ function Search() {
       </div>
 
       {videos.length === 0 ? (
-        <p className="text-gray-500 mt-10 text-center">No videos found.</p>
+        <p className="text-text-disabled mt-10 text-center">No videos found.</p>
       ) : (
         <div className="flex flex-col gap-2 max-w-5xl">
           {videos.map((video) => (
@@ -103,18 +103,18 @@ function Search() {
             disabled={page <= 1}
             onClick={() => goToPage(page - 1)}
             variant="secondary"
-            className="px-4 py-2 rounded"
+            className="px-4 py-2 rounded-sm"
           >
             Prev
           </Button>
-          <span className="text-gray-400 text-sm">
+          <span className="text-text-secondary text-sm">
             Page {page} of {totalPages}
           </span>
           <Button
             disabled={page >= totalPages}
             onClick={() => goToPage(page + 1)}
             variant="secondary"
-            className="px-4 py-2 rounded"
+            className="px-4 py-2 rounded-sm"
           >
             Next
           </Button>

@@ -40,15 +40,15 @@ function SearchListItem({ video, actions }) {
         flex
         gap-4
         cursor-pointer
-        rounded-xl
+        rounded-md
         p-2
         transition-all
-        duration-200
+        duration-hover
         ease-out
-        hover:bg-[#1b2732]
+        hover:bg-surface-elevated
       "
     >
-      <div className="relative w-[360px] h-[202px] shrink-0 overflow-hidden rounded-xl bg-[#202020]">
+      <div className="relative w-[360px] h-[202px] shrink-0 overflow-hidden rounded-md bg-surface">
         <img
           src={typeof video.thumbnail === "string" ? video.thumbnail : video.thumbnail?.url}
           alt={video.title}
@@ -56,20 +56,20 @@ function SearchListItem({ video, actions }) {
           className="w-full h-full object-cover"
         />
 
-        <span className="absolute bottom-1 right-1 bg-black/80 text-white text-xs px-1.5 py-0.5 rounded">
+        <span className="absolute bottom-1 right-1 bg-bg/80 text-text-primary text-xs px-1.5 py-0.5 rounded-sm">
           {formatDuration(video.duration)}
         </span>
       </div>
 
       <div className="flex-1 min-w-0 py-1">
         <h3
-          className="text-white text-lg font-medium line-clamp-2"
+          className="text-text-primary text-lg font-medium line-clamp-2"
           title={video.title}
         >
           {video.title}
         </h3>
 
-        <p className="mt-1 text-sm text-gray-400">
+        <p className="mt-1 text-sm text-text-secondary">
           {formatViews(video.views)} · {timeAgo(video.createdAt)}
         </p>
 
@@ -82,14 +82,14 @@ function SearchListItem({ video, actions }) {
                 className="w-6 h-6 rounded-full object-cover"
               />
             )}
-            <span className="text-sm text-gray-400">
+            <span className="text-sm text-text-secondary">
               {video.owner.username}
             </span>
           </div>
         )}
 
         {video.description && (
-          <p className="mt-2 text-sm text-gray-400 line-clamp-2">
+          <p className="mt-2 text-sm text-text-secondary line-clamp-2">
             {video.description}
           </p>
         )}

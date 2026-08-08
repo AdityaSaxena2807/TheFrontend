@@ -70,32 +70,32 @@ function EditVideo() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-[60vh] bg-[#0f0f0f]">
-        <LoadingOutlined className="text-white text-4xl" />
+      <div className="flex items-center justify-center h-[60vh] bg-bg">
+        <LoadingOutlined className="text-text-primary text-4xl" />
       </div>
     );
   }
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8 text-white">
-      <h1 className="text-xl font-semibold mb-6">Edit Video</h1>
+    <div className="max-w-3xl mx-auto px-4 py-8 text-text-primary">
+      <h1 className="text-xl font-heading font-semibold mb-6">Edit Video</h1>
 
       <form onSubmit={handleSubmit} className="space-y-5">
         {/* Title */}
         <div>
-          <label className="mb-1.5 block text-sm text-gray-300">Title</label>
+          <label className="mb-1.5 block text-sm font-medium text-text-secondary font-body">Title</label>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Add a title that describes your video"
-            className="w-full rounded-lg border border-gray-700 bg-[#121212] px-3 py-2 text-sm text-white placeholder-gray-500 outline-none focus:border-red-600"
+            className="w-full rounded-sm border border-border bg-surface px-4 py-2.5 text-sm text-text-primary placeholder-text-disabled outline-none transition focus:border-terracotta focus:ring-1 focus:ring-terracotta"
           />
         </div>
 
         {/* Description */}
         <div>
-          <label className="mb-1.5 block text-sm text-gray-300">
+          <label className="mb-1.5 block text-sm font-medium text-text-secondary font-body">
             Description
           </label>
           <textarea
@@ -103,18 +103,18 @@ function EditVideo() {
             onChange={(e) => setDescription(e.target.value)}
             rows={4}
             placeholder="Tell viewers about your video"
-            className="w-full rounded-lg border border-gray-700 bg-[#121212] px-3 py-2 text-sm text-white placeholder-gray-500 outline-none focus:border-red-600 resize-none"
+            className="w-full rounded-sm border border-border bg-surface px-4 py-2.5 text-sm text-text-primary placeholder-text-disabled outline-none transition focus:border-terracotta focus:ring-1 focus:ring-terracotta resize-none"
           />
         </div>
 
         {/* Thumbnail */}
         <div>
-          <label className="mb-1.5 block text-sm text-gray-300">
+          <label className="mb-1.5 block text-sm font-medium text-text-secondary font-body">
             Thumbnail
           </label>
 
           {thumbnailPreview && (
-            <div className="w-48 aspect-video rounded-lg overflow-hidden mb-3 bg-black">
+            <div className="w-48 aspect-video rounded-md overflow-hidden mb-3 bg-surface border border-border">
               <img
                 src={thumbnailPreview}
                 alt="Thumbnail preview"

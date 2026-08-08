@@ -4,6 +4,8 @@ import { Toaster } from "react-hot-toast";
 import { RouterProvider } from "react-router-dom";
 import { useAuthStore } from "./store/authStore.js";
 import { LoadingOutlined } from "@ant-design/icons";
+import "./index.css";
+import "./App.css";
 function App() {
   const initializeAuth = useAuthStore((state) => state.initializeAuth);
   const isAuthLoading = useAuthStore((state) => state.isAuthLoading);

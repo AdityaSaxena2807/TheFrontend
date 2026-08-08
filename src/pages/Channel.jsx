@@ -76,8 +76,8 @@ function Channel() {
 
   if (loading || !channel)
     return (
-      <div className="flex items-center justify-center h-screen bg-[#0f0f0f]">
-        <LoadingOutlined className="text-white text-4xl" />
+      <div className="flex items-center justify-center h-screen bg-bg">
+        <LoadingOutlined className="text-text-primary text-4xl" />
       </div>
     );
   const coverImageUrl =
@@ -86,8 +86,8 @@ function Channel() {
       : channel.coverImage?.url;
 
   return (
-    <div className="bg-[#0f0f0f] min-h-screen text-white">
-      <div className="w-full h-48 md:h-60 bg-[#1a1a1a]">
+    <div className="bg-bg min-h-screen text-text-primary">
+      <div className="w-full h-48 md:h-60 bg-surface-elevated">
         {coverImageUrl && (
           <img
             src={coverImageUrl}
@@ -110,8 +110,8 @@ function Channel() {
               className="w-20 h-20 rounded-full object-cover"
             />
             <div>
-              <p className="text-xl font-semibold">{channel.fullName}</p>
-              <p className="text-sm text-gray-400">
+              <p className="text-xl font-heading font-semibold">{channel.fullName}</p>
+              <p className="text-sm text-text-secondary">
                 @{channel.username} &bull;{" "}
                 {new Intl.NumberFormat("en", {
                   notation: "compact",
@@ -128,15 +128,15 @@ function Channel() {
           />
         </div>
 
-        <div className="border-t border-gray-700 mt-6 mb-4" />
+        <div className="border-t border-border mt-6 mb-4" />
         <div className="flex items-center justify-between mb-5">
-          <div className="flex gap-8 border-b border-gray-700 flex-1">
+          <div className="flex gap-8 border-b border-border flex-1">
             <button
               onClick={() => setActiveTab("videos")}
-              className={`pb-3 text-sm font-medium transition ${
+              className={`pb-3 text-sm font-medium transition-colors duration-hover ${
                 activeTab === "videos"
-                  ? "text-white border-b-2 border-white"
-                  : "text-gray-400 hover:text-white"
+                  ? "text-text-primary border-b-2 border-terracotta"
+                  : "text-text-secondary hover:text-text-primary"
               }`}
             >
               Videos
@@ -144,10 +144,10 @@ function Channel() {
 
             <button
               onClick={() => setActiveTab("tweets")}
-              className={`pb-3 text-sm font-medium transition ${
+              className={`pb-3 text-sm font-medium transition-colors duration-hover ${
                 activeTab === "tweets"
-                  ? "text-white border-b-2 border-white"
-                  : "text-gray-400 hover:text-white"
+                  ? "text-text-primary border-b-2 border-terracotta"
+                  : "text-text-secondary hover:text-text-primary"
               }`}
             >
               Tweets
@@ -184,7 +184,7 @@ function Channel() {
 
         {activeTab === "videos" ? (
           videos.length === 0 ? (
-            <p className="text-gray-500 text-sm">No videos uploaded yet.</p>
+            <p className="text-text-disabled text-sm">No videos uploaded yet.</p>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
               {videos.map((video) => (
@@ -196,10 +196,10 @@ function Channel() {
           )
         ) : tweetsLoading ? (
           <div className="flex justify-center py-10">
-            <LoadingOutlined className="text-3xl" />
+            <LoadingOutlined className="text-3xl text-text-primary" />
           </div>
         ) : tweets.length === 0 ? (
-          <p className="text-gray-500 text-sm">No tweets yet.</p>
+          <p className="text-text-disabled text-sm">No tweets yet.</p>
         ) : (
           <div className="max-w-2xl flex flex-col gap-4">
             {tweets.map((tweet) => (

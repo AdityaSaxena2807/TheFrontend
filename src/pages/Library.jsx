@@ -43,16 +43,16 @@ function Library() {
   const ActiveComponent = TABS.find((tab) => tab.key === activeTab)?.component;
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-6 text-white">
-      <div className="flex gap-2 border-b border-gray-800 mb-6">
+    <div className="max-w-6xl mx-auto px-4 py-6 text-text-primary">
+      <div className="flex gap-2 border-b border-border mb-6">
         {TABS.map((tab) => (
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
-            className={`px-4 py-2.5 text-sm font-medium transition-colors border-b-2 ${
+            className={`px-4 py-2.5 text-sm font-medium transition-colors duration-hover border-b-2 ${
               activeTab === tab.key
-                ? "border-red-500 text-white"
-                : "border-transparent text-gray-400 hover:text-white"
+                ? "border-terracotta text-text-primary"
+                : "border-transparent text-text-secondary hover:text-text-primary"
             }`}
           >
             {tab.label}

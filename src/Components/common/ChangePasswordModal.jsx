@@ -41,49 +41,49 @@ function ChangePasswordModal({ open, onClose }) {
 
   return (
     <div
-      className="fixed inset-0 bg-black/70 flex items-center justify-center z-100"
+      className="fixed inset-0 bg-bg/70 flex items-center justify-center z-100"
       onClick={onClose}
     >
       <div
-        className="bg-[#1a1a1a] rounded-xl p-6 w-90"
+        className="bg-surface-elevated rounded-lg p-6 w-90 border border-border shadow-lg"
         onClick={(e) => e.stopPropagation()}
       >
-        <p className="text-white text-base font-medium mb-4">Change password</p>
+        <p className="text-text-primary text-base font-medium mb-4">Change password</p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="mb-1.5 block text-sm text-gray-300">
+            <label className="mb-1.5 block text-sm font-medium text-text-secondary font-body">
               Current password
             </label>
             <input
               type="password"
               value={oldPassword}
               onChange={(e) => setOldPassword(e.target.value)}
-              className="w-full rounded-lg border border-gray-700 bg-[#121212] px-3 py-2 text-sm text-white outline-none focus:border-red-600"
+              className="w-full rounded-sm border border-border bg-surface px-4 py-2.5 text-sm text-text-primary placeholder-text-disabled outline-none transition focus:border-terracotta focus:ring-1 focus:ring-terracotta"
             />
           </div>
 
           <div>
-            <label className="mb-1.5 block text-sm text-gray-300">
+            <label className="mb-1.5 block text-sm font-medium text-text-secondary font-body">
               New password
             </label>
             <input
               type="password"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
-              className="w-full rounded-lg border border-gray-700 bg-[#121212] px-3 py-2 text-sm text-white outline-none focus:border-red-600"
+              className="w-full rounded-sm border border-border bg-surface px-4 py-2.5 text-sm text-text-primary placeholder-text-disabled outline-none transition focus:border-terracotta focus:ring-1 focus:ring-terracotta"
             />
           </div>
 
           <div>
-            <label className="mb-1.5 block text-sm text-gray-300">
+            <label className="mb-1.5 block text-sm font-medium text-text-secondary font-body">
               Confirm new password
             </label>
             <input
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="w-full rounded-lg border border-gray-700 bg-[#121212] px-3 py-2 text-sm text-white outline-none focus:border-red-600"
+              className="w-full rounded-sm border border-border bg-surface px-4 py-2.5 text-sm text-text-primary placeholder-text-disabled outline-none transition focus:border-terracotta focus:ring-1 focus:ring-terracotta"
             />
           </div>
 
