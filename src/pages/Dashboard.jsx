@@ -156,11 +156,10 @@ function Dashboard() {
 									})}
 								</p>
 								<span
-									className={`inline-block mt-1 text-xs px-2 py-0.5 rounded-tiny font-body font-medium ${
-										video.isPublished
+									className={`inline-block mt-1 text-xs px-2 py-0.5 rounded-tiny font-body font-medium ${video.isPublished
 											? "bg-teal/20 text-teal"
 											: "bg-copper/20 text-copper"
-									}`}
+										}`}
 								>
 									{video.isPublished ? "Published" : "Unpublished"}
 								</span>

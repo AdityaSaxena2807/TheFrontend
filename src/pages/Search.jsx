@@ -2,10 +2,11 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { ToastError } from "../Utils/ToastMessage.js";
-import SearchListItem from "../components/common/SearchListItem.jsx";
-import SortDropdown from "../components/common/SortDropdown.jsx";
+import SearchListItem from "../Components/common/SearchListItem.jsx";
+import SortDropdown from "../Components/common/SortDropdown.jsx";
 import { getAllVideos } from "../services/videoApi.js";
-import Button from "../components/common/Button.jsx";
+import Button from "../Components/common/Button.jsx";
+
 
 function Search() {
   const [videos, setVideos] = useState([]);
