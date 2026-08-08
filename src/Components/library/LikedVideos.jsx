@@ -3,6 +3,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { ToastError } from "../../Utils/ToastMessage.js";
 import { getLikedVideos } from "../../services/likeApi.js";
 import VideoListItem from "../video/VideoListItem.jsx";
+import EmptyState from "../common/EmptyState.jsx";
 
 function LikedVideos() {
   const [likedVideos, setLikedVideos] = useState([]);
@@ -50,10 +51,10 @@ function LikedVideos() {
 
   if (likedVideos.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 text-text-secondary">
-        <p className="text-lg">No liked videos yet</p>
-        <p className="text-sm mt-1">Videos you like will show up here</p>
-      </div>
+      <EmptyState
+        title="No liked videos yet"
+        subtitle="Videos you like will show up here"
+      />
     );
   }
 

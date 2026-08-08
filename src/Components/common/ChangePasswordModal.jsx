@@ -59,7 +59,7 @@ function ChangePasswordModal({ open, onClose }) {
               type="password"
               value={oldPassword}
               onChange={(e) => setOldPassword(e.target.value)}
-              className="w-full rounded-sm border border-border bg-surface px-4 py-2.5 text-sm text-text-primary placeholder-text-disabled outline-none transition duration-hover focus:border-terracotta focus:ring-1 focus:ring-terracotta"
+              className="w-full rounded-sm border border-border bg-surface px-4 py-2.5 text-sm text-text-primary placeholder-text-disabled outline-none transition duration-hover focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
             />
           </div>
 
@@ -71,7 +71,7 @@ function ChangePasswordModal({ open, onClose }) {
               type="password"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
-              className="w-full rounded-sm border border-border bg-surface px-4 py-2.5 text-sm text-text-primary placeholder-text-disabled outline-none transition duration-hover focus:border-terracotta focus:ring-1 focus:ring-terracotta"
+              className="w-full rounded-sm border border-border bg-surface px-4 py-2.5 text-sm text-text-primary placeholder-text-disabled outline-none transition duration-hover focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
             />
           </div>
 
@@ -83,7 +83,7 @@ function ChangePasswordModal({ open, onClose }) {
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="w-full rounded-sm border border-border bg-surface px-4 py-2.5 text-sm text-text-primary placeholder-text-disabled outline-none transition duration-hover focus:border-terracotta focus:ring-1 focus:ring-terracotta"
+              className="w-full rounded-sm border border-border bg-surface px-4 py-2.5 text-sm text-text-primary placeholder-text-disabled outline-none transition duration-hover focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
             />
           </div>
 

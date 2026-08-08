@@ -270,7 +270,7 @@ function Profile() {
 								type="text"
 								value={fullName}
 								onChange={(e) => setFullName(e.target.value)}
-								className="w-full bg-surface border border-border rounded-sm px-4 py-3 text-text-primary placeholder-text-disabled focus:outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta transition-colors duration-hover"
+								className="w-full bg-surface border border-border rounded-sm px-4 py-3 text-text-primary placeholder-text-disabled outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-bg transition-colors duration-hover"
 							/>
 						</div>
 
@@ -294,7 +294,7 @@ function Profile() {
 								type="email"
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
-								className="w-full bg-surface border border-border rounded-sm px-4 py-3 text-text-primary placeholder-text-disabled focus:outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta transition-colors duration-hover"
+								className="w-full bg-surface border border-border rounded-sm px-4 py-3 text-text-primary placeholder-text-disabled outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-bg transition-colors duration-hover"
 							/>
 						</div>
 

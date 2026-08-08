@@ -34,7 +34,7 @@ function Sidebar() {
 					<NavLink
 						to="/"
 						className={({ isActive }) =>
-							`flex items-center gap-3 px-4 py-3 rounded-sm transition-colors duration-150 relative
+							`flex items-center gap-3 px-4 py-3 rounded-sm transition-colors duration-hover relative
         ${isActive ? "bg-terracotta/15 text-text-primary before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-terracotta before:rounded-r-sm" : "text-text-secondary hover:bg-surface-elevated"}`
 						}
 					>
@@ -51,7 +51,7 @@ function Sidebar() {
 						<NavLink
 							to="/library"
 							className={({ isActive }) =>
-								`flex items-center gap-3 px-4 py-3 rounded-sm transition-colors duration-150 relative
+								`flex items-center gap-3 px-4 py-3 rounded-sm transition-colors duration-hover relative
           ${isActive ? "bg-terracotta/15 text-text-primary before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-terracotta before:rounded-r-sm" : "text-text-secondary hover:bg-surface-elevated"}`
 							}
 						>
@@ -69,7 +69,7 @@ function Sidebar() {
 						<NavLink
 							to="/dashboard"
 							className={({ isActive }) =>
-								`flex items-center gap-3 px-4 py-3 rounded-sm transition-colors duration-150 relative
+								`flex items-center gap-3 px-4 py-3 rounded-sm transition-colors duration-hover relative
       ${isActive ? "bg-terracotta/15 text-text-primary before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-terracotta before:rounded-r-sm" : "text-text-secondary hover:bg-surface-elevated"}`
 							}
 						>
@@ -86,7 +86,7 @@ function Sidebar() {
 					<NavLink
 						to="/tweets"
 						className={({ isActive }) =>
-							`flex items-center gap-3 px-4 py-3 rounded-sm transition-colors duration-150 relative
+							`flex items-center gap-3 px-4 py-3 rounded-sm transition-colors duration-hover relative
       ${isActive ? "bg-terracotta/15 text-text-primary before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-terracotta before:rounded-r-sm" : "text-text-secondary hover:bg-surface-elevated"}`
 						}
 					>
@@ -103,7 +103,7 @@ function Sidebar() {
 						<NavLink
 							to="/subscriptions"
 							className={({ isActive }) =>
-								`flex items-center gap-3 px-4 py-3 rounded-sm transition-colors duration-150 relative
+								`flex items-center gap-3 px-4 py-3 rounded-sm transition-colors duration-hover relative
       ${isActive ? "bg-terracotta/15 text-text-primary before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-terracotta before:rounded-r-sm" : "text-text-secondary hover:bg-surface-elevated"}`
 							}
 						>
@@ -121,7 +121,7 @@ function Sidebar() {
 						<NavLink
 							to="/settings/logo"
 							className={({ isActive }) =>
-								`flex items-center gap-3 px-4 py-3 rounded-sm transition-colors duration-150 relative
+								`flex items-center gap-3 px-4 py-3 rounded-sm transition-colors duration-hover relative
       ${isActive ? "bg-terracotta/15 text-text-primary before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-terracotta before:rounded-r-sm" : "text-text-secondary hover:bg-surface-elevated"}`
 							}
 						>

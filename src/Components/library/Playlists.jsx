@@ -6,6 +6,7 @@ import { useAuthStore } from "../../store/authStore.js";
 import Button from "../common/Button.jsx";
 import PlaylistCard from "../playlist/PlaylistCard.jsx";
 import PlaylistForm from "../playlist/PlaylistForm.jsx";
+import EmptyState from "../common/EmptyState.jsx";
 
 function Playlists() {
   const user = useAuthStore((state) => state.user);
@@ -49,10 +50,10 @@ function Playlists() {
       </Button>
 
       {playlists.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-20 text-text-secondary">
-          <p className="text-lg">No playlists yet</p>
-          <p className="text-sm mt-1">Create one to start saving videos</p>
-        </div>
+        <EmptyState
+          title="No playlists yet"
+          subtitle="Create one to start saving videos"
+        />
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {playlists.map((playlist) => (

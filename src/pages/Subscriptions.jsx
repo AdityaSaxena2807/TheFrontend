@@ -4,6 +4,7 @@ import { useAuthStore } from "../store/authStore";
 import { getSubscribedChannels } from "../services/subscriptionApi";
 import { getAllVideos } from "../services/videoApi";
 import VideoListItem from "../components/video/VideoListItem";
+import EmptyState from "../components/common/EmptyState";
 
 function Subscriptions() {
   const { user } = useAuthStore();
@@ -46,12 +47,10 @@ function Subscriptions() {
 
   if (channels.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-16 text-center px-4">
-        <p className="text-text-primary font-medium">No subscriptions yet</p>
-        <p className="text-text-disabled text-sm mt-1">
-          Videos from channels you subscribe to will show up here
-        </p>
-      </div>
+      <EmptyState
+        title="No subscriptions yet"
+        subtitle="Videos from channels you subscribe to will show up here"
+      />
     );
   }
 

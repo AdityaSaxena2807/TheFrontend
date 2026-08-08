@@ -61,7 +61,7 @@ function PlaylistForm({ isOpen, onClose, onSuccess, playlist }) {
 							onChange={(e) => setName(e.target.value)}
 							autoFocus
 							placeholder="My playlist"
-							className="w-full rounded-sm border border-border bg-surface px-3 py-2 text-sm text-text-primary placeholder-text-disabled outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta transition-colors duration-hover"
+							className="w-full rounded-sm border border-border bg-surface px-3 py-2 text-sm text-text-primary placeholder-text-disabled outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-bg transition-colors duration-hover"
 						/>
 					</div>
 
@@ -74,7 +74,7 @@ function PlaylistForm({ isOpen, onClose, onSuccess, playlist }) {
 							onChange={(e) => setDescription(e.target.value)}
 							rows={3}
 							placeholder="Description"
-							className="w-full rounded-sm border border-border bg-surface px-3 py-2 text-sm text-text-primary placeholder-text-disabled outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta resize-none transition-colors duration-hover"
+							className="w-full rounded-sm border border-border bg-surface px-3 py-2 text-sm text-text-primary placeholder-text-disabled outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-bg resize-none transition-colors duration-hover"
 						/>
 					</div>
 

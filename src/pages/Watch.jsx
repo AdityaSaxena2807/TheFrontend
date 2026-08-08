@@ -7,6 +7,7 @@ import VideoInfo from "../components/video/VideoInfo.jsx";
 import VideoPlayer from "../components/video/videoPlayer.jsx";
 import VideoListItem from "../components/video/VideoListItem.jsx";
 import CommentList from "../components/comment/CommentList.jsx";
+import Skeleton from "../components/common/Skeleton.jsx";
 import { toggleVideoLike } from "../services/likeApi.js";
 import {
   getVideoComments,
@@ -167,9 +168,9 @@ function Watch() {
           <p className="text-text-secondary text-sm">Up next</p>
           {suggestedLoading
             ? Array.from({ length: 4 }).map((_, i) => (
-                <div
+                <Skeleton
                   key={i}
-                  className="w-full h-24 bg-surface-elevated rounded-md animate-pulse"
+                  className="w-full h-24"
                 />
               ))
             : suggested.map((v) => <VideoListItem key={v._id} video={v} />)}

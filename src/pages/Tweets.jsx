@@ -7,6 +7,7 @@ import SortDropdown from "../components/common/SortDropdown.jsx";
 import { EditOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
 import Button from "../components/common/Button.jsx";
+import EmptyState from "../components/common/EmptyState.jsx";
 
 function Tweets() {
   const { user } = useAuthStore();
@@ -84,15 +85,11 @@ function Tweets() {
         </div>
 
         {tweets.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-16 text-center">
-            <div className="w-16 h-16 rounded-full bg-surface-elevated flex items-center justify-center mb-4">
-              <EditOutlined className="text-text-secondary text-2xl" />
-            </div>
-            <p className="text-text-primary font-medium">No tweets yet</p>
-            <p className="text-text-disabled text-sm mt-1">
-              Tweets will appear here once posted
-            </p>
-          </div>
+          <EmptyState
+            title="No tweets yet"
+            subtitle="Tweets will appear here once posted"
+            icon={<EditOutlined />}
+          />
         ) : (
           <>
             <div className="flex flex-col gap-3">

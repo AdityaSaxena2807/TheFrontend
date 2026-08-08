@@ -3,9 +3,9 @@
 
 :root {
 	/* Backgrounds */
-	--color-bg: #111315;
-	--color-surface: #171a1f;
-	--color-surface-elevated: #1d2128;
+--color-bg: #121212;
+--color-surface: #181818;
+--color-surface-elevated: #202020;
 
 	/* Text */
 	--color-text-primary: #f4f4f2;
@@ -43,10 +43,10 @@
 	--duration-success: 250ms;
 	--ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
 
-	/* Shadows (warm-tinted, not pure black) */
-	--shadow-sm: 0 1px 2px rgba(20, 14, 10, 0.35);
-	--shadow-md: 0 4px 12px rgba(20, 14, 10, 0.4);
-	--shadow-lg: 0 12px 32px rgba(20, 14, 10, 0.45);
+	/* Shadows (neutral dark tints) */
+	--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+	--shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+	--shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.45);
 }
 
 html,

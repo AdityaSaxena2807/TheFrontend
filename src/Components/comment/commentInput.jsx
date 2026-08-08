@@ -52,7 +52,7 @@ function CommentInput({ onSubmit }) {
 						onClick={handleInputClick}
 						readOnly={!user}
 						placeholder="Add a comment..."
-						className="w-full bg-transparent border-b border-border text-sm text-text-primary placeholder-text-disabled focus:outline-none focus:border-terracotta focus:border-b-2 resize-none py-1 cursor-pointer transition-colors duration-hover"
+						className="w-full bg-transparent border-b border-border text-sm text-text-primary placeholder-text-disabled outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-bg resize-none py-1 cursor-pointer transition-colors duration-hover"
 						rows={1}
 					/>
 					<div className="flex justify-between items-center mt-2">

@@ -76,7 +76,7 @@ function CommentItem({ comment, onUpdate, onDelete }) {
 									<input
 										value={editedContent}
 										onChange={(e) => setEditedContent(e.target.value)}
-										className="bg-surface-elevated text-sm text-text-primary rounded-sm px-2 py-1 border border-border focus:ring-1 focus:ring-terracotta outline-none"
+										className="bg-surface-elevated text-sm text-text-primary rounded-sm px-2 py-1 border border-border outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
 										autoFocus
 									/>
 									<div className="flex gap-2">

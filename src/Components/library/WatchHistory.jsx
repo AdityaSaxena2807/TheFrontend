@@ -3,6 +3,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { ToastError } from "../../Utils/ToastMessage.js";
 import { watchHistory } from "../../services/userApi.js";
 import VideoListItem from "../video/VideoListItem.jsx";
+import EmptyState from "../common/EmptyState.jsx";
 
 function WatchHistory() {
   const [history, setHistory] = useState([]);
@@ -33,10 +34,10 @@ function WatchHistory() {
 
   if (history.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 text-text-secondary">
-        <p className="text-lg">No watch history yet</p>
-        <p className="text-sm mt-1">Videos you watch will show up here</p>
-      </div>
+      <EmptyState
+        title="No watch history yet"
+        subtitle="Videos you watch will show up here"
+      />
     );
   }
 
