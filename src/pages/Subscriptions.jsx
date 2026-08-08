@@ -41,14 +41,14 @@ function Subscriptions() {
 
   if (loading)
     return (
-      <div className="p-6 text-sm text-gray-400">Loading subscriptions...</div>
+      <div className="p-6 text-sm text-text-secondary">Loading subscriptions...</div>
     );
 
   if (channels.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center px-4">
-        <p className="text-white font-medium">No subscriptions yet</p>
-        <p className="text-gray-500 text-sm mt-1">
+        <p className="text-text-primary font-medium">No subscriptions yet</p>
+        <p className="text-text-disabled text-sm mt-1">
           Videos from channels you subscribe to will show up here
         </p>
       </div>
@@ -59,7 +59,7 @@ function Subscriptions() {
     <div className="px-4 sm:px-6 py-6">
       {/* Subscribed channels strip */}
       <div className="mb-6">
-        <h2 className="text-white font-semibold text-sm mb-3">
+        <h2 className="text-text-primary font-semibold text-sm mb-3">
           Subscribed Channels
         </h2>
         <div className="flex gap-4 overflow-x-auto pb-2">
@@ -78,7 +78,7 @@ function Subscriptions() {
                 alt={channel.username}
                 className="w-12 h-12 rounded-full object-cover"
               />
-              <span className="text-xs text-gray-300 truncate w-full text-center">
+              <span className="text-xs text-text-secondary truncate w-full text-center">
                 {channel.username}
               </span>
             </Link>
@@ -88,9 +88,9 @@ function Subscriptions() {
 
       {/* Latest videos grid */}
       <div>
-        <h2 className="text-white font-semibold text-sm mb-3">Latest Videos</h2>
+        <h2 className="text-text-primary font-semibold text-sm mb-3">Latest Videos</h2>
         {videos.length === 0 ? (
-          <p className="text-gray-500 text-sm">
+          <p className="text-text-disabled text-sm">
             No videos from your subscriptions yet.
           </p>
         ) : (

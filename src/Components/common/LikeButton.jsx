@@ -43,7 +43,7 @@ function LikeButton({
 			) : iconStyle === "like" ? (
 				<Icon className="text-base" />
 			) : (
-				<HeartOutlined className="text-base text-text-secondary hover:text-text-primary transition-colors" />
+				<HeartOutlined className="text-base text-text-secondary hover:text-text-primary transition-colors duration-hover" />
 			)}
 
 			<span

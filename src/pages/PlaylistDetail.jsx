@@ -35,6 +35,7 @@ function VideoRowMenu({ onRemove }) {
     <div className="absolute right-0 shrink-0" ref={menuRef}>
       <Button
         type="button"
+        aria-label="More options"
         onClick={() => setOpen((prev) => !prev)}
         variant="icon"
         className="w-8 h-8 p-0 text-text-secondary hover:text-text-primary"

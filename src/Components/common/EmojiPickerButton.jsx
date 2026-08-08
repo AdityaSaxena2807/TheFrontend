@@ -38,7 +38,7 @@ function EmojiPickerButton({
         aria-label="Open emoji picker"
         onClick={() => setOpen((prev) => !prev)}
         variant="icon"
-        className="text-gray-300 hover:text-white"
+        className="text-text-secondary hover:text-text-primary"
       >
         <SmileOutlined className="text-lg" />
       </Button>

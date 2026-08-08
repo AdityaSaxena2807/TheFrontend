@@ -89,7 +89,7 @@ function EditVideo() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Add a title that describes your video"
-            className="w-full rounded-sm border border-border bg-surface px-4 py-2.5 text-sm text-text-primary placeholder-text-disabled outline-none transition focus:border-terracotta focus:ring-1 focus:ring-terracotta"
+            className="w-full rounded-sm border border-border bg-surface px-4 py-2.5 text-sm text-text-primary placeholder-text-disabled outline-none transition duration-hover focus:border-terracotta focus:ring-1 focus:ring-terracotta"
           />
         </div>
 
@@ -103,7 +103,7 @@ function EditVideo() {
             onChange={(e) => setDescription(e.target.value)}
             rows={4}
             placeholder="Tell viewers about your video"
-            className="w-full rounded-sm border border-border bg-surface px-4 py-2.5 text-sm text-text-primary placeholder-text-disabled outline-none transition focus:border-terracotta focus:ring-1 focus:ring-terracotta resize-none"
+            className="w-full rounded-sm border border-border bg-surface px-4 py-2.5 text-sm text-text-primary placeholder-text-disabled outline-none transition duration-hover focus:border-terracotta focus:ring-1 focus:ring-terracotta resize-none"
           />
         </div>
 

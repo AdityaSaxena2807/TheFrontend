@@ -85,11 +85,11 @@ function Tweets() {
 
         {tweets.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16 text-center">
-            <div className="w-16 h-16 rounded-full bg-[#2a2a2a] flex items-center justify-center mb-4">
-              <EditOutlined className="text-gray-300 text-2xl" />
+            <div className="w-16 h-16 rounded-full bg-surface-elevated flex items-center justify-center mb-4">
+              <EditOutlined className="text-text-secondary text-2xl" />
             </div>
-            <p className="text-white font-medium">No tweets yet</p>
-            <p className="text-gray-500 text-sm mt-1">
+            <p className="text-text-primary font-medium">No tweets yet</p>
+            <p className="text-text-disabled text-sm mt-1">
               Tweets will appear here once posted
             </p>
           </div>
@@ -112,11 +112,11 @@ function Tweets() {
                 disabled={page <= 1}
                 onClick={() => setPage((p) => p - 1)}
                 variant="secondary"
-                className="px-3 py-1.5 rounded-md bg-[#2a2a2a] text-white text-sm disabled:opacity-40"
+                className="px-3 py-1.5 rounded-sm"
               >
                 Previous
               </Button>
-              <span className="text-sm text-gray-400">
+              <span className="text-sm text-text-secondary">
                 Page {page} of {totalPages}
               </span>
               <Button
@@ -124,7 +124,7 @@ function Tweets() {
                 disabled={page >= totalPages}
                 onClick={() => setPage((p) => p + 1)}
                 variant="secondary"
-                className="px-3 py-1.5 rounded-md bg-[#2a2a2a] text-white text-sm disabled:opacity-40"
+                className="px-3 py-1.5 rounded-sm"
               >
                 Next
               </Button>

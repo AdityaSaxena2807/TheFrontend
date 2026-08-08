@@ -27,14 +27,14 @@ function Home() {
 
   if (loading)
     return (
-      <div className="flex justify-center items-center h-screen text-gray-400 bg-gray-900">
+      <div className="flex justify-center items-center h-screen text-text-secondary bg-bg">
         <LoadingOutlined />
       </div>
     );
 
   if (error)
     return (
-      <div className="flex justify-center items-center h-screen text-red-500 bg-gray-900">
+      <div className="flex justify-center items-center h-screen text-crimson bg-bg">
         {error}
       </div>
     );

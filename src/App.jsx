@@ -16,7 +16,7 @@ function App() {
 
   if (isAuthLoading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-black text-white">
+      <div className="flex min-h-screen items-center justify-center bg-bg text-text-primary">
         <LoadingOutlined />
       </div>
     );

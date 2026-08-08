@@ -33,7 +33,7 @@ function Playlists() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
-        <LoadingOutlined className="text-white text-3xl" />
+        <LoadingOutlined className="text-text-primary text-3xl" />
       </div>
     );
   }
@@ -49,7 +49,7 @@ function Playlists() {
       </Button>
 
       {playlists.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-20 text-gray-400">
+        <div className="flex flex-col items-center justify-center py-20 text-text-secondary">
           <p className="text-lg">No playlists yet</p>
           <p className="text-sm mt-1">Create one to start saving videos</p>
         </div>

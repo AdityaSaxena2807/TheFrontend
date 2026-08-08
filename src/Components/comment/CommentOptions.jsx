@@ -25,8 +25,9 @@ function CommentOptions({ onEdit, onDelete }) {
 			{/* Three Dot Button */}
 			<Button
 				onClick={() => setMenuOpen((prev) => !prev)}
+				aria-label="Comment options"
 				variant="icon"
-				className="w-8 h-8 flex items-center justify-center text-gray-400"
+				className="w-8 h-8 flex items-center justify-center text-text-secondary hover:text-text-primary"
 			>
 				<MoreOutlined className="text-lg" />
 			</Button>

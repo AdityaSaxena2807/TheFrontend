@@ -4,7 +4,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { ToastError } from "../Utils/ToastMessage.js";
 import { getVideoById, getSuggestedVideos } from "../services/videoApi.js";
 import VideoInfo from "../components/video/VideoInfo.jsx";
-import VideoPlayer from "../components/video/VideoPlayer.jsx";
+import VideoPlayer from "../components/video/videoPlayer.jsx";
 import VideoListItem from "../components/video/VideoListItem.jsx";
 import CommentList from "../components/comment/CommentList.jsx";
 import { toggleVideoLike } from "../services/likeApi.js";
@@ -126,13 +126,13 @@ function Watch() {
   };
   if (!video)
     return (
-      <div className="flex items-center justify-center h-screen bg-[#0f0f0f]">
-        <LoadingOutlined className="text-white text-4xl" />
+      <div className="flex items-center justify-center h-screen bg-bg">
+        <LoadingOutlined className="text-text-primary text-4xl" />
       </div>
     );
 
   return (
-    <div className="bg-[#0f0f0f] min-h-screen text-white">
+    <div className="bg-bg min-h-screen text-text-primary">
       <div className="max-w-450 mx-auto px-4 py-6 flex gap-6">
         <div className="flex-1 min-w-0">
           <VideoPlayer
@@ -164,12 +164,12 @@ function Watch() {
           />
         </div>
         <div className="w-90 hidden lg:flex flex-col gap-3">
-          <p className="text-gray-400 text-sm">Up next</p>
+          <p className="text-text-secondary text-sm">Up next</p>
           {suggestedLoading
             ? Array.from({ length: 4 }).map((_, i) => (
                 <div
                   key={i}
-                  className="w-full h-24 bg-[#1a1a1a] rounded-xl animate-pulse"
+                  className="w-full h-24 bg-surface-elevated rounded-md animate-pulse"
                 />
               ))
             : suggested.map((v) => <VideoListItem key={v._id} video={v} />)}

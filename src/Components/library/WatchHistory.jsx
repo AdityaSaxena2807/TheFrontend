@@ -26,14 +26,14 @@ function WatchHistory() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
-        <LoadingOutlined className="text-white text-3xl" />
+        <LoadingOutlined className="text-text-primary text-3xl" />
       </div>
     );
   }
 
   if (history.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 text-gray-400">
+      <div className="flex flex-col items-center justify-center py-20 text-text-secondary">
         <p className="text-lg">No watch history yet</p>
         <p className="text-sm mt-1">Videos you watch will show up here</p>
       </div>

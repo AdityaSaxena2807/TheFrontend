@@ -45,7 +45,7 @@ function Login() {
 	};
 
 	const inputClass =
-		"w-full rounded-sm border border-border bg-surface px-4 py-2.5 text-sm text-text-primary placeholder-text-disabled outline-none transition focus:border-terracotta focus:ring-1 focus:ring-terracotta";
+		"w-full rounded-sm border border-border bg-surface px-4 py-2.5 text-sm text-text-primary placeholder-text-disabled outline-none transition duration-hover focus:border-terracotta focus:ring-1 focus:ring-terracotta";
 	const labelClass =
 		"mb-1.5 block text-sm font-medium text-text-secondary font-body";
 

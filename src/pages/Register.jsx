@@ -89,7 +89,7 @@ function Register() {
 	};
 
 	const inputClass =
-		"w-full rounded-sm border border-border bg-surface px-4 py-2.5 text-sm text-text-primary placeholder-text-disabled outline-none transition focus:border-terracotta focus:ring-1 focus:ring-terracotta";
+		"w-full rounded-sm border border-border bg-surface px-4 py-2.5 text-sm text-text-primary placeholder-text-disabled outline-none transition duration-hover focus:border-terracotta focus:ring-1 focus:ring-terracotta";
 	const labelClass =
 		"mb-1.5 block text-sm font-medium text-text-secondary font-body";
 
@@ -206,7 +206,7 @@ function Register() {
 							<div>
 								<label className={labelClass}>Avatar</label>
 
-								<label className="flex h-32 cursor-pointer flex-col items-center justify-center rounded-md border border-dashed border-border bg-surface transition hover:border-terracotta">
+								<label className="flex h-32 cursor-pointer flex-col items-center justify-center rounded-md border border-dashed border-border bg-surface transition duration-hover hover:border-terracotta">
 									{previews.avatar ? (
 										<>
 											<img
@@ -244,7 +244,7 @@ function Register() {
 							<div>
 								<label className={labelClass}>Cover image</label>
 
-								<label className="flex h-32 cursor-pointer flex-col items-center justify-center rounded-md border border-dashed border-border bg-surface transition hover:border-terracotta overflow-hidden">
+								<label className="flex h-32 cursor-pointer flex-col items-center justify-center rounded-md border border-dashed border-border bg-surface transition duration-hover hover:border-terracotta overflow-hidden">
 									{previews.coverImage ? (
 										<>
 											<img
