@@ -18,19 +18,20 @@ function SearchBar() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex items-center w-full max-w-md bg-[#121212] rounded-full px-4 py-2 shadow-lg shadow-black/50"
+      className="flex items-center w-full max-w-md bg-surface-elevated rounded-md px-4 py-2 shadow-sm border border-border focus-within:ring-1 focus-within:ring-terracotta focus-within:border-terracotta transition-all duration-hover"
     >
       <input
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search..."
-        className="flex-1 bg-transparent text-white placeholder-gray-400 outline-none px-2 py-1 rounded-l-full"
+        className="flex-1 bg-transparent text-text-primary placeholder-text-disabled outline-none px-2 py-1"
       />
       <Button
         type="submit"
         variant="ghost"
-        className="rounded-r-full px-4 py-1 text-white"
+        className="rounded-md px-2 py-1 text-text-secondary hover:text-text-primary"
+        aria-label="Search"
       >
         <SearchOutlined />
       </Button>

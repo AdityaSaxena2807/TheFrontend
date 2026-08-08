@@ -1,6 +1,6 @@
 import { DownOutlined, MenuOutlined } from "@ant-design/icons";
 import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../../services/userApi.js";
 import { useAuthStore } from "../../store/authStore.js";
 import { useUiStore } from "../../store/uiStore.js";
@@ -29,13 +29,14 @@ function Navbar() {
   }, []);
 
   return (
-    <nav className="fixed top-0 z-50 flex w-full items-center justify-between bg-black px-6 py-3 shadow-lg shadow-black/50">
+    <nav className="fixed top-0 z-50 flex w-full items-center justify-between h-18 bg-surface px-20 md:px-12 sm:px-6">
       {/* Sidebar toggle */}
       <Button
         type="button"
         onClick={useUiStore.getState().toggleSidebar}
         variant="icon"
-        className="text-white text-2xl"
+        className="text-text-primary text-2xl"
+        aria-label="Toggle sidebar"
       >
         <MenuOutlined />
       </Button>
@@ -52,20 +53,23 @@ function Navbar() {
       <div className="flex items-center gap-4">
         {isLoggedIn ? (
           <>
-            <Link
-              to="/upload"
-              className="px-4 py-2 rounded hover:bg-[#706e6e] text-white font-semibold transition"
+            <Button
+              type="button"
+              onClick={() => navigate("/upload")}
+              variant="ghost"
+              className="text-text-primary hover:text-text-primary font-medium px-3 py-2"
             >
               Upload
-            </Link>
+            </Button>
             <div className="relative" ref={menuRef}>
               <Button
                 type="button"
                 onClick={() => setMenuOpen((prev) => !prev)}
                 variant="icon"
-                className="flex items-center gap-1.5 hover:bg-[#282828] rounded-full pl-1 pr-2 py-1 transition"
+                className="flex items-center gap-1.5 hover:bg-surface-elevated rounded-full pl-1 pr-2 py-1 text-text-primary"
+                aria-label="Open user menu"
               >
-                <span className="w-9 h-9 rounded-full overflow-hidden border-2 border-[#050505]">
+                <span className="w-9 h-9 rounded-full overflow-hidden border-2 border-border">
                   <img
                     src={
                       typeof user?.avatar === "string"
@@ -76,16 +80,16 @@ function Navbar() {
                     className="w-full h-full object-cover"
                   />
                 </span>
-                <DownOutlined className="text-white text-xs" />
+                <DownOutlined className="text-text-primary text-xs" />
               </Button>
 
               {menuOpen && (
-                <div className="absolute right-0 mt-2 w-56 bg-[#282828] border border-[#3f3f3f] rounded-xl shadow-2xl overflow-hidden z-50">
-                  <div className="px-4 py-3 border-b border-[#3f3f3f]">
-                    <p className="text-sm font-medium text-white truncate">
+                <div className="absolute right-0 mt-2 w-56 bg-surface-elevated border border-border rounded-md shadow-md overflow-hidden z-50">
+                  <div className="px-4 py-3 border-b border-border">
+                    <p className="text-sm font-medium text-text-primary truncate">
                       {user?.fullName}
                     </p>
-                    <p className="text-xs text-gray-400 truncate">
+                    <p className="text-xs text-text-secondary truncate">
                       @{user?.username}
                     </p>
                   </div>
@@ -97,7 +101,7 @@ function Navbar() {
                       navigate("/profile");
                     }}
                     variant="ghost"
-                    className="w-full text-left px-4 py-3 text-sm text-white hover:bg-[#3f3f3f] transition-colors"
+                    className="w-full text-left px-4 py-3 text-sm text-text-primary"
                   >
                     My Profile
                   </Button>
@@ -109,7 +113,7 @@ function Navbar() {
                       navigate(`/channel/${user.username}`);
                     }}
                     variant="ghost"
-                    className="w-full text-left px-4 py-3 text-sm text-white hover:bg-[#3f3f3f] transition-colors"
+                    className="w-full text-left px-4 py-3 text-sm text-text-primary"
                   >
                     My Channel
                   </Button>
@@ -120,8 +124,8 @@ function Navbar() {
                       setMenuOpen(false);
                       setLogoutModalOpen(true);
                     }}
-                    variant="ghost"
-                    className="w-full text-left px-4 py-3 text-sm text-red-400 hover:bg-[#3f3f3f] transition-colors border-t border-[#3f3f3f]"
+                    variant="danger"
+                    className="w-full text-left px-4 py-3 text-sm border-t border-border"
                   >
                     Logout
                   </Button>
@@ -130,12 +134,14 @@ function Navbar() {
             </div>
           </>
         ) : (
-          <Link
-            to="/login"
-            className="px-4 py-2 rounded hover:bg-[#706e6e] text-white font-semibold transition"
+          <Button
+            type="button"
+            onClick={() => navigate("/login")}
+            variant="primary"
+            className="text-text-primary"
           >
             Login
-          </Link>
+          </Button>
         )}
       </div>
       <Modal

@@ -18,24 +18,24 @@ function Sidebar() {
       {/* Mobile backdrop — only shows when sidebar is open on small screens */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/60 z-30 md:hidden"
+          className="fixed inset-0 bg-bg/70 z-30 md:hidden"
           onClick={() => useUiStore.getState().setSidebar(false)}
         />
       )}
       <aside
         className={`
-      fixed top-16 left-0 z-40 h-[calc(100vh-4rem)] bg-[#121212] text-white
-      shadow-lg shadow-black/50 overflow-auto
+      fixed top-18 left-0 z-40 h-[calc(100vh-72px)] bg-surface text-text-primary
+      overflow-auto
       transition-all duration-300
-      ${sidebarOpen ? "w-64 translate-x-0" : "-translate-x-full md:translate-x-0 md:w-16"}
+      ${sidebarOpen ? "w-65 translate-x-0" : "-translate-x-full md:translate-x-0 md:w-19"}
     `}
       >
-        <nav className="flex flex-col mt-10 space-y-2 px-2">
+        <nav className="flex flex-col mt-4 space-y-2 px-2">
           <NavLink
             to="/"
             className={({ isActive }) =>
-              `flex items-center gap-3 px-4 py-2 rounded transition-colors
-        ${isActive ? "bg-[#3636368c] text-white" : "text-gray-300 hover:bg-[#706e6e]"}`
+              `flex items-center gap-3 px-4 py-3 rounded-sm transition-colors duration-150 relative
+        ${isActive ? "bg-terracotta/15 text-text-primary before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-terracotta before:rounded-r-sm" : "text-text-secondary hover:bg-surface-elevated"}`
             }
           >
             {sidebarOpen ? (
@@ -51,8 +51,8 @@ function Sidebar() {
             <NavLink
               to="/library"
               className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-2 rounded transition-colors
-          ${isActive ? "bg-[#3636368c] text-white" : "text-gray-300 hover:bg-[#706e6e]"}`
+                `flex items-center gap-3 px-4 py-3 rounded-sm transition-colors duration-150 relative
+          ${isActive ? "bg-terracotta/15 text-text-primary before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-terracotta before:rounded-r-sm" : "text-text-secondary hover:bg-surface-elevated"}`
               }
             >
               {sidebarOpen ? (
@@ -69,8 +69,8 @@ function Sidebar() {
             <NavLink
               to="/dashboard"
               className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-2 rounded transition-colors
-      ${isActive ? "bg-[#3636368c] text-white" : "text-gray-300 hover:bg-[#706e6e]"}`
+                `flex items-center gap-3 px-4 py-3 rounded-sm transition-colors duration-150 relative
+      ${isActive ? "bg-terracotta/15 text-text-primary before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-terracotta before:rounded-r-sm" : "text-text-secondary hover:bg-surface-elevated"}`
               }
             >
               {sidebarOpen ? (
@@ -86,8 +86,8 @@ function Sidebar() {
           <NavLink
             to="/tweets"
             className={({ isActive }) =>
-              `flex items-center gap-3 px-4 py-2 rounded transition-colors
-      ${isActive ? "bg-[#3636368c] text-white" : "text-gray-300 hover:bg-[#706e6e]"}`
+              `flex items-center gap-3 px-4 py-3 rounded-sm transition-colors duration-150 relative
+      ${isActive ? "bg-terracotta/15 text-text-primary before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-terracotta before:rounded-r-sm" : "text-text-secondary hover:bg-surface-elevated"}`
             }
           >
             {sidebarOpen ? (
@@ -103,8 +103,8 @@ function Sidebar() {
             <NavLink
               to="/subscriptions"
               className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-2 rounded transition-colors
-      ${isActive ? "bg-[#3636368c] text-white" : "text-gray-300 hover:bg-[#706e6e]"}`
+                `flex items-center gap-3 px-4 py-3 rounded-sm transition-colors duration-150 relative
+      ${isActive ? "bg-terracotta/15 text-text-primary before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-terracotta before:rounded-r-sm" : "text-text-secondary hover:bg-surface-elevated"}`
               }
             >
               {sidebarOpen ? (
@@ -121,8 +121,8 @@ function Sidebar() {
             <NavLink
               to="/settings/logo"
               className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-2 rounded transition-colors
-      ${isActive ? "bg-[#3636368c] text-white" : "text-gray-300 hover:bg-[#706e6e]"}`
+                `flex items-center gap-3 px-4 py-3 rounded-sm transition-colors duration-150 relative
+      ${isActive ? "bg-terracotta/15 text-text-primary before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-terracotta before:rounded-r-sm" : "text-text-secondary hover:bg-surface-elevated"}`
               }
             >
               {sidebarOpen ? (

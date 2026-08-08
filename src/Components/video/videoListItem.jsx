@@ -49,18 +49,15 @@ function VideoListItem({ video, variant = "grid", actions }) {
         flex
         gap-2
         cursor-pointer
-        rounded-xl
+        rounded-md
         p-2
         transition-all
-        duration-200
-        ease-out
-        hover:scale-[1.03]
-        hover:bg-[#1b2732]
+        duration-hover
+        hover:shadow-md
         hover:z-20
-        hover:shadow-xl
       "
       >
-        <div className="relative w-32 h-20 shrink-0 overflow-hidden rounded-lg bg-[#202020]">
+        <div className="relative w-32 h-20 shrink-0 overflow-hidden rounded-md bg-surface">
           <img
             src={
               typeof video.thumbnail === "string"
@@ -72,24 +69,24 @@ function VideoListItem({ video, variant = "grid", actions }) {
             className="w-full h-full object-cover"
           />
 
-          <span className="absolute bottom-1 right-1 bg-black/80 text-white text-[10px] px-1 rounded">
+          <span className="absolute bottom-1 right-1 bg-bg/80 text-text-primary text-[10px] px-1.5 py-0.5 rounded-tiny font-medium">
             {formatDuration(video.duration)}
           </span>
         </div>
 
         <div className="flex-1 min-w-30">
           <div className="min-w-0">
-            <p className="text-sm text-white line-clamp-2" title={video.title}>
+            <p className="text-sm text-text-primary line-clamp-2 font-medium" title={video.title}>
               {video.title}
             </p>
 
             {owner && (
-              <p className="mt-0.5 text-xs text-gray-400 truncate">
+              <p className="mt-0.5 text-xs text-text-secondary truncate">
                 {owner.username}
               </p>
             )}
 
-            <p className="mt-0.5 text-xs text-gray-500 whitespace-nowrap">
+            <p className="mt-0.5 text-xs text-text-disabled whitespace-nowrap">
               {formatViews(video.views)} · {timeAgo(video.createdAt)}
             </p>
           </div>
@@ -108,7 +105,7 @@ function VideoListItem({ video, variant = "grid", actions }) {
     return (
       <div
         {...sharedProps}
-        className="bg-black rounded-lg overflow-hidden shadow-md hover:shadow-xl hover:bg-gray-700 transition-all duration-300 cursor-pointer"
+        className="bg-transparent rounded-md overflow-hidden shadow-sm hover:shadow-md transition-all duration-hover cursor-pointer"
       >
         <div className="relative">
           <img
@@ -119,10 +116,10 @@ function VideoListItem({ video, variant = "grid", actions }) {
             }
             alt={video.title}
             loading="lazy"
-            className="w-full h-48 object-cover"
+            className="w-full h-48 object-cover rounded-md"
           />
 
-          <span className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-1 rounded">
+          <span className="absolute bottom-2 right-2 bg-bg/80 text-text-primary text-xs px-1.5 py-0.5 rounded-tiny font-medium">
             {formatDuration(video.duration)}
           </span>
         </div>
@@ -136,15 +133,15 @@ function VideoListItem({ video, variant = "grid", actions }) {
             />
 
             <div className="min-w-0">
-              <h3 className="font-semibold text-white text-sm line-clamp-2">
+              <h3 className="font-heading font-medium text-text-primary text-sm line-clamp-2">
                 {video.title}
               </h3>
 
-              <p className="text-gray-400 text-xs mt-1">{ownerName}</p>
+              <p className="text-text-secondary text-xs mt-1">{ownerName}</p>
             </div>
           </div>
 
-          <p className="text-gray-500 text-xs mt-2 flex justify-between">
+          <p className="text-text-disabled text-xs mt-2 flex justify-between">
             <span>{formatViews(video.views)}</span>
             <span>{timeAgo(video.createdAt)}</span>
           </p>
@@ -167,18 +164,14 @@ function VideoListItem({ video, variant = "grid", actions }) {
       group
       w-full
       cursor-pointer
-      rounded-xl
-      p-2
+      rounded-md
+      p-0
       transition-all
-      duration-200
-      ease-out
-      hover:scale-[1.04]
-      hover:bg-[#1b2732]
+      duration-hover
       hover:z-20
-      hover:shadow-xl
     "
     >
-      <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-[#202020]">
+      <div className="relative aspect-video w-full overflow-hidden rounded-md bg-surface">
         <img
           src={
             typeof video.thumbnail === "string"
@@ -187,23 +180,23 @@ function VideoListItem({ video, variant = "grid", actions }) {
           }
           alt={video.title}
           loading="lazy"
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover group-hover:shadow-md transition-shadow duration-hover"
         />
 
-        <span className="absolute bottom-1 right-1 rounded bg-black/85 px-1.5 py-0.5 text-[10px] font-medium text-white">
+        <span className="absolute bottom-1 right-1 rounded-tiny bg-bg/80 px-1.5 py-0.5 text-[10px] font-medium text-text-primary">
           {formatDuration(video.duration)}
         </span>
       </div>
 
       <div className="pt-2">
         <h3
-          className="line-clamp-2 text-sm font-medium leading-5 text-white"
+          className="line-clamp-2 text-sm font-heading font-medium leading-5 text-text-primary"
           title={video.title}
         >
           {video.title}
         </h3>
 
-        <p className="mt-0.5 text-xs text-gray-400">
+        <p className="mt-0.5 text-xs text-text-secondary">
           {formatViews(video.views)} · {timeAgo(video.createdAt)}
         </p>
       </div>

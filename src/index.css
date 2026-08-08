@@ -1,5 +1,53 @@
 @import "tailwindcss";
 
+:root {
+  /* Backgrounds */
+  --color-bg: #111315;
+  --color-surface: #171A1F;
+  --color-surface-elevated: #1D2128;
+
+  /* Text */
+  --color-text-primary: #F4F4F2;
+  --color-text-secondary: #B5BAC5;
+  --color-text-disabled: #6E7683;
+
+  /* Borders */
+  --color-border: #2B3138;
+
+  /* Accent family (warm) */
+  --color-accent-copper: #C97C4E;
+  --color-accent-terracotta: #C1552F;
+  --color-accent-ember: #A83E23;
+  --color-accent-crimson: #8C2E1E;
+
+  /* Supporting */
+  --color-teal: #1E6F6A;
+
+  /* Semantic */
+  --color-success: var(--color-teal);
+  --color-error: var(--color-accent-crimson);
+  --color-warning: var(--color-accent-copper);
+
+  /* Radius */
+  --radius-tiny: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-circle: 999px;
+
+  /* Motion */
+  --duration-hover: 180ms;
+  --duration-press: 120ms;
+  --duration-open: 220ms;
+  --duration-success: 250ms;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Shadows (warm-tinted, not pure black) */
+  --shadow-sm: 0 1px 2px rgba(20, 14, 10, 0.35);
+  --shadow-md: 0 4px 12px rgba(20, 14, 10, 0.4);
+  --shadow-lg: 0 12px 32px rgba(20, 14, 10, 0.45);
+}
+
 html,
 body,
 #root {
@@ -8,5 +56,6 @@ body,
 
 body {
   margin: 0;
-  background: #000;
+  background: var(--color-bg);
+  color: var(--color-text-primary);
 }
