@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { HeartOutlined, HeartFilled, MoreOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store/authStore.js";
 import { toggleCommentLike } from "../../services/likeApi.js";
 import LoginPromptModal from "../common/LoginPromptModal.jsx";
 import Button from "../common/Button.jsx";
+import LikeButton from "../common/LikeButton.jsx";
 import { timeAgo } from "../../Utils/formatTime.js";
 import CommentOptions from "./CommentOptions.jsx";
 import { ToastError } from "../../Utils/ToastMessage.js";
@@ -117,29 +117,13 @@ function CommentItem({ comment, onUpdate, onDelete }) {
 
 					{/* Actions */}
 					<div className="flex items-center gap-5 mt-2">
-						<Button
-							type="button"
+						<LikeButton
+							isLiked={isLiked}
+							count={likesCount}
 							onClick={() => handleCommentLike(comment._id)}
-							variant="ghost"
-							className={`flex items-center gap-2 rounded-full px-2 py-1 transition-colors duration-hover ${
-								isLiked ? "text-text-primary" : "text-text-secondary"
-							}`}
-						>
-							{isLiked ? (
-								<HeartFilled
-									className="text-base"
-									style={{ color: "var(--color-accent-crimson)" }}
-								/>
-							) : (
-								<HeartOutlined className="text-base text-text-secondary hover:text-text-primary transition-colors" />
-							)}
-
-							<span
-								className={`text-xs ${isLiked ? "text-crimson" : "text-text-secondary"}`}
-							>
-								{likesCount}
-							</span>
-						</Button>
+							iconStyle="heart"
+							className="rounded-full"
+						/>
 					</div>
 				</div>
 			</div>

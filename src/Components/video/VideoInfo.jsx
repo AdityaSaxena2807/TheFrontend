@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LikeFilled, LikeOutlined, SaveOutlined } from "@ant-design/icons";
+import { SaveOutlined } from "@ant-design/icons";
 import { useAuthStore } from "../../store/authStore.js";
 import Button from "../common/Button.jsx";
+import LikeButton from "../common/LikeButton.jsx";
 import SubscribeButton from "../channel/SubscribeButton.jsx";
 import SaveToPlaylistDropdown from "./SaveToPlaylistDropdown.jsx";
 import LoginPromptModal from "../common/LoginPromptModal.jsx";
@@ -79,19 +80,13 @@ function VideoInfo({ video, isLiked, likesCount, onLike }) {
 						/>
 					)}
 
-					<Button
-						type="button"
+					<LikeButton
+						isLiked={isLiked}
+						count={likesCount}
 						onClick={handleLike}
-						variant="ghost"
-						className={`flex items-center gap-1.5 text-sm font-body transition-all duration-hover ${isLiked ? "text-crimson" : "text-text-secondary"}`}
-					>
-						{isLiked ? (
-							<LikeFilled className="text-base" />
-						) : (
-							<LikeOutlined className="text-base" />
-						)}
-						<span>{likesCount}</span>
-					</Button>
+						iconStyle="like"
+						className="gap-1.5 text-sm font-body"
+					/>
 
 					<div className="relative">
 						<Button

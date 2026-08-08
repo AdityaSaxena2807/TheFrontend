@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import { useAuthStore } from "../../store/authStore";
 import { toggleTweetLike } from "../../services/likeApi";
 import { deleteTweet } from "../../services/tweetApi";
@@ -7,7 +6,7 @@ import { timeAgo } from "../../Utils/formatTime";
 import CommentOptions from "../comment/CommentOptions";
 import TweetInput from "./TweetInput";
 import LoginPromptModal from "../common/LoginPromptModal";
-import Button from "../common/Button.jsx";
+import LikeButton from "../common/LikeButton.jsx";
 import { Link, useNavigate } from "react-router-dom";
 
 function TweetCard({ tweet, onDeleted, onUpdated }) {
@@ -93,31 +92,13 @@ function TweetCard({ tweet, onDeleted, onUpdated }) {
 				<p className="text-base text-text-primary font-body mt-1.5 whitespace-pre-wrap wrap-break-word leading-snug">
 					{tweet.content}
 				</p>
-				<Button
-					type="button"
-					onClick={() => handleLike()}
-					variant="ghost"
-					className={`flex items-center gap-2 rounded-full px-2 py-1 transition-all duration-hover mt-2 ${
-						isLiked
-							? "text-crimson"
-							: "text-text-secondary hover:text-text-primary"
-					}`}
-				>
-					{isLiked ? (
-						<HeartFilled
-							className="text-base"
-							style={{ color: "var(--color-accent-crimson)" }}
-						/>
-					) : (
-						<HeartOutlined className="text-base text-text-secondary hover:text-text-primary transition-colors" />
-					)}
-
-					<span
-						className={`text-xs ${isLiked ? "text-crimson" : "text-text-secondary"}`}
-					>
-						{likesCount}
-					</span>
-				</Button>
+				<LikeButton
+					isLiked={isLiked}
+					count={likesCount}
+					onClick={handleLike}
+					iconStyle="heart"
+					className="rounded-full mt-2"
+				/>
 			</div>
 			<LoginPromptModal
 				isOpen={showLoginModal}
