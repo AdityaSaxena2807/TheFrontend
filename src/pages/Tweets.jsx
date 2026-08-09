@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useAuthStore } from "../store/authStore";
 import { getAllTweets } from "../services/tweetApi";
-import TweetInput from "../Components/tweet/tweetInput.jsx";
-import TweetCard from "../Components/tweet/tweetCard.jsx";
-import SortDropdown from "../Components/common/SortDropdown.jsx";
+import TweetInput from "../components/tweet/tweetInput.jsx";
+import TweetCard from "../components/tweet/tweetCard.jsx";
+import SortDropdown from "../components/common/SortDropdown.jsx";
 import { EditOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
-import Button from "../Components/common/Button.jsx";
-import EmptyState from "../Components/common/EmptyState.jsx";
+import Button from "../components/common/Button.jsx";
+import EmptyState from "../components/common/EmptyState.jsx";
 
 function Tweets() {
 	const { user } = useAuthStore();

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import Button from "../Components/common/Button.jsx";
+import Button from "../components/common/Button.jsx";
 import { useNavigate, Link } from "react-router-dom";
-import { ToastError, ToastSuccess } from "../Utils/ToastMessage.js";
+import { ToastError, ToastSuccess } from "../utils/ToastMessage.js";
 import axiosInstance from "../services/axiosInstance.js";
-import { SECURITY_QUESTIONS } from "../Utils/securityQuestions.js";
+import { SECURITY_QUESTIONS } from "../utils/securityQuestions.js";
 
 function Register() {
 	const navigate = useNavigate();

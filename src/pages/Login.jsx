@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Button from "../Components/common/Button.jsx";
+import Button from "../components/common/Button.jsx";
 import { loginUser } from "../services/userApi.js";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuthStore } from "../store/authStore.js";
-import { ToastError, ToastSuccess } from "../Utils/ToastMessage.js";
+import { ToastError, ToastSuccess } from "../utils/ToastMessage.js";
 
 function Login() {
 	const [userData, setUserData] = useState({

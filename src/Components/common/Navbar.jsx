@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../../services/userApi.js";
 import { useAuthStore } from "../../store/authStore.js";
 import { useUiStore } from "../../store/uiStore.js";
-import { ToastError, ToastSuccess } from "../../Utils/ToastMessage.js";
+import { ToastError, ToastSuccess } from "../../utils/ToastMessage.js";
 import Logo from "./Logo.jsx";
 import Modal from "./Modal.jsx";
 import SearchBar from "./SearchBar.jsx";

@@ -6,16 +6,16 @@ import {
 	DeleteOutlined,
 	MoreOutlined,
 } from "@ant-design/icons";
-import Button from "../Components/common/Button.jsx";
+import Button from "../components/common/Button.jsx";
 import {
 	getPlaylistById,
 	deletePlaylist,
 	removeVideoFromPlaylist,
 } from "../services/playlistApi.js";
-import { ToastError, ToastSuccess } from "../Utils/ToastMessage.js";
-import PlaylistForm from "../Components/playlist/PlaylistForm.jsx";
-import ConfirmDialog from "../Components/common/ConfirmDialog.jsx";
-import VideoListItem from "../Components/video/VideoListItem.jsx";
+import { ToastError, ToastSuccess } from "../utils/ToastMessage.js";
+import PlaylistForm from "../components/playlist/PlaylistForm.jsx";
+import ConfirmDialog from "../components/common/ConfirmDialog.jsx";
+import VideoListItem from "../components/video/VideoListItem.jsx";
 
 function VideoRowMenu({ onRemove }) {
 	const [open, setOpen] = useState(false);

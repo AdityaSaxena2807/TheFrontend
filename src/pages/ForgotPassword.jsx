@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Button from "../Components/common/Button.jsx";
+import Button from "../components/common/Button.jsx";
 import { useNavigate } from "react-router-dom";
 import { verifyResetUser, resetPassword } from "../services/userApi";
-import { ToastError, ToastSuccess } from "../Utils/ToastMessage";
+import { ToastError, ToastSuccess } from "../utils/ToastMessage.js";
 const ForgotPassword = () => {
 	const navigate = useNavigate();
 	const [step, setStep] = useState(1);

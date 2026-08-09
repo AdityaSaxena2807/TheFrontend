@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "../common/Button.jsx";
 import { createPlaylist, updatePlaylist } from "../../services/playlistApi.js";
-import { ToastError, ToastSuccess } from "../../Utils/ToastMessage.js";
+import { ToastError, ToastSuccess } from "../../utils/ToastMessage.js";
 
 function PlaylistForm({ isOpen, onClose, onSuccess, playlist }) {
 	const isEditMode = Boolean(playlist);

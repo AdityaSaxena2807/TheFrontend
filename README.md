@@ -27,7 +27,7 @@ Built with a strong focus on **UI consistency, reusability, and performance opti
 src/
 ├── assets/
 │   └── icons/            # App logos & themed duck avatars
-├── Components/
+├── components/
 │   ├── channel/          # Channel-related UI (Subscribe button)
 │   ├── comment/          # Comment system components
 │   ├── common/           # Shared reusable UI components
@@ -77,7 +77,7 @@ src/
 
 ---
 
-## 🎨 UI Components
+## 🎨 UI components
 
 Reusable UI system includes:
 

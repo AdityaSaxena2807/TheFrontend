@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom";
-import Navbar from "../Components/common/Navbar";
+import Navbar from "../components/common/Navbar";
 import { useAuthStore } from "../store/authStore";
 const AuthLayout = () => {
 	const isLoggedIn = useAuthStore((s) => s.isLoggedIn);

@@ -5,9 +5,9 @@ import { toggleCommentLike } from "../../services/likeApi.js";
 import LoginPromptModal from "../common/LoginPromptModal.jsx";
 import Button from "../common/Button.jsx";
 import LikeButton from "../common/LikeButton.jsx";
-import { timeAgo } from "../../Utils/formatTime.js";
+import { timeAgo } from "../../utils/formatTime.js";
 import CommentOptions from "./CommentOptions.jsx";
-import { ToastError } from "../../Utils/ToastMessage.js";
+import { ToastError } from "../../utils/ToastMessage.js";
 
 function CommentItem({ comment, onUpdate, onDelete }) {
 	const { user } = useAuthStore();

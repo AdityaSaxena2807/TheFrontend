@@ -7,7 +7,7 @@ import { useAuthStore } from "../../store/authStore.js";
 import Button from "../common/Button.jsx";
 
 import { LoadingOutlined } from "@ant-design/icons";
-import { ToastError } from "../../Utils/ToastMessage.js";
+import { ToastError } from "../../utils/ToastMessage.js";
 
 function SaveToPlaylistDropdown({ videoId, onClose }) {
 	const { user } = useAuthStore();

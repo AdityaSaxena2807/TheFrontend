@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import Button from "../Components/common/Button.jsx";
+import Button from "../components/common/Button.jsx";
 import {
 	currentUser,
 	updateAccount,
 	updateAvatar,
 	updateCoverImage,
 } from "../services/userApi.js";
-import { ToastError, ToastSuccess } from "../Utils/ToastMessage.js";
-import ChangePasswordModal from "../Components/common/ChangePasswordModal.jsx";
+import { ToastError, ToastSuccess } from "../utils/ToastMessage.js";
+import ChangePasswordModal from "../components/common/ChangePasswordModal.jsx";
 
 function Profile() {
 	const [mode, setMode] = useState("view"); // "view" | "edit"

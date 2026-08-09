@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getAllVideos } from "../services/videoApi";
 import { LoadingOutlined } from "@ant-design/icons";
-import { ToastError } from "../Utils/ToastMessage.js";
-import VideoListItem from "../Components/video/VideoListItem.jsx";
+import { ToastError } from "../utils/ToastMessage.js";
+import VideoListItem from "../components/video/VideoListItem.jsx";
 
 function Home() {
 	const [videos, setVideos] = useState([]);

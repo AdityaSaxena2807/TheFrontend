@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { timeAgo } from "../../Utils/formatTime.js";
-import { formatDuration } from "../../Utils/formatDuration.js";
+import { timeAgo } from "../../utils/formatTime.js";
+import { formatDuration } from "../../utils/formatDuration.js";
 
 function VideoListItem({ video, variant = "grid", actions }) {
 	const navigate = useNavigate();

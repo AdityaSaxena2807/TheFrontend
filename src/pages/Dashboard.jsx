@@ -9,10 +9,10 @@ import {
 } from "@ant-design/icons";
 import { getChannelStats, getChannelVideos } from "../services/dashboardApi.js";
 import { toggleVideoPublishStatus, deleteVideo } from "../services/videoApi.js";
-import { ToastError, ToastSuccess } from "../Utils/ToastMessage.js";
-import Modal from "../Components/common/Modal.jsx";
-import { timeAgo } from "../Utils/formatTime.js";
-import Button from "../Components/common/Button.jsx";
+import { ToastError, ToastSuccess } from "../utils/ToastMessage.js";
+import Modal from "../components/common/Modal.jsx";
+import { timeAgo } from "../utils/formatTime.js";
+import Button from "../components/common/Button.jsx";
 
 function Dashboard() {
 	const [stats, setStats] = useState(null);
@@ -156,10 +156,11 @@ function Dashboard() {
 									})}
 								</p>
 								<span
-									className={`inline-block mt-1 text-xs px-2 py-0.5 rounded-tiny font-body font-medium ${video.isPublished
+									className={`inline-block mt-1 text-xs px-2 py-0.5 rounded-tiny font-body font-medium ${
+										video.isPublished
 											? "bg-teal/20 text-teal"
 											: "bg-copper/20 text-copper"
-										}`}
+									}`}
 								>
 									{video.isPublished ? "Published" : "Unpublished"}
 								</span>

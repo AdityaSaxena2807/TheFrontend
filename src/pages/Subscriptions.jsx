@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
 import { getSubscribedChannels } from "../services/subscriptionApi";
 import { getAllVideos } from "../services/videoApi";
-import VideoListItem from "../Components/video/VideoListItem";
-import EmptyState from "../Components/common/EmptyState";
+import VideoListItem from "../components/video/VideoListItem";
+import EmptyState from "../components/common/EmptyState";
 
 function Subscriptions() {
 	const { user } = useAuthStore();

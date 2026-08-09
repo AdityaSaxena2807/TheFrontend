@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useAuthStore } from "../../store/authStore.js";
 import { toggleTweetLike } from "../../services/likeApi.js";
 import { deleteTweet } from "../../services/tweetApi.js";
-import { timeAgo } from "../../Utils/formatTime.js";
+import { timeAgo } from "../../utils/formatTime.js";
 import CommentOptions from "../comment/CommentOptions.jsx";
 import TweetInput from "./TweetInput.jsx";
 import LoginPromptModal from "../common/LoginPromptModal.jsx";

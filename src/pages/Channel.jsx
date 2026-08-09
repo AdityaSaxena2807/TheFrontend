@@ -1,14 +1,14 @@
 import { LoadingOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import SubscribeButton from "../Components/channel/SubscribeButton.jsx";
-import SortDropdown from "../Components/common/SortDropdown.jsx";
-import VideoListItem from "../Components/video/VideoListItem.jsx";
+import SubscribeButton from "../components/channel/SubscribeButton.jsx";
+import SortDropdown from "../components/common/SortDropdown.jsx";
+import VideoListItem from "../components/video/VideoListItem.jsx";
 import { getUserChannelProfile } from "../services/userApi.js";
 import { getAllVideos } from "../services/videoApi.js";
-import { ToastError } from "../Utils/ToastMessage.js";
+import { ToastError } from "../utils/ToastMessage.js";
 import { getUserTweets } from "../services/tweetApi.js";
-import TweetCard from "../Components/tweet/TweetCard.jsx";
+import TweetCard from "../components/tweet/TweetCard.jsx";
 function Channel() {
 	const { username } = useParams();
 	const [channel, setChannel] = useState(null);
