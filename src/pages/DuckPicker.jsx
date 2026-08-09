@@ -1,6 +1,6 @@
 import React from "react";
-import { useUiStore } from "../store/uiStore";
-import { LOGO_MAP } from "../utils/logoMap";
+import { useUiStore } from "../store/uiStore.js";
+import { LOGO_MAP } from "../utils/logoMap.js";
 
 const LOGO_OPTIONS = Object.entries(LOGO_MAP).map(([name, src]) => ({
 	name,
