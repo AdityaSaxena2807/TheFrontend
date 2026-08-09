@@ -2,8 +2,6 @@ import React from "react";
 import { useUiStore } from "../../store/uiStore";
 import { LOGO_MAP } from "../../utils/logoMap";
 import option1 from "../../assets/icons/option1.png";
-import option2 from "../../assets/icons/option2.png";
-import option3 from "../../assets/icons/option3.png";
 function Logo() {
 	const selectedLogo = useUiStore((s) => s.selectedLogo);
 
