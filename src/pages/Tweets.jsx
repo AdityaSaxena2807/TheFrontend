@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useAuthStore } from "../store/authStore";
 import { getAllTweets } from "../services/tweetApi";
-import TweetInput from "../components/tweet/tweetInput.jsx";
-import TweetCard from "../components/tweet/tweetCard.jsx";
+import TweetInput from "../components/tweet/TweetInput.jsx";
+import TweetCard from "../components/tweet/TweetCard.jsx";
 import SortDropdown from "../components/common/SortDropdown.jsx";
 import { EditOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
