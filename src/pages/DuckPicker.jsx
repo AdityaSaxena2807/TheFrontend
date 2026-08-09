@@ -1,24 +1,22 @@
 import React from "react";
-import Duck from "../assets/icons/Duck.gif";
-import LuffyDuck from "../assets/icons/LuffyDuck.gif";
-import ZoroDuck from "../assets/icons/ZoroDuck.gif";
 import { useUiStore } from "../store/uiStore";
+import { LOGO_MAP } from "../utils/logoMap";
 
-const LOGO_OPTIONS = [
-	{ name: "Duck", src: Duck },
-	{ name: "LuffyDuck", src: LuffyDuck },
-	{ name: "ZoroDuck", src: ZoroDuck },
-];
+const LOGO_OPTIONS = Object.entries(LOGO_MAP).map(([name, src]) => ({
+	name,
+	src,
+}));
 
 function DuckPicker() {
 	const { selectedLogo, setSelectedLogo } = useUiStore();
 
 	return (
-		<div className="p-6">
+		<div className="p-6 pb-16">
 			<h2 className="text-2xl font-heading font-semibold text-text-primary mb-6">
 				Choose your app logo
 			</h2>
-			<div className="flex gap-6 flex-wrap">
+
+			<div className="grid grid-cols-6 gap-6">
 				{LOGO_OPTIONS.map((logo) => (
 					<button
 						key={logo.name}
@@ -29,11 +27,14 @@ function DuckPicker() {
 								: "border-border hover:border-terracotta/50 bg-surface"
 						}`}
 					>
-						<img
-							src={logo.src}
-							alt={logo.name}
-							className="w-24 h-24 object-contain"
-						/>
+						<div className="w-24 h-24 flex items-center justify-center mx-auto">
+							<img
+								src={logo.src}
+								alt={logo.name}
+								className="max-w-full max-h-full object-contain"
+							/>
+						</div>
+
 						<p
 							className={`text-sm font-body mt-2 text-center ${
 								selectedLogo === logo.name
