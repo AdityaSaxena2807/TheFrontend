@@ -30,7 +30,13 @@ function App() {
 
   return (
     <>
-      <Suspense fallback={<div className="flex min-h-screen items-center justify-center bg-bg text-text-primary"><LoadingOutlined /></div>}>
+      <Suspense
+        fallback={
+          <div className="flex min-h-screen items-center justify-center bg-bg text-text-primary">
+            <LoadingOutlined />
+          </div>
+        }
+      >
         <RouterProvider router={router} />
       </Suspense>
       <Toaster position="top-center" />

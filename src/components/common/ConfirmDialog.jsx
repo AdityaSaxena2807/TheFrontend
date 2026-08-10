@@ -23,7 +23,9 @@ function ConfirmDialog({
         onClick={(e) => e.stopPropagation()}
       >
         <p className="text-text-primary text-base font-medium mb-2">{title}</p>
-        {message && <p className="text-text-secondary text-sm mb-5">{message}</p>}
+        {message && (
+          <p className="text-text-secondary text-sm mb-5">{message}</p>
+        )}
         <div className="flex gap-3 justify-center">
           <Button
             onClick={onCancel}

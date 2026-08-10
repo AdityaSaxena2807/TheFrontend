@@ -171,7 +171,9 @@ export const resetPassword = async (userId, securityAnswer, newPassword) => {
 
 export const updatePreferences = async (logo) => {
   try {
-    const response = await axiosInstance.patch("/api/v1/users/preferences", { logo });
+    const response = await axiosInstance.patch("/api/v1/users/preferences", {
+      logo,
+    });
     return response.data.data;
   } catch (error) {
     console.error("Error message: ", error?.message);

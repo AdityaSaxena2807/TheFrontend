@@ -7,5 +7,5 @@ export const LOGO_MAP = Object.fromEntries(
   Object.entries(logos).map(([path, module]) => {
     const name = path.split("/").pop().replace(".webp", "");
     return [name, module.default];
-  })
+  }),
 );

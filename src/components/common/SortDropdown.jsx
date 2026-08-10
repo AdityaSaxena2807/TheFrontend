@@ -57,7 +57,9 @@ function SortDropdown({ sortField, sortType, onChange, options }) {
                 onClick={() => handleSelect(opt.field)}
                 variant="ghost"
                 className={`w-full flex items-center justify-between px-4 py-2 text-sm hover:bg-surface transition-colors duration-hover ${
-                  isActive ? "text-text-primary bg-surface" : "text-text-secondary"
+                  isActive
+                    ? "text-text-primary bg-surface"
+                    : "text-text-secondary"
                 }`}
               >
                 <span>{opt.label}</span>

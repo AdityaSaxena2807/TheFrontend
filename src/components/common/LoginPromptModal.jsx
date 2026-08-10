@@ -13,7 +13,9 @@ function LoginPromptModal({ isOpen, onClose, onLogin, modalText }) {
         className="bg-surface-elevated rounded-lg p-6 w-[320px] text-center shadow-lg"
         onClick={(e) => e.stopPropagation()}
       >
-        <p className="text-text-primary text-base font-medium mb-2">Login required</p>
+        <p className="text-text-primary text-base font-medium mb-2">
+          Login required
+        </p>
         <p className="text-text-secondary text-sm mb-5">
           {modalText || "You need to be logged in to perform this action."}
         </p>

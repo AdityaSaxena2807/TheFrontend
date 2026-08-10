@@ -18,7 +18,7 @@ function Sidebar() {
       {/* Mobile backdrop — only shows when sidebar is open on small screens */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-bg/70 z-30 md:hidden"
+          className="fixed inset-0 bg-bg/70 z-30 md:hidden cursor-pointer"
           onClick={() => useUiStore.getState().setSidebar(false)}
         />
       )}
@@ -135,7 +135,11 @@ function Sidebar() {
                   App Logo
                 </>
               ) : (
-                <img src={LOGO_MAP[selectedLogo]} alt="" className="w-5 h-5 object-contain" />
+                <img
+                  src={LOGO_MAP[selectedLogo]}
+                  alt=""
+                  className="w-5 h-5 object-contain"
+                />
               )}
             </NavLink>
           )}

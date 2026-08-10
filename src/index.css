@@ -2,83 +2,82 @@
 @config "../tailwind.config.js";
 
 :root {
-	/* Backgrounds */
---color-bg: #121212;
---color-surface: #181818;
---color-surface-elevated: #202020;
+  /* Backgrounds */
+  --color-bg: #121212;
+  --color-surface: #181818;
+  --color-surface-elevated: #202020;
 
-	/* Text */
-	--color-text-primary: #f4f4f2;
-	--color-text-secondary: #b5bac5;
-	--color-text-disabled: #6e7683;
+  /* Text */
+  --color-text-primary: #f4f4f2;
+  --color-text-secondary: #b5bac5;
+  --color-text-disabled: #6e7683;
 
-	/* Borders */
-	--color-border: #2b3138;
+  /* Borders */
+  --color-border: #2b3138;
 
-	/* Accent family (warm) */
-	--color-accent-copper: #c97c4e;
-	--color-accent-terracotta: #c1552f;
-	--color-accent-ember: #a83e23;
-	--color-accent-crimson: #8c2e1e;
+  /* Accent family (warm) */
+  --color-accent-copper: #c97c4e;
+  --color-accent-terracotta: #c1552f;
+  --color-accent-ember: #a83e23;
+  --color-accent-crimson: #8c2e1e;
 
-	/* Supporting */
-	--color-teal: #1e6f6a;
+  /* Supporting */
+  --color-teal: #1e6f6a;
 
-	/* Fixed color for text sitting on accent fills */
-	--color-on-accent: #f4f4f2;
+  /* Fixed color for text sitting on accent fills */
+  --color-on-accent: #f4f4f2;
 
-	/* Active background wash token */
-	--color-surface-active: rgba(193, 85, 47, 0.15);
+  /* Active background wash token */
+  --color-surface-active: rgba(193, 85, 47, 0.15);
 
-	/* Semantic */
-	--color-success: var(--color-teal);
-	--color-error: var(--color-accent-crimson);
-	--color-warning: var(--color-accent-copper);
+  /* Semantic */
+  --color-success: var(--color-teal);
+  --color-error: var(--color-accent-crimson);
+  --color-warning: var(--color-accent-copper);
 
-	/* Radius */
-	--radius-tiny: 6px;
-	--radius-sm: 10px;
-	--radius-md: 16px;
-	--radius-lg: 24px;
-	--radius-circle: 999px;
+  /* Radius */
+  --radius-tiny: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-circle: 999px;
 
-	/* Motion */
-	--duration-hover: 180ms;
-	--duration-press: 120ms;
-	--duration-open: 220ms;
-	--duration-success: 250ms;
-	--ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  /* Motion */
+  --duration-hover: 180ms;
+  --duration-press: 120ms;
+  --duration-open: 220ms;
+  --duration-success: 250ms;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
 
-	/* Shadows (neutral dark tints) */
-	--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
-	--shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
-	--shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.45);
+  /* Shadows (neutral dark tints) */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.45);
 }
 
 html,
 body,
 #root {
-	min-height: 100%;
+  min-height: 100%;
 }
 
 body {
-	margin: 0;
-	background: var(--color-bg);
-	color: var(--color-text-primary);
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text-primary);
 }
 
 [data-theme="light"] {
-  --color-bg: #EFEBE7;
-  --color-surface: #FFFFFF;
-  --color-surface-elevated: #F5F1EC;
+  --color-bg: #efebe7;
+  --color-surface: #ffffff;
+  --color-surface-elevated: #f5f1ec;
   --color-text-primary: #111315;
-  --color-text-secondary: #57504A;
-  --color-text-disabled: #8A8177;
-  --color-border: #E6E1DC;
+  --color-text-secondary: #57504a;
+  --color-text-disabled: #8a8177;
+  --color-border: #e6e1dc;
   --color-on-accent: #f4f4f2;
   --shadow-sm: 0 1px 2px rgba(20, 14, 10, 0.08);
-  --shadow-md: 0 4px 12px rgba(20, 14, 10, 0.10);
+  --shadow-md: 0 4px 12px rgba(20, 14, 10, 0.1);
   --shadow-lg: 0 12px 32px rgba(20, 14, 10, 0.12);
   --color-surface-active: rgba(193, 85, 47, 0.25);
 }
-

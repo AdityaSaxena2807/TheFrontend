@@ -1,9 +1,9 @@
 import React from "react";
 import {
-	HeartOutlined,
-	HeartFilled,
-	LikeOutlined,
-	LikeFilled,
+  HeartOutlined,
+  HeartFilled,
+  LikeOutlined,
+  LikeFilled,
 } from "@ant-design/icons";
 import Button from "./Button.jsx";
 
@@ -16,43 +16,43 @@ import Button from "./Button.jsx";
  * @param {string} className - Additional CSS classes
  */
 function LikeButton({
-	isLiked,
-	count,
-	onClick,
-	iconStyle = "heart",
-	className = "",
+  isLiked,
+  count,
+  onClick,
+  iconStyle = "heart",
+  className = "",
 }) {
-	const HeartIcon = isLiked ? HeartFilled : HeartOutlined;
-	const LikeIcon = isLiked ? LikeFilled : LikeOutlined;
-	const Icon = iconStyle === "like" ? LikeIcon : HeartIcon;
+  const HeartIcon = isLiked ? HeartFilled : HeartOutlined;
+  const LikeIcon = isLiked ? LikeFilled : LikeOutlined;
+  const Icon = iconStyle === "like" ? LikeIcon : HeartIcon;
 
-	return (
-		<Button
-			type="button"
-			onClick={onClick}
-			variant="ghost"
-			className={`flex items-center gap-2 px-2 py-1 transition-all duration-hover ${
-				isLiked ? "text-crimson" : "text-text-secondary hover:text-text-primary"
-			} ${className}`}
-		>
-			{isLiked && iconStyle === "heart" ? (
-				<HeartFilled
-					className="text-base"
-					style={{ color: "var(--color-accent-crimson)" }}
-				/>
-			) : iconStyle === "like" ? (
-				<Icon className="text-base" />
-			) : (
-				<HeartOutlined className="text-base text-text-secondary hover:text-text-primary transition-colors duration-hover" />
-			)}
+  return (
+    <Button
+      type="button"
+      onClick={onClick}
+      variant="ghost"
+      className={`flex items-center gap-2 px-2 py-1 transition-all duration-hover ${
+        isLiked ? "text-crimson" : "text-text-secondary hover:text-text-primary"
+      } ${className}`}
+    >
+      {isLiked && iconStyle === "heart" ? (
+        <HeartFilled
+          className="text-base"
+          style={{ color: "var(--color-accent-crimson)" }}
+        />
+      ) : iconStyle === "like" ? (
+        <Icon className="text-base" />
+      ) : (
+        <HeartOutlined className="text-base text-text-secondary hover:text-text-primary transition-colors duration-hover" />
+      )}
 
-			<span
-				className={`text-xs ${isLiked ? "text-crimson" : "text-text-secondary"}`}
-			>
-				{count}
-			</span>
-		</Button>
-	);
+      <span
+        className={`text-xs ${isLiked ? "text-crimson" : "text-text-secondary"}`}
+      >
+        {count}
+      </span>
+    </Button>
+  );
 }
 
 export default LikeButton;
