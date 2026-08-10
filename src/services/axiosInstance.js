@@ -1,6 +1,14 @@
 import axios from "axios";
 import { useAuthStore } from "../store/authStore";
 
+const AUTH_ENDPOINTS = [
+  "/login",
+  "/register",
+  "/refresh-token",
+  "/forgot-password",
+  "/reset-password",
+];
+
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
   //* withCredentials is crucial for sending cookies (like refresh tokens) with requests
@@ -50,8 +58,14 @@ axiosInstance.interceptors.response.use(
 
   async (error) => {
     const originalRequest = error.config;
-
-    if (error.response?.status === 401 && !originalRequest._retry) {
+    const isAuthEndpoint = AUTH_ENDPOINTS.some((path) =>
+      originalRequest.url.includes(path),
+    );
+    if (
+      error.response?.status === 401 &&
+      !originalRequest._retry &&
+      !isAuthEndpoint
+    ) {
       //*401 means "unauthorized" — your access token expired. _retry is a flag we set ourselves —
       //*it means "have we already tried to refresh for this request?" if yes then we just reject, if no then we go through the refresh process.
 
