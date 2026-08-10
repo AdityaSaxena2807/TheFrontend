@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { LoadingOutlined } from "@ant-design/icons";
 import { ToastError } from "../utils/ToastMessage.js";
 import { getVideoById, getSuggestedVideos } from "../services/videoApi.js";
@@ -134,6 +135,10 @@ function Watch() {
 
 	return (
 		<div className="bg-bg min-h-screen text-text-primary">
+			<Helmet>
+				<title>{video ? `${video.title} | TheFrontend` : "Watch | TheFrontend"}</title>
+				<meta name="description" content={video?.title || "Watch video"} />
+			</Helmet>
 			<div className="max-w-450 mx-auto px-4 py-6 flex gap-6">
 				<div className="flex-1 min-w-0">
 					<VideoPlayer

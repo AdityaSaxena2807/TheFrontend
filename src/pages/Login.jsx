@@ -10,6 +10,7 @@ function Login() {
 		identifier: "",
 		password: "",
 	});
+	const [isLoading, setIsLoading] = useState(false);
 	const navigate = useNavigate();
 	const setAuth = useAuthStore((state) => state.setAuth);
 	//here setAuth is a function from the auth store that updates the authentication state with the user information and access token after a successful login.
@@ -33,6 +34,7 @@ function Login() {
 		};
 
 		try {
+			setIsLoading(true);
 			const data = await loginUser(payload);
 			setAuth(data.data.user, data.data.accessToken);
 			// After a successful login, the setAuth function is called with the user information and access token to update the authentication
@@ -41,6 +43,8 @@ function Login() {
 			navigate("/");
 		} catch (error) {
 			ToastError(error?.response?.data?.message || "Login failed");
+		} finally {
+			setIsLoading(false);
 		}
 	};
 
@@ -99,8 +103,8 @@ function Login() {
 								Forgot password?
 							</Link>
 						</div>
-						<Button type="submit" variant="primary" className="mt-2 w-full">
-							Login
+						<Button type="submit" variant="primary" className="mt-2 w-full" disabled={isLoading}>
+							{isLoading ? "Logging in..." : "Login"}
 						</Button>
 					</form>
 				</div>

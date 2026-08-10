@@ -16,12 +16,12 @@ function DuckPicker() {
 				Choose your app logo
 			</h2>
 
-			<div className="grid grid-cols-6 gap-6">
+			<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
 				{LOGO_OPTIONS.map((logo) => (
 					<button
 						key={logo.name}
 						onClick={() => setSelectedLogo(logo.name)}
-						className={`p-4 rounded-md border-2 transition-all duration-hover ${
+						className={`p-4 rounded-md border-2 transition-all duration-hover cursor-pointer ${
 							selectedLogo === logo.name
 								? "border-terracotta bg-surface-elevated"
 								: "border-border hover:border-terracotta/50 bg-surface"
@@ -31,6 +31,7 @@ function DuckPicker() {
 							<img
 								src={logo.src}
 								alt={logo.name}
+								loading="lazy"
 								className="max-w-full max-h-full object-contain"
 							/>
 						</div>

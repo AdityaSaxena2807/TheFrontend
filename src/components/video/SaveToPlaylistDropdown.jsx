@@ -39,7 +39,11 @@ function SaveToPlaylistDropdown({ videoId, onClose }) {
 			await addVideoToPlaylist(videoId, playlistId);
 			onClose();
 		} catch (err) {
-			ToastError("Failed to save to playlist");
+			if (err.response?.status === 409) {
+				ToastError("Already added to playlist");
+			} else {
+				ToastError("Failed to save to playlist");
+			}
 		} finally {
 			setSaving(null);
 		}

@@ -1,5 +1,6 @@
 import { LoadingOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 import SubscribeButton from "../components/channel/SubscribeButton.jsx";
 import SortDropdown from "../components/common/SortDropdown.jsx";
@@ -9,8 +10,10 @@ import { getAllVideos } from "../services/videoApi.js";
 import { ToastError } from "../utils/ToastMessage.js";
 import { getUserTweets } from "../services/tweetApi.js";
 import TweetCard from "../components/tweet/TweetCard.jsx";
+import { useAuthStore } from "../store/authStore.js";
 function Channel() {
 	const { username } = useParams();
+	const currentUser = useAuthStore((s) => s.user);
 	const [channel, setChannel] = useState(null);
 	const [videos, setVideos] = useState([]);
 	const [loading, setLoading] = useState(true);
@@ -87,6 +90,10 @@ function Channel() {
 
 	return (
 		<div className="bg-bg min-h-screen text-text-primary">
+			<Helmet>
+				<title>{channel.fullName} | TheFrontend</title>
+				<meta name="description" content={`Channel of ${channel.fullName}`} />
+			</Helmet>
 			<div className="w-full h-48 md:h-60 bg-surface-elevated">
 				{coverImageUrl && (
 					<img
@@ -124,10 +131,12 @@ function Channel() {
 						</div>
 					</div>
 
-					<SubscribeButton
-						channelId={channel._id}
-						isSubscribed={channel.isSubscribed}
-					/>
+					{currentUser?._id !== channel._id && (
+						<SubscribeButton
+							channelId={channel._id}
+							isSubscribed={channel.isSubscribed}
+						/>
+					)}
 				</div>
 
 				<div className="border-t border-border mt-6 mb-4" />

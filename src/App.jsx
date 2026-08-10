@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import router from "./router/RoutesIndex.jsx";
 import { Toaster } from "react-hot-toast";
 import { RouterProvider } from "react-router-dom";
@@ -30,7 +30,9 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={router} />
+      <Suspense fallback={<div className="flex min-h-screen items-center justify-center bg-bg text-text-primary"><LoadingOutlined /></div>}>
+        <RouterProvider router={router} />
+      </Suspense>
       <Toaster position="top-center" />
     </>
   );

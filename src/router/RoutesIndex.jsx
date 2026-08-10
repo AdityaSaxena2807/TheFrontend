@@ -1,27 +1,30 @@
+/* eslint-disable react-refresh/only-export-components */
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
+import { lazy } from "react";
 import AppLayout from "../layouts/AppLayout";
 import AuthLayout from "../layouts/AuthLayout";
 import ProtectedLayout from "../layouts/ProtectedLayout";
-import Channel from "../pages/Channel";
-import Home from "../pages/Home";
-import Library from "../pages/Library";
-import Login from "../pages/Login";
-import PlaylistDetail from "../pages/PlaylistDetail";
-import Register from "../pages/Register";
-import Search from "../pages/Search";
-import Upload from "../pages/Upload";
-import Watch from "../pages/Watch";
-import Dashboard from "../pages/Dashboard";
-import EditVideo from "../pages/EditVideo";
-import UserDetails from "../pages/Profile";
-import Tweets from "../pages/Tweets";
-import Subscriptions from "../pages/Subscriptions";
-import ForgotPassword from "../pages/ForgotPassword";
-import DuckPicker from "../pages/DuckPicker";
+
+const Channel = lazy(() => import("../pages/Channel"));
+const Home = lazy(() => import("../pages/Home"));
+const Library = lazy(() => import("../pages/Library"));
+const Login = lazy(() => import("../pages/Login"));
+const PlaylistDetail = lazy(() => import("../pages/PlaylistDetail"));
+const Register = lazy(() => import("../pages/Register"));
+const Search = lazy(() => import("../pages/Search"));
+const Upload = lazy(() => import("../pages/Upload"));
+const Watch = lazy(() => import("../pages/Watch"));
+const Dashboard = lazy(() => import("../pages/Dashboard"));
+const EditVideo = lazy(() => import("../pages/EditVideo"));
+const UserDetails = lazy(() => import("../pages/Profile"));
+const Tweets = lazy(() => import("../pages/Tweets"));
+const Subscriptions = lazy(() => import("../pages/Subscriptions"));
+const ForgotPassword = lazy(() => import("../pages/ForgotPassword"));
+const DuckPicker = lazy(() => import("../pages/DuckPicker"));
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>

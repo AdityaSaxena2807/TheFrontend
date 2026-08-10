@@ -17,6 +17,7 @@ function Register() {
 		securityAnswer: "",
 	});
 	const [files, setFiles] = useState({ avatar: null, coverImage: null });
+	const [isLoading, setIsLoading] = useState(false);
 	const [previews, setPreviews] = useState({
 		avatar: null,
 		coverImage: null,
@@ -76,6 +77,7 @@ function Register() {
 		data.append("coverImage", files.coverImage);
 
 		try {
+			setIsLoading(true);
 			await axiosInstance.post("/api/v1/users/register", data);
 			ToastSuccess("Account created! Please log in.");
 			navigate("/login");
@@ -85,6 +87,8 @@ function Register() {
 					error?.message ||
 					"Registration failed",
 			);
+		} finally {
+			setIsLoading(false);
 		}
 	};
 
@@ -279,8 +283,8 @@ function Register() {
 							</div>
 						</div>
 
-						<Button type="submit" variant="primary" className="mt-2 w-full">
-							Create account
+						<Button type="submit" variant="primary" className="mt-2 w-full" disabled={isLoading}>
+							{isLoading ? "Registering..." : "Create account"}
 						</Button>
 					</form>
 				</div>
